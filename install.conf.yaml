@@ -2,3 +2,4 @@
     ~/.amethyst: amethyst
     ~/.vimrc: vimrc
     ~/.oh-my-zsh: oh-my-zsh
+    ~/.emacs.d: emacs.d
