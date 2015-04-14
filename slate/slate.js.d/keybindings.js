@@ -5,10 +5,10 @@ var keybindings = (function() {
 
     slate.bindAll({
         // Change focus.
-        "j:cmd;ctrl;alt": function(win) {
+        "j:shift;alt": function(win) {
             helpers.focusNextWindow(win, false);
         },
-        "k:cmd;ctrl;alt": function(win) {
+        "k:shift;alt": function(win) {
             helpers.focusNextWindow(win, true);
         },
         "0:shift,cmd;ctrl;alt": function(win) {
@@ -22,10 +22,10 @@ var keybindings = (function() {
         },
 
         // Push windows around.
-        "j:shift;cmd;ctrl;alt": slate.op("push", {"direction": "down"}),
-        "k:shift;cmd;ctrl;alt": slate.op("push", {"direction": "up"}),
-        "h:shift;cmd;ctrl;alt": slate.op("push", {"direction": "left"}),
-        "l:shift;cmd;ctrl;alt": slate.op("push", {"direction": "right"}),
+        //"j:shift;cmd;ctrl;alt": slate.op("push", {"direction": "down"}),
+        // "k:shift;cmd;ctrl;alt": slate.op("push", {"direction": "up"}),
+        // "h:shift;cmd;ctrl;alt": slate.op("push", {"direction": "left"}),
+        // "l:shift;cmd;ctrl;alt": slate.op("push", {"direction": "right"}),
 
         // Throw windows between screens.
         "[:shift;cmd;ctrl;alt": slate.op("throw", {"screen": "left"}),

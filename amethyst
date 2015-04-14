@@ -137,11 +137,11 @@
     },
     "focus-ccw": {
         "mod": "mod1",
-        "key": "j"
+        "key": "asdf"
     },
     "focus-cw": {
         "mod": "mod1",
-        "key": "k"
+        "key": "asdf"
     },
     "swap-screen-ccw": {
         "mod": "mod2",
