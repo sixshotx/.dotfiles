@@ -5,3 +5,5 @@
     ~/.emacs.d: emacs.d
     ~/.zshrc: zshrc
     ~/.zsh_profile: zsh_profile
+    ~/.slate.js.d: slate/slate.js.d
+    ~/.slate.js: slate/slate.js
