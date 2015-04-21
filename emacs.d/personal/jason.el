@@ -1,11 +1,19 @@
 (require 'package)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(add-to-list 'load-path "~/.emacs.d/custom_org")
+
+; (require 'org-trello)
+
 ; Get rid of bell sound
 (setq visible-bell 1)
 (add-hook 'org-mode-hook (lambda () (org-autolist-mode)))
 ;(add-hook 'org-mode-hook (lambda () (longlines-mode 1)))
+(add-hook 'org-mode-hook (lambda () (visual-line-mode 1)))
 (add-hook 'org-mode-hook (lambda () (whitespace-mode 0)))
 
+; Agenda hooks
+(add-hook 'org-agenda-mode-hook (lambda () (visual-line-mode 1)))
+(require 'org-depend)
 
 ; Navigation
 (defun org-goto-last-heading ()
@@ -536,7 +544,7 @@ as the default task."
              (define-key org-mode-map [remap prelude-smart-open-line-above] 'org-insert-todo-heading-respect-content)))
 
                                         ; Enable habit tracking (and a bunch of other modules)
-(setq org-modules (quote (org-habit org-checklist)))
+(setq org-modules (quote (org-habit org-checklist org-depend)))
 ;(require 'org-checklist)
 (setq org-agenda-custom-commands
       '(("n" "Tasks due or scheduled in the next week. Any tasks that are in the Next todo state"
