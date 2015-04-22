@@ -4,6 +4,11 @@
 
 ; (require 'org-trello)
 
+; Set RESET_CHECK_BOXES to t to reset checkboxes
+(require 'org-checklist)
+
+;; Set RESET_SUBTASKS to t to reset subtasks
+(require 'org-subtask-reset)
 ; Get rid of bell sound
 (setq visible-bell 1)
 (add-hook 'org-mode-hook (lambda () (org-autolist-mode)))
@@ -762,7 +767,7 @@ as the default task."
 ;; Set to the location of your Org files on your local system
 (setq org-directory "~/Dropbox/org")
 ;; Set to the name of the file where new notes will be stored
-(setq org-mobile-inbox-for-pull "~/Dropbox/org/mobile.org")
+(setq org-mobile-inbox-for-pull "~/Dropbox/Public/mobile_org_inbox/mobile_inbox.org")
 ;; Set to <your Dropbox root directory>/MobileOrg.
 ;; Set to public b/c otherwise there are permissions issues.
 (setq org-mobile-directory "~/Dropbox/Public/MobileOrg")
@@ -777,15 +782,15 @@ as the default task."
 ;; https://gist.github.com/3111823 ASYNC org mobile push...
 (require 'gnus-async) 
 ;; Define a timer variable
-(defvar org-mobile-push-timer nil
-  "Timer that `org-mobile-push-timer' used to reschedule itself, or nil.")
+;; (defvar org-mobile-push-timer nil
+;;   "Timer that `org-mobile-push-timer' used to reschedule itself, or nil.")
 ;; Push to mobile when the idle timer runs out
-(defun org-mobile-push-with-delay (secs)
-   (when org-mobile-push-timer
-    (cancel-timer org-mobile-push-timer))
-  (setq org-mobile-push-timer
-        (run-with-idle-timer
-         (* 1 secs) nil 'org-mobile-push)))
+;; (defun org-mobile-push-with-delay (secs)
+;;    (when org-mobile-push-timer
+;;     (cancel-timer org-mobile-push-timer))
+;;   (setq org-mobile-push-timer
+;;         (run-with-idle-timer
+;;          (* 1 secs) nil 'org-mobile-push)))
 ;; After saving files, start an idle timer after which we are going to push 
 ;; (add-hook 'after-save-hook 
 ;;  (lambda () 
@@ -795,13 +800,13 @@ as the default task."
 ;;            (org-mobile-push-with-delay 10)))
 ;;      )))
 ;; Run after midnight each day (or each morning upon wakeup?).
-;;(run-at-time "00:01" 86400 '(lambda () (org-mobile-push-with-delay 1)))
+;; (run-at-time "00:01" 86400 '(lambda () (org-mobile-push-with-delay 1)))
 ;; Run 1 minute after launch, and once a day after that.
-;;(run-at-time "1 min" 86400 '(lambda () (org-mobile-push-with-delay 1)))
+;; (run-at-time "1 min" 86400 '(lambda () (org-mobile-push-with-delay 1)))
 
 ;; watch mobileorg.org for changes, and then call org-mobile-pull
 ;; http://stackoverflow.com/questions/3456782/emacs-lisp-how-to-monitor-changes-of-a-file-directory
-;; (defun install-monitor (file secs)
+;;(defun install-monitor (file secs)
 ;;   (run-with-timer
 ;;    0 secs
 ;;    (lambda (f p)
@@ -809,7 +814,7 @@ as the default task."
 ;;        (org-mobile-pull)))
 ;;    file secs))
 ;; (defvar monitor-timer (install-monitor (concat org-mobile-directory "/mobileorg.org") 30)
-;;  "Check if file changed every 30 s.")
+;;   "Check if file changed every 30 s.")
 
 ; Miscellaneous agenda settings
 ;; Diary
