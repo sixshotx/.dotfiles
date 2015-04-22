@@ -577,9 +577,8 @@ as the default task."
             ;; display images
             (local-set-key "\M-I" 'org-toggle-iimage-in-org)
             ;; fix tab
-            (local-set-key "\C-y" 'yank)))
-
-
+            (local-set-key "\C-y" 'yank)
+            (local-set-key (kbd "<C-M-return>") 'org-insert-todo-subheading)))
 
 ; Text editing
 ; delete whitespace/word

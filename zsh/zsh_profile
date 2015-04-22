@@ -87,3 +87,4 @@ alias em="open -a Emacs"
 # Find out which process is using a port, for example 9000
 # alia lsof -i :9000
 source /usr/local/opt/autoenv/activate.sh
+alias ij="open -a /Applications/IntelliJ\ IDEA\ 14.app/ "
