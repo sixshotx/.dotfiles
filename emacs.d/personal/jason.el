@@ -18,6 +18,8 @@
 
 ; Agenda hooks
 (add-hook 'org-agenda-mode-hook (lambda () (visual-line-mode 1)))
+;; Use sticky agenda's so they persist. Useful to have an agenda view per buffer and just navigate among them
+(setq org-agenda-sticky t)
 (require 'org-depend)
 
 ; Navigation
@@ -391,8 +393,9 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
               ("CODE REVIEW" :foreground "orange" :weight bold)
               ("WAITING" :foreground "forest green" :weight bold))))
 (setq org-tag-faces
-      (quote (("home" :foreground "light green" :weight bold)
-              ("errand" :foreground "SteelBlue1" :weight bold)
+      (quote (("@home" :foreground "light green" :weight bold)
+              ("@work" :foreground "light red" :weight bold)
+              ("@errand" :foreground "SteelBlue1" :weight bold)
               ("scheduled" :foreground "yellow1" :weight bold)
               ("today" :foreground "OrangeRed2" :weight bold)
               ("week" :foreground "salmon1" :weight bold))))
@@ -866,6 +869,7 @@ as the default task."
 (setq org-tag-alist (quote ((:startgroup)
                             ("@home" . ?H)
                             ("@work" . ?W)
+                            ("@errand" . ?E)
                             (:endgroup)
                             ("today" . ?t)
                             ("week" . ?w)
