@@ -1,5 +1,4 @@
 (require 'package)
-
 (require 'prelude-helm-everywhere)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"
                                  "melpa" . "http://melpa.org/packages/") t)
@@ -25,7 +24,6 @@ hm(require 'helm-config)
 ; Agenda hooks
 (add-hook 'org-agenda-mode-hook (lambda () (visual-line-mode 1)))
 ;; Use sticky agenda's so they persist. Useful to have an agenda view per buffer and just navigate among them
-(setq org-agenda-sticky t)
 (require 'org-depend)
 
 ; Navigation
