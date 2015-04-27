@@ -1,6 +1,12 @@
 (require 'package)
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+
+(require 'prelude-helm-everywhere)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"
+                                 "melpa" . "http://melpa.org/packages/") t)
 (add-to-list 'load-path "~/.emacs.d/custom_org")
+; Helm
+hm(require 'helm-config)
+(helm-mode 1)
 
 ; (require 'org-trello)
 
