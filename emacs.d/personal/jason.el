@@ -1,19 +1,19 @@
 (require 'package)
-(require 'prelude-helm-everywhere)
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"
-                                 "melpa" . "http://melpa.org/packages/") t)
-(add-to-list 'load-path "~/.emacs.d/custom_org")
+;(require 'prelude-helm-everywhere)
+;(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"
+;                                 "melpa" . "http://melpa.org/packages/") t)
+;(add-to-list 'load-path "~/.emacs.d/custom_org")
 ; Helm
-hm(require 'helm-config)
-(helm-mode 1)
+;(require 'helm-config)
+;(helm-mode 1)
 
 ; (require 'org-trello)
 
 ; Set RESET_CHECK_BOXES to t to reset checkboxes
-(require 'org-checklist)
+;(require 'org-checklist)
 
 ;; Set RESET_SUBTASKS to t to reset subtasks
-(require 'org-subtask-reset)
+;(require 'org-subtask-reset)
 ; Get rid of bell sound
 (setq visible-bell 1)
 (add-hook 'org-mode-hook (lambda () (org-autolist-mode)))
@@ -787,7 +787,7 @@ as the default task."
 ; Sexy autosyncing
 ;; Fork the work (async) of pushing to mobile
 ;; https://gist.github.com/3111823 ASYNC org mobile push...
-(require 'gnus-async) 
+;(require 'gnus-async) 
 ;; Define a timer variable
 ;; (defvar org-mobile-push-timer nil
 ;;   "Timer that `org-mobile-push-timer' used to reschedule itself, or nil.")
@@ -885,14 +885,14 @@ as the default task."
                                         ; For tag searches ignore tasks with scheduled and deadline dates
 (setq org-agenda-tags-todo-honor-ignore-options t)
 ; Deft
-(require 'deft)
-(setq deft-extension "txt")
-(setq deft-directory "~/Dropbox/nvalt_notes/")
+;(require 'deft)
+;(setq deft-extension "txt")
+;(setq deft-directory "~/Dropbox/nvalt_notes/")
 
-(setq org-blank-before-new-entry nil)
+;(setq org-blank-before-new-entry nil)
 
 ; Mac notifications for org mode
-(require 'appt)
+;(require 'appt)
 (setq appt-time-msg-list nil)    ;; clear existing appt list
 (setq appt-display-interval '10) ;; warn every 10 minutes from t - appt-message-warning-time
 (setq

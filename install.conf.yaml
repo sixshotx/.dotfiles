@@ -4,7 +4,8 @@
     ~/.vimrc: vimrc
     ~/.oh-my-zsh: oh-my-zsh
     ~/.oh-my-zsh/custom: zsh/oh-my-zsh-custom
-    ~/.emacs.d: emacs.d
+    # ~/.emacs.d: emacs.d
+    ~/.emacs.d: emacs.spacemacs.d
     ~/.zshrc: zsh/zshrc
     ~/.zsh_profile: zsh/zsh_profile
     ~/.slate.js.d: slate/slate.js.d
