@@ -82,8 +82,10 @@ vman() {
 }
 
 # emacs shortcut
-alias em="open -a Emacs"
-
+ec() {
+    which osascript > /dev/null 2>&1 && osascript -e 'tell application "Emacs" to activate'
+emacsclient -c "$@"
+}
 # Find out which process is using a port, for example 9000
 # alia lsof -i :9000
 source /usr/local/opt/autoenv/activate.sh

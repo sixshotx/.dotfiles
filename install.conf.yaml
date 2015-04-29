@@ -10,5 +10,6 @@
     ~/.zsh_profile: zsh/zsh_profile
     ~/.slate.js.d: slate/slate.js.d
     ~/.slate.js: slate/slate.js
+    ~/.flake8rc: flake8rc
 - shell:
     - [./osx/apply-keys.sh, Applying OSX keyboard shortcuts...]

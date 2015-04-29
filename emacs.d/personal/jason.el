@@ -16,7 +16,7 @@
 ;(require 'org-subtask-reset)
 ; Get rid of bell sound
 (setq visible-bell 1)
-(add-hook 'org-mode-hook (lambda () (org-autolist-mode)))
+;(add-hook 'org-mode-hook (lambda () (org-autolist-mode)))
 ;(add-hook 'org-mode-hook (lambda () (longlines-mode 1)))
 (add-hook 'org-mode-hook (lambda () (visual-line-mode 1)))
 (add-hook 'org-mode-hook (lambda () (whitespace-mode 0)))
@@ -920,6 +920,8 @@ as the default task."
     (format "'Appointment in %s minutes'" min-to-app)    ;; passed to -title in terminal-notifier call
     (format "'%s'" msg)))                                ;; passed to -message in terminal-notifier call
 (setq appt-disp-window-function (function my-appt-display))
+
+
 
 ;; Get rid of whitespace mode. Annoying in org files
 ;; Clocking settings

@@ -100,7 +100,7 @@ function gnew() {
 
 # Deletes all merged branches
 function gdd() {
-    git branch --merged | grep -v '^* master$' | grep -v '^  master$' | xargs git branch -d
+    git branch --merged | grep -v '^* master$' | grep -v '^  master$' | xargs -n 1 git branch -d
 }
 
 # generate patch for use with git apply
