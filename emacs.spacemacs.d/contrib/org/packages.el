@@ -15,6 +15,7 @@
     evil-org
     org
     org-bullets
+    org-checklist
     org-pomodoro
     org-repo-todo
     ox-gfm
