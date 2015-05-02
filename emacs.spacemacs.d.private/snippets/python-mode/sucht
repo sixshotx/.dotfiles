@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Nose2 such DSL test
+# key: sucht
+# binding: direct-keybinding
+# group: python
+# --
+@it.should("${1:description}")
+def test():
+    $0

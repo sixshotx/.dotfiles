@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+#name : jqt-import
+#key : jqt-import
+#contributor : Jason Yu
+# --
+{{tmpl({}) "#jqt-${1:templateName}"}}

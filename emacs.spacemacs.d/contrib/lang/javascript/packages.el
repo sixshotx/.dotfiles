@@ -136,7 +136,8 @@ which require an initialization must be listed explicitly in the list.")
 
       (evil-leader/set-key-for-mode 'js2-mode "mk" 'js2r-kill)
       (evil-leader/set-key-for-mode 'js2-mode "xmj" 'js2r-move-line-down)
-      (evil-leader/set-key-for-mode 'js2-mode "xmk" 'js2r-move-line-up))))
+      (evil-leader/set-key-for-mode 'js2-mode "xmk" 'js2r-move-line-up)
+      )))
 
 (defun javascript/init-json-mode ()
   (use-package json-mode

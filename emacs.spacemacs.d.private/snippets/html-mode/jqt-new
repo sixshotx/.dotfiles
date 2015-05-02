@@ -1,0 +1,12 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: jqt-new
+# key: jqt
+# binding: direct-keybinding
+# --
+<%text>
+<script id="jqt-${1:templateName}" type="text/x-jquery-tmpl">
+    <div class=$1>
+        $0
+    </div>
+</script>
+</%text>

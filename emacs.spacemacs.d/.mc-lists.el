@@ -5,8 +5,15 @@
       '(
         evil-change
         evil-delete-backward-char-and-join
+        evil-indent-i-indent
+        evil-jumper/backward
+        keyboard-quit
         ))
 
 (setq mc/cmds-to-run-once
       '(
+        evil-backward-char
+        evil-next-visual-line
+        evil-previous-visual-line
+        evil-search-next
         ))

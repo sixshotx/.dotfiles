@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+#name : factory_boy_post_generation
+#key : factory_boy_post_generation
+#contributor : Jason Yu
+# --
+@factory.post_generation
+def ${1:post_gen}(self, create, extracted, **kwargs):
+    ${2:"""
+    create - true/false if the build strategy was create.
+    extracted - a dict of args passed to the factory prefixed with post__,
+    with the post__ removed.
+    """}
+    $0

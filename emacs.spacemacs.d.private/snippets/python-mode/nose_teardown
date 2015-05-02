@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+#name : nose_teardown
+#key : nose_teardown
+#contributor : Jason Yu
+# --
+@it.has_teardown
+def teardown():
+    $0
+            

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+#name : nose_with
+#key : nose_with
+#contributor : Jason Yu
+# --
+with it.having("${1:description}"):
+    $0

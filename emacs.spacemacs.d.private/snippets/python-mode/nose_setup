@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+#name : nose_setup
+#key : nose_setup
+#contributor : Jason Yu
+# --
+@it.has_setup
+def setup():
+    $0
+            

@@ -5,6 +5,7 @@
     ~/.oh-my-zsh: oh-my-zsh
     ~/.oh-my-zsh/custom: zsh/oh-my-zsh-custom
     # ~/.emacs.d: emacs.d
+    # Spacemacs
     ~/.emacs.d: emacs.spacemacs.d
     ~/.zshrc: zsh/zshrc
     ~/.zsh_profile: zsh/zsh_profile
