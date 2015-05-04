@@ -923,6 +923,6 @@ as the default task."
 (setq appt-disp-window-function (function my-appt-display))
 
 
-
+(provide 'jason)
 ;; Get rid of whitespace mode. Annoying in org files
 ;; Clocking settings
