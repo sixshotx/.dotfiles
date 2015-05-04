@@ -19,6 +19,10 @@
 (defvar jason-org-post-extensions
   '(
     ;; post extension jason-orgs go here
+    org-depend
+    org-checklist
+    org-subtask-reset
+    jason
     )
   "List of all extensions to load after the packages.")
 
@@ -31,3 +35,8 @@
 ;; Often the body of an initialize function uses `use-package'
 ;; For more info on `use-package', see readme:
 ;; https://github.com/jwiegley/use-package
+
+(defun jason-org/init-jason ()
+  "Initialize my extension"
+  (message "init jason")
+  )
