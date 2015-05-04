@@ -43,14 +43,22 @@ which require an initialization must be listed explicitly in the list.")
 
 (defun jason-python/init-jedi ()
   "Init elpy, an ll-in-one python dev environment"
-  (add-hook 'python-mode-hook 'jedi:setup)
-  (setq jedi:complete-on-dot t)
-  )
+  (use-package jedi
+    :defer t
+    :init
+    (progn
+      (add-hook 'python-mode-hook 'jedi:setup)
+      (setq jedi:complete-on-dot t)
+      (add-hook 'python-mode-hook 'indent-guide-mode)
+      )))
 
 
 (defun jason-python/init-py-autopep8 ()
-  "Init"
-  (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
-
-  (setq py-autopep8-options '("--ignore=E309,E301" "--max-line-length=85"))
+  "Automatically format python files to comply with pep8"
+  (use-package autopep8
+    :defer t
+    :init (progn
+            (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+            (setq py-autopep8-options '("--ignore=E309,E301" "--max-line-length=85")))
+    )
   )
