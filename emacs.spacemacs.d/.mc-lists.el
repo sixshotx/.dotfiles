@@ -5,8 +5,12 @@
       '(
         evil-change
         evil-delete-backward-char-and-join
+        evil-escape-insert-state
         evil-indent-i-indent
+        evil-insert
         evil-jumper/backward
+        evil-normal-state
+        helm-M-x
         keyboard-quit
         ))
 

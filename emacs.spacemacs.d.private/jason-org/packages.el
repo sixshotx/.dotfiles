@@ -36,15 +36,9 @@ which require an initialization must be listed explicitly in the list.")
 
 (defun jason-org/init-org ()
   "Init my really custom org mode setup"
-  (message "loaded jason-org")
   ;; TODO
   ;; These are temporarily hardcoded. I'll just leave these here for now and switch if this
   ;; project gets stable
-  (load-file "~/.dotfiles/emacs.d/custom_org/org-depend.el")
-  (load-file "~/.dotfiles/emacs.d/custom_org/org-checklist.el")
-  (load-file "~/.dotfiles/emacs.d/custom_org/org-subtask-reset.el")
-  (load-file "~/.dotfiles/emacs.d/personal/jason.el")
-
   ;; Some customizations originally from custom.el of my old emacs setup.
   (setq fill-column 85)
   (setq org-agenda-clockreport-parameter-plist (quote (:link t :maxlevel 6)))
