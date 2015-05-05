@@ -7,7 +7,8 @@
 def ${1:post_gen}(self, create, extracted, **kwargs):
     ${2:"""
     create - true/false if the build strategy was create.
-    extracted - a dict of args passed to the factory prefixed with post__,
-    with the post__ removed.
+    extracted - a dict of args passed to the factory prefixed with the method_name
+    plus two underscores. So if the method name was post_gen, then we'd want to pass
+    a post_gen=True and also a post_gen__key=value
     """}
     $0

@@ -16,7 +16,8 @@
     ;; pymacs
     ;; ropemacs
     ;; elpy
-    jedi
+    ;; Mm, makes everythying too slow
+    ;; jedi
     ;; Automatically formats code to be pep8 compliant
     py-autopep8
     )

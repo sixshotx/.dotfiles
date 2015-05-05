@@ -612,9 +612,13 @@ as the default task."
 
 ;; Custom agenda command definitions
 (setq org-agenda-custom-commands
-      (quote (("X" "Xtra agenda" todo "TODO"
-               ((org-agenda-overriding-header "Xtra header")
-                (org-agenda-skip-function 'skip-waiting)))
+      (quote (
+              ; *-tree commands must be executed on an org buffer.
+              ("w" "Twice"
+               ((tags-todo "+twice"
+                           ((org-agenda-overriding-header "Upcoming")
+                            (org-agenda-sorting-strategy '(todo-state-down))))
+                ))
               ("N" "Notes" tags "NOTE"
                ((org-agenda-overriding-header "Notes")
                 (org-tags-match-list-sublevels t)))
