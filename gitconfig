@@ -37,6 +37,7 @@
 [core]
 	trustctime = false
 	editor = vim
+	preloadindex = true
 [alias]
     ss = stash save WIP.
     sa = stash apply
