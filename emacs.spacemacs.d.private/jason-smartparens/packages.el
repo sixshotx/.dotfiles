@@ -42,4 +42,6 @@ which require an initialization must be listed explicitly in the list.")
         ;; it back
         "ohp" 'sp-push-hybrid-sexp
         ;; hybrid-sexp slurp. Slurps in the next sexp into the current one.
-        "ohs" 'sp-slurp-hybrid-sexp))
+        "ohs" 'sp-slurp-hybrid-sexp
+        ;; it's really barfing, so we use a b
+        "ohb" 'sp-dedent-adjust-sexp))
