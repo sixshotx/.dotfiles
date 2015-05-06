@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: twice items from po
+# key: po_items
+# binding: direct-keybinding
+# --
+[i.disp_id for i in po.get_items()]

@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: twice purchase order by disp id
+# key: po
+# binding: direct-keybinding
+# --
+po = models.PurchaseOrder.objects(disp_id=$1).first()

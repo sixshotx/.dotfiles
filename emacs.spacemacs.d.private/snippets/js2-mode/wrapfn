@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: wrapfn
+# key: wrapfn
+# binding: direct-keybinding
+# --
+$0function(${1:params}) {
+  `yas-selected-text`
+}

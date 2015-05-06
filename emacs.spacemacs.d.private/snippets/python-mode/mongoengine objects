@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: mongoengine objects
+# key: obj
+# binding: direct-keybinding
+# --
+${3:documents} = models.${1:Document}.objects(${2:conditions})

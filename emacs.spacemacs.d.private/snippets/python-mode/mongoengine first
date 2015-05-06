@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: mongoengine first
+# key: twfi
+# binding: direct-keybinding
+# --
+${3:document} = models.${1:Document}.objects(${2:status}).first()

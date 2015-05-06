@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Surround with function
+# key: fn
+# binding: direct-keybinding
+# --
+${1:function_name}(`yas-selected-text`)$0
