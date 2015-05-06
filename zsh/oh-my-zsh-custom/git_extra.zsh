@@ -1,5 +1,9 @@
+# -*- mode: sh; -*-
+
 # Do it this way rather than aliasing hub as git b/c it wipes out branch name completion
-function git(){hub $@}
+function git(){
+    hub $@
+}
 # set upstream on push.
 alias gsl="git stash list"
 alias gwip='git add -A; git ls-files --deleted -z | xargs -0 git rm; git commit -n -m "--wip--"'

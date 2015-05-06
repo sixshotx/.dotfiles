@@ -422,7 +422,8 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
                "* %?\n%U\n" :clock-in t :clock-resume t)
               ("w" "Twice One-Offs" entry (file+olp "~/Dropbox/org/twice.org" "One-offs")
                "* TODO %? :week:")
-              ("p" "Programming Productivity" entry (file+olp "~/Dropbox/org/life.org" "Life" "Extra Programming")))))
+              ("p" "Programming Productivity" entry (file+olp "~/Dropbox/org/life.org" "Life" "Extra Programming")
+               "* TODO %?"))))
 
 ;; Org habits
 ; position the habit graph on the agenda to the right of the default
