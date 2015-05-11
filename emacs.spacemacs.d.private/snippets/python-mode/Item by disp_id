@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Item by disp_id
+# key: item
+# binding: direct-keybinding
+# --
+item = models.Item.objects(disp_id="$1").first()

@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: jason internal user
+# key: jason
+# binding: direct-keybinding
+# --
+jason = models.InternalUser.objects(email="jason@liketwice.com").first()

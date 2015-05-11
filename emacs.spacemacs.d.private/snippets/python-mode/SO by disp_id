@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: SO by disp_id
+# key: so
+# binding: direct-keybinding
+# --
+so = models.SellOrder.objects(disp_id="$1").first()
