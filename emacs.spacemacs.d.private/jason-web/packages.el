@@ -17,6 +17,8 @@
     ac-emmet
     web-mode
     scss-mode
+    jade-mode
+    sws-mode
     )
   "List of all packages to install and/or initialize. Built-in packages
 which require an initialization must be listed explicitly in the list.")
@@ -59,3 +61,14 @@ which require an initialization must be listed explicitly in the list.")
   "scss"
   (autoload 'scss-mode "scss-mode")
   (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode)))
+
+(defun jason-web/init-jade-mode ()
+  "scss"
+  (require 'jade-mode)
+)
+
+(defun jason-web/init-sws-mode ()
+  "scss"
+  (require 'sws-mode)
+  (add-to-list 'auto-mode-alist '("\\.styl\\'" . sws-mode))
+)

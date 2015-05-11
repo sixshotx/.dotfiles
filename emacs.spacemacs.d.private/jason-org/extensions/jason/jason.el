@@ -617,7 +617,10 @@ as the default task."
                 )
                ;; Settings that apply to the entire block agenda
                ((org-agenda-tag-filter '("+today"))
-                (org-agenda-overriding-columns-format "%80ITEM(Task) %10Effort(Effort) %10CLOCKSUM_T(Today)"))
+                (org-agenda-overriding-columns-format "%80ITEM(Task) %10Effort(Effort) %10CLOCKSUM_T(Today)")
+                (org-agenda-files '("~/Dropbox/org/life.org" "~/Dropbox/org/twice.org"))
+                (org-agenda-clockreport-parameter-plist
+                 '(:maxlevel 6 :properties ("MAX_EFFORT" "Effort" "CLOCKSUM" "CLOCKSUM_T"))))
                )
               (" " "Agenda"
                ((agenda "" nil)
@@ -918,8 +921,6 @@ as the default task."
     (format "'Appointment in %s minutes'" min-to-app)    ;; passed to -title in terminal-notifier call
     (format "'%s'" msg)))                                ;; passed to -message in terminal-notifier call
 (setq appt-disp-window-function (function my-appt-display))
-
-
 
 ;; Get rid of whitespace mode. Annoying in org files
 ;; Clocking settings
