@@ -608,11 +608,16 @@ as the default task."
                  '(todo-state-down effort-up category-keep))))
               ("p" "Today Block Agenda"
                (
-                (agenda "" ((org-agenda-ndays 1)))
-                (tags-todo "+twice")
-                (tags-todo "+life")
+                ;; Don't have anything actually on the agenda: we have this here so we can see the clock report.
+                (agenda "" nil)
+                (tags-todo "+twice"
+                           ((org-agenda-overriding-header "Twice")))
+                (tags-todo "+life"
+                           ((org-agenda-overriding-header "Life")))
                 )
-               ((org-agenda-tag-filter '("+today")))
+               ;; Settings that apply to the entire block agenda
+               ((org-agenda-tag-filter '("+today"))
+                (org-agenda-overriding-columns-format "%80ITEM(Task) %10Effort(Effort) %10CLOCKSUM_T(Today)"))
                )
               (" " "Agenda"
                ((agenda "" nil)
