@@ -598,36 +598,36 @@ as the default task."
   "Skip function. Only see tasks that
     - have a today tag
     - have a clock entry for today"
-  (let* (
-         (subtree-end (save-excursion (org-end-of-subtree t)))
-         ;; Get LOGBOOK
-         (logbook-start (save-excursion (re-search-forward ":LOGBOOK:" subtree-end t)))
-         ;; Get timestamp start and end position.
-         (timestamp-start-pos (save-excursion
-                                (progn
-                                  (re-search-forward "CLOCK: \\[" subtree-end t))))
-         (timestamp-end-pos (save-excursion
-                              (progn
-                                (re-search-forward "\\]" subtree-end t))))
-         )
-    (if (and timestamp-start-pos timestamp-end-pos)
-        ;; Get timestamp str itself
-        (condition-case nil
-            (progn
-              (let* ((timestamp-str (buffer-substring timestamp-start-pos (- timestamp-end-pos 1)))
-                     ;; Convert timestamp str to elisp time
-                     (timestamp (org-time-string-to-time timestamp-str)))
-                ;;(message "return value is %S" (jason-org/is-today timestamp))
-                ;; Skip if we don't find a timestamp
-                (if (not (jason-org/is-today timestamp))
-                    ;; Skip
-                    subtree-end
-                  ;; Don't skip
-                  nil
-                  )))
-        (error subtree-end)
-        )
-      subtree-end)))
+  (if (member "today" (org-get-tags-at))
+      nil
+      (let* ((subtree-end (save-excursion (org-end-of-subtree t)))
+             ;; Get LOGBOOK
+             (logbook-start (save-excursion (re-search-forward ":LOGBOOK:" subtree-end t)))
+             ;; Get timestamp start and end position.
+             (timestamp-start-pos (save-excursion
+                                    (progn
+                                      (re-search-forward "CLOCK: \\[" subtree-end t))))
+             (timestamp-end-pos (save-excursion
+                                  (progn
+                                    (re-search-forward "\\]" subtree-end t))))
+             )
+        (if (and timestamp-start-pos timestamp-end-pos)
+            ;; Get timestamp str itself
+            (condition-case nil
+                (progn
+                  (let* ((timestamp-str (buffer-substring timestamp-start-pos (- timestamp-end-pos 1)))
+                         ;; Convert timestamp str to elisp time
+                         (timestamp (org-time-string-to-time timestamp-str)))
+                    ;;(message "return value is %S" (jason-org/is-today timestamp))
+                    ;; Skip if we don't find a timestamp
+                    (if (jason-org/is-today timestamp)
+                        ;; Don't skip
+                        nil
+                      ;; Skip
+                      subtree-end
+                      )))
+              (error subtree-end))
+          subtree-end))))
 
 (defun jason-org/is-today (timestamp)
   "Takes a timestamp and return t if timestamp occurs during the current day"
