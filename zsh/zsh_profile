@@ -90,3 +90,4 @@ emacsclient -c "$@"
 # alia lsof -i :9000
 source /usr/local/opt/autoenv/activate.sh
 alias ij="open -a /Applications/IntelliJ\ IDEA\ 14.app/ "
+alias emacs="/usr/local/Cellar/emacs/24.x/Emacs.app/Contents/MacOS/Emacs -nw"
