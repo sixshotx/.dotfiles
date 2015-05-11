@@ -594,37 +594,53 @@ as the default task."
         nil
       subtree-end)))
 
-(defun jason-org/get-latest-clock-start ()
-  "Returns t for entries which have a clock entry today"
-  (interactive)
+(defun jason-org/skip-unless-clocked-in-today ()
+  "Skip function. Only see tasks that
+    - have a today tag
+    - have a clock entry for today"
   (let* (
          (subtree-end (save-excursion (org-end-of-subtree t)))
          ;; Get LOGBOOK
-        (logbook-start (save-excursion (re-search-forward ":LOGBOOK:" subtree-end t)))
-        ;; Get timestamp start and end position.
-        (timestamp-start-pos (save-excursion
-                         (progn
-                           (re-search-forward "CLOCK: \\[" subtree-end t))))
-        (timestamp-end-pos (save-excursion
-                             (progn
-                               (re-search-forward "\\]" subtree-end t))))
+         (logbook-start (save-excursion (re-search-forward ":LOGBOOK:" subtree-end t)))
+         ;; Get timestamp start and end position.
+         (timestamp-start-pos (save-excursion
+                                (progn
+                                  (re-search-forward "CLOCK: \\[" subtree-end t))))
+         (timestamp-end-pos (save-excursion
+                              (progn
+                                (re-search-forward "\\]" subtree-end t))))
+         )
+    (if (and timestamp-start-pos timestamp-end-pos)
         ;; Get timestamp str itself
-        (timestamp-str (buffer-substring timestamp-start-pos (- timestamp-end-pos 1)))
-        ;; Convert timestamp str to elisp time
-        (timestamp (org-time-string-to-time timestamp-str))
+        (condition-case nil
+            (progn
+              (let* ((timestamp-str (buffer-substring timestamp-start-pos (- timestamp-end-pos 1)))
+                     ;; Convert timestamp str to elisp time
+                     (timestamp (org-time-string-to-time timestamp-str)))
+                ;;(message "return value is %S" (jason-org/is-today timestamp))
+                ;; Skip if we don't find a timestamp
+                (if (not (jason-org/is-today timestamp))
+                    ;; Skip
+                    subtree-end
+                  ;; Don't skip
+                  nil
+                  )))
+        (error subtree-end)
         )
-    (message (symbol-name (jason-org/is-today timestamp)))
-    ()))
+      subtree-end)))
 
 (defun jason-org/is-today (timestamp)
   "Takes a timestamp and return t if timestamp occurs during the current day"
   (let*
       (;; Get today's day number
        (today-day-num (nth 3 (decode-time (current-time))))
-       (timestamp-day-num (nth 3 (decode-time timestamp))))
-    ;; (message (eq today-day-num timestamp-day-num))
-    ;; (message (number-to-string timestamp-day-num))
-    (eq timestamp-day-num today-day-num)
+       (timestamp-day-num (nth 3 (decode-time timestamp)))
+       (ret (eq timestamp-day-num today-day-num)))
+    ;; debug
+    ;;(message "Today's day num %d" today-day-num)
+    ;; (message "Passed in timestamp's day num: %d" timestamp-day-num)
+    ;; (message "ret: %S" ret)
+    ret
     ))
 
 ;; Custom agenda command definitions
@@ -646,14 +662,16 @@ as the default task."
                 (tags-todo "+twice"
                            ((org-agenda-overriding-header "Twice")))
                 (tags-todo "+life"
-                           ((org-agenda-overriding-header "Life")))
-                )
+                           ((org-agenda-overriding-header "Life")
+                            (org-agenda-skip-function 'jason-org/skip-unless-clocked-in-today)
+                            )))
                ;; Settings that apply to the entire block agenda
-               ((org-agenda-tag-filter '("+today"))
+               (;;(org-agenda-tag-filter '("+today"))
                 (org-agenda-overriding-columns-format "%80ITEM(Task) %10Effort(Effort) %10CLOCKSUM_T(Today)")
                 (org-agenda-files '("~/Dropbox/org/life.org" "~/Dropbox/org/twice.org"))
                 (org-agenda-clockreport-parameter-plist
-                 '(:maxlevel 6 :properties ("MAX_EFFORT" "Effort" "CLOCKSUM" "CLOCKSUM_T"))))
+                 '(:maxlevel 6 :properties ("MAX_EFFORT" "Effort" "CLOCKSUM" "CLOCKSUM_T")))
+                )
                )
               (" " "Agenda"
                ((agenda "" nil)
