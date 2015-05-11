@@ -627,6 +627,14 @@ as the default task."
                ((org-agenda-overriding-header "Habits")
                 (org-agenda-sorting-strategy
                  '(todo-state-down effort-up category-keep))))
+              ("p" "Today"
+               ((tags-todo "+twice+today"
+                           ((org-agenda-overriding-header "Twice")
+                            (org-agenda-overriding-columns-format "%80ITEM(Task) %10Effort(Effort) %10CLOCKSUM_T(Today)")))
+                (tags-todo "+life+today"
+                           ((org-agenda-overriding-header "Life")
+                            (org-agenda-overriding-columns-format "%80ITEM(Task) %10Effort(Effort) %10CLOCKSUM_T(Today)")))
+                ))
               (" " "Agenda"
                ((agenda "" nil)
                 (tags-todo "refile"
