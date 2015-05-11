@@ -420,7 +420,7 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
                "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d/3d>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n")
               ("j" "Journal" entry (file+datetree "~/Dropbox/org/diary.org")
                "* %?\n%U\n" :clock-in t :clock-resume t)
-              ("w" "Twice One-Offs" entry (file+olp "~/Dropbox/org/twice.org" "One-offs")
+              ("w" "Twice One-Offs" entry (file+olp "~/Dropbox/org/twice.org" "Twice Root" "One-offs")
                "* TODO %? :week:")
               ("p" "Programming Productivity" entry (file+olp "~/Dropbox/org/life.org" "Life" "Extra Programming")
                "* TODO %?"))))
@@ -559,23 +559,6 @@ as the default task."
 
                                         ; Enable habit tracking (and a bunch of other modules)
 (setq org-modules (quote (org-habit org-checklist org-depend)))
-;(require 'org-checklist)
-(setq org-agenda-custom-commands
-      '(("n" "Tasks due or scheduled in the next week. Any tasks that are in the Next todo state"
-         ((agenda "")
-          (todo "NEXT")))
-        ("r" "Review."
-         ; todo items in waiting or code review status. Also trees without a defined todo child.
-         ((todo "TODO")
-          (todo "WAITING")
-          (todo "CODE REVIEW")
-          (tags-todo "-CANCELLED-SCHEDULED"
-                     ((org-agenda-overriding-header "Stuck Projects")
-                      (org-agenda-skip-function 'bh/skip-non-stuck-projects)
-                      (org-agenda-sorting-strategy
-                       '(category-keep))))
-          )))
-      )
 
 ; Org-mode specific shortcuts
 (add-hook 'org-mode-hook 
@@ -613,13 +596,9 @@ as the default task."
 
 ;; Custom agenda command definitions
 (setq org-agenda-custom-commands
-      (quote (
-              ; *-tree commands must be executed on an org buffer.
-              ("w" "Twice"
-               ((tags-todo "+twice"
-                           ((org-agenda-overriding-header "Upcoming")
-                            (org-agenda-sorting-strategy '(todo-state-down))))
-                ))
+      (quote (("X" "Xtra agenda" todo "TODO"
+               ((org-agenda-overriding-header "Xtra header")
+                (org-agenda-skip-function 'skip-waiting)))
               ("N" "Notes" tags "NOTE"
                ((org-agenda-overriding-header "Notes")
                 (org-tags-match-list-sublevels t)))
@@ -627,14 +606,19 @@ as the default task."
                ((org-agenda-overriding-header "Habits")
                 (org-agenda-sorting-strategy
                  '(todo-state-down effort-up category-keep))))
-              ("p" "Today"
-               ((tags-todo "+twice+today"
-                           ((org-agenda-overriding-header "Twice")
-                            (org-agenda-overriding-columns-format "%80ITEM(Task) %10Effort(Effort) %10CLOCKSUM_T(Today)")))
-                (tags-todo "+life+today"
-                           ((org-agenda-overriding-header "Life")
-                            (org-agenda-overriding-columns-format "%80ITEM(Task) %10Effort(Effort) %10CLOCKSUM_T(Today)")))
-                ))
+              ("p" "Today Block Agenda"
+               (
+                ;; Don't have anything actually on the agenda: we have this here so we can see the clock report.
+                (agenda "" nil)
+                (tags-todo "+twice"
+                           ((org-agenda-overriding-header "Twice")))
+                (tags-todo "+life"
+                           ((org-agenda-overriding-header "Life")))
+                )
+               ;; Settings that apply to the entire block agenda
+               ((org-agenda-tag-filter '("+today"))
+                (org-agenda-overriding-columns-format "%80ITEM(Task) %10Effort(Effort) %10CLOCKSUM_T(Today)"))
+               )
               (" " "Agenda"
                ((agenda "" nil)
                 (tags-todo "refile"
@@ -936,6 +920,7 @@ as the default task."
 (setq appt-disp-window-function (function my-appt-display))
 
 
-(provide 'jason)
+
 ;; Get rid of whitespace mode. Annoying in org files
 ;; Clocking settings
+(provide 'jason)
