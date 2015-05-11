@@ -12,6 +12,7 @@
 
 (defvar jason-python-packages
   '(
+    anaconda-mode
     ;; package jason-pythons go here
     ;; pymacs
     ;; ropemacs
@@ -61,5 +62,17 @@ which require an initialization must be listed explicitly in the list.")
     :init (progn
             (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
             (setq py-autopep8-options '("--ignore=E309,E301" "--max-line-length=85")))
-    )
-  )
+    )) 
+
+  (defun jason-python/init-anaconda-mode ()
+    ""
+    ;; Same as default except don't override find-tag
+    (defvar anaconda-mode-map
+      (let ((map (make-sparse-keymap)))
+        (define-key map (kbd "M-?") 'anaconda-mode-view-doc)
+        (define-key map (kbd "M-r") 'anaconda-mode-usages)
+        ;; (define-key map [remap find-tag] 'anaconda-mode-goto)
+        (define-key map [remap pop-tag-mark] 'anaconda-nav-pop-marker)
+    map)
+    ))
+
