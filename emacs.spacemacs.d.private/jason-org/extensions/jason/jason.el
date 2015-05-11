@@ -594,6 +594,39 @@ as the default task."
         nil
       subtree-end)))
 
+(defun jason-org/get-latest-clock-start ()
+  "Returns t for entries which have a clock entry today"
+  (interactive)
+  (let* (
+         (subtree-end (save-excursion (org-end-of-subtree t)))
+         ;; Get LOGBOOK
+        (logbook-start (save-excursion (re-search-forward ":LOGBOOK:" subtree-end t)))
+        ;; Get timestamp start and end position.
+        (timestamp-start-pos (save-excursion
+                         (progn
+                           (re-search-forward "CLOCK: \\[" subtree-end t))))
+        (timestamp-end-pos (save-excursion
+                             (progn
+                               (re-search-forward "\\]" subtree-end t))))
+        ;; Get timestamp str itself
+        (timestamp-str (buffer-substring timestamp-start-pos (- timestamp-end-pos 1)))
+        ;; Convert timestamp str to elisp time
+        (timestamp (org-time-string-to-time timestamp-str))
+        )
+    (message (symbol-name (jason-org/is-today timestamp)))
+    ()))
+
+(defun jason-org/is-today (timestamp)
+  "Takes a timestamp and return t if timestamp occurs during the current day"
+  (let*
+      (;; Get today's day number
+       (today-day-num (nth 3 (decode-time (current-time))))
+       (timestamp-day-num (nth 3 (decode-time timestamp))))
+    ;; (message (eq today-day-num timestamp-day-num))
+    ;; (message (number-to-string timestamp-day-num))
+    (eq timestamp-day-num today-day-num)
+    ))
+
 ;; Custom agenda command definitions
 (setq org-agenda-custom-commands
       (quote (("X" "Xtra agenda" todo "TODO"
