@@ -660,9 +660,13 @@ as the default task."
                 ;; Don't have anything actually on the agenda: we have this here so we can see the clock report.
                 (agenda "" nil)
                 (tags-todo "+twice"
-                           ((org-agenda-overriding-header "Twice")))
+                           ((org-agenda-overriding-header "Twice")
+                            ;;(org-agenda-skip-function 'jason-org/skip-unless-clocked-in-today)
+                            ))
                 (tags-todo "+life"
                            ((org-agenda-overriding-header "Life")
+                            ;; Interestingly, putting this here also uses it for the Twice agenda block, but
+                            ;; putting it with the common settings below doesn't work.
                             (org-agenda-skip-function 'jason-org/skip-unless-clocked-in-today)
                             )))
                ;; Settings that apply to the entire block agenda
