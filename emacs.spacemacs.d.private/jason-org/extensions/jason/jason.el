@@ -104,16 +104,11 @@
 (setq org-clock-report-include-clocking-task t)
 
 (add-hook 'org-clock-out-hook 'bh/clock-out-maybe 'append)
-             
-; Org agenda
+
+;; Org agenda
 (global-set-key (kbd "<f12>") 'org-agenda)
 (setq org-agenda-files (quote ("~/Dropbox/org")))
-; Replace prelude's smart open above w/ org mode's insert heading
-(add-hook 'org-mode-hook
-          '(lambda ()
-             (define-key org-mode-map [remap prelude-smart-open-line-above] 'org-insert-todo-heading-respect-content)))
-
-                                        ; Enable habit tracking (and a bunch of other modules)
+;; Enable habit tracking (and a bunch of other modules)
 (setq org-modules (quote (org-habit org-checklist org-depend)))
 
 ; Org-mode specific shortcuts
@@ -134,14 +129,9 @@
             (local-set-key (kbd "<C-M-return>") 'org-insert-todo-subheading)))
 
 ; Text editing
-; delete whitespace/word
-;(setq viper-mode t)
-; (require 'viper)
-;; Do not dim blocked tasks
-(setq org-agenda-dim-blocked-tasks nil)
 
 ;; Compact the block agenda view
-(setq org-agenda-compact-blocks t)
+;; (setq org-agenda-compact-blocks t)
 
 (defun skip-waiting ()
   "Skip trees that aren't waiting"
