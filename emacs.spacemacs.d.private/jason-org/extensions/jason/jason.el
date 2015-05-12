@@ -35,7 +35,7 @@
 ; Org mode todo settings
 
 (setq org-todo-keywords
-      (quote ((sequence "WAITING(w@/!) CANCELED(c@)" ))))
+      (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)") (sequence "WAITING(w@/!)" "|" "CANCELED(c@)" ))))
 ;; Allows changing todo states with S-left and S-right w/o triggering things like
 ;; notes and state triggers.
 (setq org-treat-S-cursor-todo-selection-as-state-change nil)
