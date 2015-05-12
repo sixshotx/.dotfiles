@@ -18,7 +18,8 @@
 
 (defvar jason-org-post-extensions
   '(
-    ;; post extension jason-orgs go here
+    ;; Functions defined by this guy: http://doc.norang.ca/org-mode.html
+    org-bh
     org-depend
     org-checklist
     org-subtask-reset
@@ -36,10 +37,17 @@
 ;; For more info on `use-package', see readme:
 ;; https://github.com/jwiegley/use-package
 
+(defun jason-org/init-org-bh ()
+  "Initialize my extension"
+  ;; Don't defer any of these b/c we want org mode to be available at all time
+  (use-package org-bh)
+  )
+
 (defun jason-org/init-jason ()
   "Initialize my extension"
   ;; Don't defer any of these b/c we want org mode to be available at all time
-  (use-package jason)
+  (eval-after-load 'org-bh
+    (use-package jason))
   )
 
 (defun jason-org/init-org-depend ()
