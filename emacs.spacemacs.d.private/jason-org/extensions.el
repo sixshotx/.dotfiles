@@ -24,6 +24,7 @@
     org-checklist
     org-subtask-reset
     jason
+    jason-agenda
     )
   "List of all extensions to load after the packages.")
 
@@ -64,3 +65,9 @@
   "Initialize my extension"
   (use-package org-subtask-reset)
 )
+
+(defun jason-org/init-jason-agenda ()
+  "Initialize my extension"
+  (use-package jason-agenda)
+  )
+
