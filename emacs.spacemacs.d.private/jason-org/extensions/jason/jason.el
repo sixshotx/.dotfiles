@@ -35,14 +35,16 @@
 ; Org mode todo settings
 
 (setq org-todo-keywords
-      (quote ((sequence "TODO(t)" "NEXT(n)" "CODE REVIEW(c)" "|" "DONE(d!)")
-              (sequence "WAITING(w@/!)" ))))
+      (quote ((sequence "WAITING(w@/!) CANCELED(c@)" ))))
+;; Allows changing todo states with S-left and S-right w/o triggering things like
+;; notes and state triggers.
+(setq org-treat-S-cursor-todo-selection-as-state-change nil)
 
 (setq org-todo-keyword-faces
       (quote (("TODO" :foreground "red" :weight bold)
               ("NEXT" :foreground "PaleVioletRed" :weight bold)
               ("DONE" :foreground "forest green" :weight bold)
-              ("CODE REVIEW" :foreground "orange" :weight bold)
+              ("CODE_REVIEW" :foreground "orange" :weight bold)
               ("WAITING" :foreground "forest green" :weight bold))))
 (setq org-tag-faces
       (quote (("@home" :foreground "light green" :weight bold)
