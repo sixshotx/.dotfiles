@@ -1,23 +1,4 @@
 (require 'package)
-;(require 'prelude-helm-everywhere)
-;(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"
-;                                 "melpa" . "http://melpa.org/packages/") t)
-;(add-to-list 'load-path "~/.emacs.d/custom_org")
-; Helm
-;(require 'helm-config)
-;(helm-mode 1)
-
-; (require 'org-trello)
-
-; Set RESET_CHECK_BOXES to t to reset checkboxes
-;(require 'org-checklist)
-
-;; Set RESET_SUBTASKS to t to reset subtasks
-;(require 'org-subtask-reset)
-; Get rid of bell sound
-(setq visible-bell 1)
-;(add-hook 'org-mode-hook (lambda () (org-autolist-mode)))
-;(add-hook 'org-mode-hook (lambda () (longlines-mode 1)))
 (add-hook 'org-mode-hook (lambda () (visual-line-mode 1)))
 (add-hook 'org-mode-hook (lambda () (whitespace-mode 0)))
 
