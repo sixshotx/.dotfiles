@@ -68,6 +68,7 @@
 
 (defun jason-org/init-jason-agenda ()
   "Initialize my extension"
-  (use-package jason-agenda)
+  (eval-after-load 'org-agenda
+    (use-package jason-agenda))
   )
 
