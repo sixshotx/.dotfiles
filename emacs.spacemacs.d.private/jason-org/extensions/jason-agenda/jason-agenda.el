@@ -2,36 +2,27 @@
   "Skip function. Only see tasks that
     - have a today tag
     - have a clock entry for today"
-  (if (member "today" (org-get-tags-at))
-      nil
-      (let* ((subtree-end (save-excursion (org-end-of-subtree t)))
-             ;; Get LOGBOOK
-             (logbook-start (save-excursion (re-search-forward ":LOGBOOK:" subtree-end t)))
-             ;; Get timestamp start and end position.
-             (timestamp-start-pos (save-excursion
-                                    (progn
-                                      (re-search-forward "CLOCK: \\[" subtree-end t))))
-             (timestamp-end-pos (save-excursion
-                                  (progn
-                                    (re-search-forward "\\]" subtree-end t))))
-             )
-        (if (and timestamp-start-pos timestamp-end-pos)
-            ;; Get timestamp str itself
-            (condition-case nil
-                (progn
-                  (let* ((timestamp-str (buffer-substring timestamp-start-pos (- timestamp-end-pos 1)))
-                         ;; Convert timestamp str to elisp time
-                         (timestamp (org-time-string-to-time timestamp-str)))
-                    ;;(message "return value is %S" (jason-org/is-today timestamp))
-                    ;; Skip if we don't find a timestamp
-                    (if (jason-org/is-today timestamp)
-                        ;; Don't skip
-                        nil
-                      ;; Skip
-                      subtree-end
-                      )))
-              (error subtree-end))
-          subtree-end))))
+  (widen)
+  (let* ((entry-end (save-excursion (outline-next-heading) (1- (point))))
+         ;; Get LOGBOOK
+         ;; Get timestamp start and end position.
+         (timestamp-start-pos (re-search-forward "CLOCK: \\[" entry-end t))
+         (timestamp-end-pos (save-excursion
+                              (re-search-forward "\\]" entry-end t)))
+         skip timestamp-str timestamp
+         )
+    (if (and timestamp-start-pos timestamp-end-pos)
+        ;; Get timestamp str itself
+        (progn
+          (setq timestamp-str (buffer-substring timestamp-start-pos (- timestamp-end-pos 1)))
+          (print "timestamp-str")
+          (print timestamp-str)
+          ;; Convert timestamp str to elisp time
+          (setq timestamp (org-time-string-to-time timestamp-str))
+          ;;(message "return value is %S" (jason-org/is-today timestamp))
+          ;; Skip if we don't find a timestamp
+          (setq skip (not (jason-org/is-today timestamp)))
+          (and skip entry-end)))))
 
 (defun jason-org/skip-unless-today-tag ()
   (let ((end (save-excursion (org-end-of-subtree t)))
@@ -45,7 +36,7 @@
 (defun jason-org/skip-everything ()
   (let* ((subtree-end (save-excursion (org-end-of-subtree t))))
     subtree-end))
- 
+
 (defun jason-org/is-today (timestamp)
   "Takes a timestamp and return t if timestamp occurs during the current day"
   (let*
@@ -84,7 +75,7 @@
                             )))
                ;; Settings that apply to the entire block agenda
                (;;(org-agenda-tag-filter '("+today"))
-                (org-agenda-skip-function 'jason-org/skip-unless-today-tag)
+                (org-agenda-skip-function 'jason-org/skip-unless-clocked-in-today)
                 (org-agenda-overriding-columns-format "%80ITEM(Task) %10Effort(Effort) %10CLOCKSUM_T(Today)")
                 (org-agenda-files '("~/Dropbox/org/life.org" "~/Dropbox/org/twice.org"))
                 (org-agenda-clockreport-parameter-plist
