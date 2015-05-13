@@ -1,8 +1,7 @@
-(defun jason-org/skip-unless-clocked-in-today ()
+(defun jason-org/skip-entry-unless-clocked-in-today ()
   "Skip function. Only see tasks that
     - have a today tag
     - have a clock entry for today"
-  (widen)
   (let* ((entry-end (save-excursion (outline-next-heading) (1- (point))))
          ;; Get LOGBOOK
          ;; Get timestamp start and end position.
@@ -22,9 +21,10 @@
           ;;(message "return value is %S" (jason-org/is-today timestamp))
           ;; Skip if we don't find a timestamp
           (setq skip (not (jason-org/is-today timestamp)))
-          (and skip entry-end)))))
+          (and skip entry-end))
+      entry-end)))
 
-(defun jason-org/skip-unless-today-tag ()
+(defun jason-org/skip-entry-unless-today-tag ()
   (let ((end (save-excursion (org-end-of-subtree t)))
         (entry-end (save-excursion (outline-next-heading) (1- (point))))
         skip-not-today skip-not-clocked-today)
@@ -68,15 +68,15 @@
                 ;; Don't have anything actually on the agenda: we have this here so we can see the clock report.
                 ;;(agenda "" nil)
                 (tags-todo "+twice"
-                           ((org-agenda-overriding-header "Twice")
-                            ))
-                (tags-todo "+life"
-                           ((org-agenda-overriding-header "Life")
-                            )))
+                           ((org-agenda-overriding-header "Twice")))
+                ;; (tags-todo "+life"
+                ;;            ((org-agenda-overriding-header "Life")))
+                )
                ;; Settings that apply to the entire block agenda
-               (;;(org-agenda-tag-filter '("+today"))
-                (org-agenda-skip-function 'jason-org/skip-unless-clocked-in-today)
-                (org-agenda-overriding-columns-format "%80ITEM(Task) %10Effort(Effort) %10CLOCKSUM_T(Today)")
+               ((org-agenda-skip-function
+                 (lambda ()
+                   (and (jason-org/skip-entry-unless-today-tag) (jason-org/skip-entry-unless-clocked-in-today))))
+                (org-agenda-overriding-columns-format "%70ITEM(Task) %10Effort(Effort){:} %10CLOCKSUM(Clocksum) %10CLOCKSUM_T")
                 (org-agenda-files '("~/Dropbox/org/life.org" "~/Dropbox/org/twice.org"))
                 (org-agenda-clockreport-parameter-plist
                  '(:maxlevel 6 :properties ("MAX_EFFORT" "Effort" "CLOCKSUM" "CLOCKSUM_T")))
