@@ -2,27 +2,28 @@
   "Skip function. Only see tasks that
     - have a today tag
     - have a clock entry for today"
-  (let* ((entry-end (save-excursion (outline-next-heading) (1- (point))))
-         ;; Get LOGBOOK
-         ;; Get timestamp start and end position.
-         (timestamp-start-pos (re-search-forward "CLOCK: \\[" entry-end t))
-         (timestamp-end-pos (save-excursion
-                              (re-search-forward "\\]" entry-end t)))
-         skip timestamp-str timestamp
-         )
-    (if (and timestamp-start-pos timestamp-end-pos)
-        ;; Get timestamp str itself
-        (progn
-          (setq timestamp-str (buffer-substring timestamp-start-pos (- timestamp-end-pos 1)))
-          (print "timestamp-str")
-          (print timestamp-str)
-          ;; Convert timestamp str to elisp time
-          (setq timestamp (org-time-string-to-time timestamp-str))
-          ;;(message "return value is %S" (jason-org/is-today timestamp))
-          ;; Skip if we don't find a timestamp
-          (setq skip (not (jason-org/is-today timestamp)))
-          (and skip entry-end))
-      entry-end)))
+  (save-excursion
+    (let* ((entry-end (save-excursion (outline-next-heading) (1- (point))))
+           ;; Get LOGBOOK
+           ;; Get timestamp start and end position.
+           (timestamp-start-pos (re-search-forward "CLOCK: \\[" entry-end t))
+           (timestamp-end-pos (save-excursion
+                                (re-search-forward "\\]" entry-end t)))
+           skip timestamp-str timestamp
+           )
+      (if (and timestamp-start-pos timestamp-end-pos)
+          ;; Get timestamp str itself
+          (progn
+            (setq timestamp-str (buffer-substring timestamp-start-pos (- timestamp-end-pos 1)))
+            (print "timestamp-str")
+            (print timestamp-str)
+            ;; Convert timestamp str to elisp time
+            (setq timestamp (org-time-string-to-time timestamp-str))
+            ;;(message "return value is %S" (jason-org/is-today timestamp))
+            ;; Skip if we don't find a timestamp
+            (setq skip (not (jason-org/is-today timestamp)))
+            (and skip entry-end))
+        entry-end))))
 
 (defun jason-org/skip-entry-unless-today-tag ()
   (let ((end (save-excursion (org-end-of-subtree t)))
@@ -51,6 +52,12 @@
     ret
     ))
 
+(defun jason-org/skip-unless-done-today ()
+  (let (skip (entry-end (save-excursion (outline-next-heading) (1- (point)))))
+    (setq skip (not (eq "DONE" (org-get-todo-state))))
+    (and skip entry-end))
+  )
+
 ;; Custom agenda command definitions
 (setq org-agenda-custom-commands
       (quote (("X" "Xtra agenda" todo "TODO"
@@ -66,16 +73,18 @@
               ("p" "Today Block Agenda"
                (
                 ;; Don't have anything actually on the agenda: we have this here so we can see the clock report.
-                ;;(agenda "" nil)
+                (agenda "" nil)
+                ;; TODO Revert this back to "tags", thyat'll include DONE tasks, b/c tags-todo excludes DONE
                 (tags-todo "+twice"
                            ((org-agenda-overriding-header "Twice")))
-                ;; (tags-todo "+life"
-                ;;            ((org-agenda-overriding-header "Life")))
+                 (tags-todo "+life"
+                            ((org-agenda-overriding-header "Life")))
                 )
                ;; Settings that apply to the entire block agenda
-               ((org-agenda-skip-function
-                 (lambda ()
-                   (and (jason-org/skip-entry-unless-today-tag) (jason-org/skip-entry-unless-clocked-in-today))))
+               (
+                (org-agenda-skip-function
+                    (lambda ()
+                      (and (jason-org/skip-entry-unless-today-tag) (jason-org/skip-entry-unless-clocked-in-today))))
                 (org-agenda-overriding-columns-format "%70ITEM(Task) %10Effort(Effort){:} %10CLOCKSUM(Clocksum) %10CLOCKSUM_T")
                 (org-agenda-files '("~/Dropbox/org/life.org" "~/Dropbox/org/twice.org"))
                 (org-agenda-clockreport-parameter-plist
