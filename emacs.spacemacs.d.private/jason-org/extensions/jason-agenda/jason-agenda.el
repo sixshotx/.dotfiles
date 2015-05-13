@@ -36,13 +36,10 @@
 (defun jason-org/skip-unless-today-tag ()
   (let ((end (save-excursion (org-end-of-subtree t)))
         (entry-end (save-excursion (outline-next-heading) (1- (point))))
-        skip)
+        skip-not-today skip-not-clocked-today)
     (save-excursion
-      (progn
-        (setq skip (not (member "today" (org-get-tags-at))))
-        (print (org-get-heading))
-        (print skip)))
-    (and skip entry-end)))
+      (setq skip-not-today (not (member "today" (org-get-tags-at)))))
+    (and skip-not-today entry-end)))
 
 (defun jason-org/skip-nothing () nil)
 (defun jason-org/skip-everything ()
