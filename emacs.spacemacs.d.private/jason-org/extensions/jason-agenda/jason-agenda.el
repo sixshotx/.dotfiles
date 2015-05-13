@@ -33,6 +33,22 @@
               (error subtree-end))
           subtree-end))))
 
+(defun jason-org/skip-unless-today-tag ()
+  (let ((end (save-excursion (org-end-of-subtree t)))
+        (entry-end (save-excursion (outline-next-heading) (1- (point))))
+        skip)
+    (save-excursion
+      (progn
+        (setq skip (not (member "today" (org-get-tags-at))))
+        (print (org-get-heading))
+        (print skip)))
+    (and skip entry-end)))
+
+(defun jason-org/skip-nothing () nil)
+(defun jason-org/skip-everything ()
+  (let* ((subtree-end (save-excursion (org-end-of-subtree t))))
+    subtree-end))
+ 
 (defun jason-org/is-today (timestamp)
   "Takes a timestamp and return t if timestamp occurs during the current day"
   (let*
@@ -62,19 +78,16 @@
               ("p" "Today Block Agenda"
                (
                 ;; Don't have anything actually on the agenda: we have this here so we can see the clock report.
-                (agenda "" nil)
+                ;;(agenda "" nil)
                 (tags-todo "+twice"
                            ((org-agenda-overriding-header "Twice")
-                            ;;(org-agenda-skip-function 'jason-org/skip-unless-clocked-in-today)
                             ))
                 (tags-todo "+life"
                            ((org-agenda-overriding-header "Life")
-                            ;; Interestingly, putting this here also uses it for the Twice agenda block, but
-                            ;; putting it with the common settings below doesn't work.
-                            (org-agenda-skip-function 'jason-org/skip-unless-clocked-in-today)
                             )))
                ;; Settings that apply to the entire block agenda
                (;;(org-agenda-tag-filter '("+today"))
+                (org-agenda-skip-function 'jason-org/skip-unless-today-tag)
                 (org-agenda-overriding-columns-format "%80ITEM(Task) %10Effort(Effort) %10CLOCKSUM_T(Today)")
                 (org-agenda-files '("~/Dropbox/org/life.org" "~/Dropbox/org/twice.org"))
                 (org-agenda-clockreport-parameter-plist
