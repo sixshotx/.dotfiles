@@ -32,31 +32,31 @@
   ;;    beeminder
       emacs-lisp
       ;; clojure
-     ;;  gtags
-       org
-       python
+      gtags
+      org
+      python
      ;;  slime
-       javascript
-       ;;jason-js
-       jason-eyebrowse
-       jason-org
-       jason-python
-     ;;  jason-smartparens
-    ;;   jason-web
-       ruby
+      javascript
+      ;;jason-js
+      jason-eyebrowse
+      jason-org
+      jason-python
+      ;;  jason-smartparens
+      ;;   jason-web
+      ruby
 
-     ;; haskell
-       syntax-checking
-       markdown
-     ;;  themes-megapack
-       restclient
-     )
-   ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '()
-   ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
-   ;; are declared in a layer which is not a member of
-   ;; the list `dotspacemacs-configuration-layers'
-   dotspacemacs-delete-orphan-packages t))
+      ;; haskell
+      syntax-checking
+      markdown
+      ;;  themes-megapack
+      restclient
+      )
+  ;; A list of packages and/or extensions that will not be install and loaded.
+  dotspacemacs-excluded-packages '()
+  ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
+  ;; are declared in a layer which is not a member of
+  ;; the list `dotspacemacs-configuration-layers'
+  dotspacemacs-delete-orphan-packages t))
 
 (defun dotspacemacs/init ()
   "Initialization function.

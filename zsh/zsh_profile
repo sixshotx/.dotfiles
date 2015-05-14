@@ -91,3 +91,6 @@ emacsclient -c "$@"
 source /usr/local/opt/autoenv/activate.sh
 alias ij="open -a /Applications/IntelliJ\ IDEA\ 14.app/ "
 alias emacs="/usr/local/Cellar/emacs/24.5/Emacs.app/Contents/MacOS/Emacs -nw"
+
+# overrwriting my old vim alias
+alias e="emacsclient -n"
