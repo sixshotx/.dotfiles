@@ -8,7 +8,8 @@
     # ~/.emacs.d: emacs.d
     # Spacemacs
     ~/.emacs.d: emacs.spacemacs.d
-    emacs.spacemacs.d: emacs.spacemacs.d.private
+    ~/.spacemacs: spacemacs
+    emacs.spacemacs.d/private: emacs.spacemacs.d.private
     ~/.zshrc: zsh/zshrc
     ~/.zsh_profile: zsh/zsh_profile
     ~/.slate.js.d: slate/slate.js.d
