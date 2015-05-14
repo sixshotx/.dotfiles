@@ -1,5 +1,4 @@
 ;; -*- mode: dotspacemacs -*-
-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -12,43 +11,44 @@
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
-   '(
-     ;; --------------------------------------------------------
-      ;; Example of useful layers you may want to use right away
-     ;; Uncomment a layer name and press C-c C-c to install it
-     ;; --------------------------------------------------------
-      auto-completion
-      dash
-     (colors :variables
-             colors-enable-nyan-cat-progress-bar t
-             colors-enable-rainbow-identifiers t)
+  '(
+    ;; ----------------------------------------------------------------
+    ;; Example of useful layers you may want to use right away.
+    ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
+    ;; <M-m f e R> (Emacs style) to install them.
+    ;; ----------------------------------------------------------------
+;;      auto-completion
+  ;;    dash
+    ;; (colors :variables
+      ;;       colors-enable-nyan-cat-progress-bar t
+        ;;     colors-enable-rainbow-identifiers t)
      ;; better-defaults
-      (git :variables
-           git-gutter-use-fringe t
-           git-enable-github-support t)
-      markdown
-      beeminder
-      emacs-lisp
-      clojure
-      editorconfig
-      gtags
-      org
-      python
-      slime
-      javascript
-      ;; jason-js
-      jason-eyebrowse
-      jason-org
-      jason-python
-      jason-smartparens
-      jason-web
-      ruby
+;;      (git :variables
+  ;;         git-gutter-use-fringe t
+    ;;       git-enable-github-support t)
+;;      markdown
+  ;;    beeminder
+    ;;  emacs-lisp
+      ;; clojure
+     ;;  editorconfig
+     ;;  gtags
+     ;;  org
+     ;;  python
+     ;;  slime
+     ;;  javascript
+     ;;  ;; jason-js
+     ;;  jason-eyebrowse
+     ;;  jason-org
+     ;;  jason-python
+     ;;  jason-smartparens
+     ;;  jason-web
+     ;;  ruby
 
-     ;; haskell
-      syntax-checking
-      markdown
-      themes-megapack
-      restclient
+     ;; ;; haskell
+     ;;  syntax-checking
+     ;;  markdown
+     ;;  themes-megapack
+    ;;  restclient
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -67,7 +67,7 @@ before layers configuration."
    ;; Either `vim' or `emacs'. Evil is always enabled but if the variable
    ;; is `emacs' then the `holy-mode' is enabled at startup.
    dotspacemacs-editing-style 'vim
-   ;; If non nil output loading progess in `*Messages*' buffer.
+   ;; If non nil output loading progress in `*Messages*' buffer.
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
    ;; the official spacemacs logo. An integer value is the index of text
@@ -85,8 +85,7 @@ before layers configuration."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(zenburn
-                         leuven
-                         )
+                         leuven)
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -137,7 +136,7 @@ before layers configuration."
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's inactive or deselected.
    ;; Transparency can be toggled through `toggle-transparency'.
-   dotspacemacs-inactive-transparency 50
+   dotspacemacs-inactive-transparency 90
    ;; If non nil unicode symbols are displayed in the mode line.
    dotspacemacs-mode-line-unicode-symbols t
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
@@ -146,6 +145,9 @@ before layers configuration."
    dotspacemacs-smooth-scrolling t
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    dotspacemacs-smartparens-strict-mode nil
+   ;; Select a scope to highlight delimiters. Possible value is `all',
+   ;; `current' or `nil'. Default is `all'
+   dotspacemacs-highlight-delimiters 'all
    ;; If non nil advises quit functions to keep server open when quitting.
    dotspacemacs-persistent-server nil
    ;; List of search tool executable names. Spacemacs uses the first installed
