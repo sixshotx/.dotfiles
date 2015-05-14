@@ -12,8 +12,7 @@
 
 (defvar jason-python-packages
   '(
-    ;; package jason-pythons go here
-    pymacs
+    ;; pymacs
     ;; elpy
     ;; Mm, makes everythying too slow
     ;; jedi
@@ -42,7 +41,7 @@ which require an initialization must be listed explicitly in the list.")
 ;;   )
 
 (defun jason-python/init-jedi ()
-  "Init elpy, an ll-in-one python dev environment"
+  "Init jedi"
   (use-package jedi
     :defer t
     :init
@@ -62,17 +61,17 @@ which require an initialization must be listed explicitly in the list.")
             (setq py-autopep8-options '("--ignore=E309,E301" "--max-line-length=85")))
     ))
 
-(defun jason-python/init-py-pymacs ()
-  "Refactoring support"
-  (use-package pymacs
-    :defer t
-    :init (progn
-            (pymacs-load "ropemacs" "rope-")
-            ;; Disable default shortcuts
-            (setq ropemacs-enable-shortcuts nil)
-            (evil-leader/set-key-for-mode 'python-mode
-              ;; *r*efactor *e*xtract *v*ariable
-              "mrev" '
-              )
-            )
-    ))
+;; (defun jason-python/init-py-pymacs ()
+;;   "Refactoring support"
+;;   (use-package pymacs
+;;     :defer t
+;;     :init (progn
+;;             (pymacs-load "ropemacs" "rope-")
+;;             ;; Disable default shortcuts
+;;             (setq ropemacs-enable-shortcuts nil)
+;;             (evil-leader/set-key-for-mode 'python-mode
+;;               ;; *r*efactor *e*xtract *v*ariable
+;;               "mrev" '
+;;               )
+;;             )
+;;     ))

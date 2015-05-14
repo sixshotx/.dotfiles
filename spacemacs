@@ -17,38 +17,39 @@
     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
     ;; <M-m f e R> (Emacs style) to install them.
     ;; ----------------------------------------------------------------
-;;      auto-completion
-  ;;    dash
+    (auto-completion :variables
+                      auto-completion-enable-help-tooltip t
+                      auto-completion-enable-sort-by-usage t)
+    dash
     ;; (colors :variables
       ;;       colors-enable-nyan-cat-progress-bar t
         ;;     colors-enable-rainbow-identifiers t)
      ;; better-defaults
-;;      (git :variables
-  ;;         git-gutter-use-fringe t
-    ;;       git-enable-github-support t)
+    (git :variables
+          git-gutter-use-fringe t
+          git-enable-github-support t)
 ;;      markdown
   ;;    beeminder
-    ;;  emacs-lisp
+      emacs-lisp
       ;; clojure
-     ;;  editorconfig
      ;;  gtags
-     ;;  org
-     ;;  python
+       org
+       python
      ;;  slime
-     ;;  javascript
-     ;;  ;; jason-js
-     ;;  jason-eyebrowse
-     ;;  jason-org
-     ;;  jason-python
+       javascript
+       ;;jason-js
+       jason-eyebrowse
+       jason-org
+       jason-python
      ;;  jason-smartparens
-     ;;  jason-web
-     ;;  ruby
+    ;;   jason-web
+       ruby
 
-     ;; ;; haskell
-     ;;  syntax-checking
-     ;;  markdown
+     ;; haskell
+       syntax-checking
+       markdown
      ;;  themes-megapack
-    ;;  restclient
+       restclient
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -174,13 +175,13 @@ layers configuration."
   (golden-ratio-mode 1)
 
   ;; Paredit stuff
-  (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
-  (add-hook 'emacs-lisp-mode-hook       'enable-paredit-mode)
-  (add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode)
-  (add-hook 'ielm-mode-hook             'enable-paredit-mode)
-  (add-hook 'lisp-mode-hook             'enable-paredit-mode)
-  (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
-  (add-hook 'scheme-mode-hook           'enable-paredit-mode)
+  ;; (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
+  ;; (add-hook 'emacs-lisp-mode-hook       'enable-paredit-mode)
+  ;; (add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode)
+  ;; (add-hook 'ielm-mode-hook             'enable-paredit-mode)
+  ;; (add-hook 'lisp-mode-hook             'enable-paredit-mode)
+  ;; (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
+  ;; (add-hook 'scheme-mode-hook           'enable-paredit-mode)
 
   ;; Expand a snippet by name. Mostly useful when you've selected a region
   ;; and you want your snippet to use.

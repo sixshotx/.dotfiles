@@ -40,6 +40,8 @@ which require an initialization must be listed explicitly in the list.")
   ;; project gets stable
   ;; Some customizations originally from custom.el of my old emacs setup.
   (setq fill-column 85)
+
+  (org-clock-persistence-insinuate)
   (setq org-agenda-clockreport-parameter-plist (quote (:link t :maxlevel 6)))
   (setq org-agenda-log-mode-items (quote (clock)))
   (setq org-agenda-skip-scheduled-if-done t)
