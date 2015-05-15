@@ -298,7 +298,18 @@ layers configuration."
     )
   ;; Toggle modeline clock on by default
   (setq spacemacs-mode-line-org-clock-current-taskp t)
+
+  ;; Hybrid s-expression
+  (evil-leader/set-key
+    "ohk" 'sp-kill-hybrid-sexp
+    "oht" 'sp-transpose-hybrid-sexp
+    "ohp" 'sp-push-hybrid-sexp
+    "ohs" 'sp-slurp-hybrid-sexp
+    "oh<" 'sp-indent-adjust-sexp
+    "oh>" 'sp-dedent-adjust-sexp)
+
   )
+
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
