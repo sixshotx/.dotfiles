@@ -17,5 +17,6 @@
     ~/.flake8rc: flake8rc
     # Tmuxinator
     ~/.tmuxinator.zsh: tmuxinator/tmuxinator.zsh
+    ~/.tmux.conf: tmuxinator/tmux.conf
 - shell:
     - [./osx/apply-keys.sh, Applying OSX keyboard shortcuts...]
