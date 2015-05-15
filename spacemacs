@@ -21,9 +21,9 @@
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-sort-by-usage t)
     dash
-    ;; (colors :variables
-      ;;       colors-enable-nyan-cat-progress-bar t
-        ;;     colors-enable-rainbow-identifiers t)
+    (colors :variables
+            colors-enable-nyan-cat-progress-bar t
+            colors-enable-rainbow-identifiers t)
      ;; better-defaults
     (git :variables
           git-gutter-use-fringe t
