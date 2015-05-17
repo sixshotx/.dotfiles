@@ -12,7 +12,7 @@
 
 (defvar jason-python-packages
   '(
-    ;; pymacs
+    pymacs
     ;; elpy
     ;; Mm, makes everythying too slow
     ;; jedi
@@ -61,17 +61,23 @@ which require an initialization must be listed explicitly in the list.")
             (setq py-autopep8-options '("--ignore=E309,E301" "--max-line-length=85")))
     ))
 
-;; (defun jason-python/init-py-pymacs ()
-;;   "Refactoring support"
-;;   (use-package pymacs
-;;     :defer t
-;;     :init (progn
-;;             (pymacs-load "ropemacs" "rope-")
-;;             ;; Disable default shortcuts
-;;             (setq ropemacs-enable-shortcuts nil)
-;;             (evil-leader/set-key-for-mode 'python-mode
-;;               ;; *r*efactor *e*xtract *v*ariable
-;;               "mrev" '
-;;               )
-;;             )
-;;     ))
+(defun jason-python/init-pymacs ()
+  "Refactoring support"
+  (use-package pymacs
+    :defer t
+    :init (progn
+            (pymacs-load "ropemacs" "rope-")
+            ;; Disable default shortcuts
+            (setq ropemacs-enable-shortcuts nil)
+            (evil-leader/set-key-for-mode 'python-mode
+              ;; *r*efactor *e*xtract *v*ariable
+              "mrev" 'rope-extract-variable
+              ;; *r*efacttor *e*xtraact *m*ethod
+              "mrem" 'rope-extract-method
+              ;; *r*efactor *r*ename
+              "mrr" 'rope-rename
+
+              ;; *find* *o*currences
+              "m/o" 'rope-find-occurrences
+              ))
+    )))
