@@ -106,7 +106,7 @@
   ;; Need a mcro for this b/c we need these functions to be available at
   ;; runtime
   (defmacro tuhdo/define-eyebrowse-binding (key)
-    `(define-key window-numbering-keymap (kbd ,(concat "M-" key))
+    `(define-key window-numbering-keymap (kbd ,(concat "s-" key))
        (lambda ()
          (interactive)
          (funcall ',(intern (concat "eyebrowse-switch-to-window-config-" key)))

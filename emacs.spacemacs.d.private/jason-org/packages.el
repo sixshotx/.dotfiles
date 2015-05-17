@@ -35,10 +35,6 @@ which require an initialization must be listed explicitly in the list.")
 
 (defun jason-org/init-org ()
   "Init my really custom org mode setup"
-  ;; TODO
-  ;; These are temporarily hardcoded. I'll just leave these here for now and switch if this
-  ;; project gets stable
-  ;; Some customizations originally from custom.el of my old emacs setup.
   (setq fill-column 85)
 
   (org-clock-persistence-insinuate)

@@ -33,6 +33,7 @@
       emacs-lisp
       ;; clojure
       gtags
+      html
       org
       python
      ;;  slime
@@ -42,7 +43,7 @@
       jason-org
       jason-python
       ;;  jason-smartparens
-      ;;   jason-web
+      jason-web
       ruby
 
       ;; haskell
@@ -305,8 +306,8 @@ layers configuration."
     "oht" 'sp-transpose-hybrid-sexp
     "ohp" 'sp-push-hybrid-sexp
     "ohs" 'sp-slurp-hybrid-sexp
-    "oh<" 'sp-indent-adjust-sexp
-    "oh>" 'sp-dedent-adjust-sexp)
+    "oh>" 'sp-indent-adjust-sexp
+    "oh<" 'sp-dedent-adjust-sexp)
 
   )
 
@@ -325,6 +326,8 @@ layers configuration."
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(fringe-mode 6 nil (fringe))
+ '(js2-basic-offset 2)
+ '(js2-bounce-indent-p nil)
  '(linum-format " %7d ")
  '(org-agenda-start-with-clockreport-mode t)
  '(org-clock-continuously t)

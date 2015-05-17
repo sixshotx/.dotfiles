@@ -345,12 +345,12 @@
 (add-hook 'org-finalize-agenda-hook 'org-agenda-to-appt) ;; update appt list on agenda view
 
 ;; set up the call to terminal-notifier
-;(defvar my-notifier-path 
-;  "~/terminal-notifier_1.4.2/terminal-notifier.app/Contents/MacOS/terminal-notifier")  
+;; Set terminal-notifier notification preferences in System Preferences if you want them to be sticky.
+(defalias 'sqa 'shell-quote-argument)
 (defvar my-notifier-path
   "/Users/jason/.rvm/gems/ruby-2.1.0@global/bin/terminal-notifier")
 (defun my-appt-send-notification (title msg)
-  (shell-command (concat my-notifier-path " -message " msg " -title " title)))
+  (shell-command (concat my-notifier-path " -message " (sqa msg) " -title " (sqa title))))
 
 ;; designate the window function for my-appt-send-notification
 (defun my-appt-display (min-to-app new-time msg)
