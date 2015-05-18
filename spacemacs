@@ -41,7 +41,7 @@
       ;;jason-js
       jason-eyebrowse
       jason-org
-      jason-python
+      ;; jason-python
       ;;  jason-smartparens
       jason-web
       ruby
@@ -158,8 +158,7 @@ before layers configuration."
    ;; The default package repository used if no explicit repository has been
    ;; specified with an installed package.
    ;; Not used for now.
-   dotspacemacs-default-package-repository nil
-   )
+   dotspacemacs-default-package-repository nil)
   ;; User initialization goes here
   )
 
@@ -251,7 +250,28 @@ layers configuration."
   (evil-leader/set-key
     ;; t for tag
     "of" 'find-tag
+    "i RET" '(lambda ()
+               (interactive)
+               (insert "\n"))
+    "i ;" 'insert-semicolon
     )
+
+  (defun insert-end-of-line-char (char)
+    "Inserts the given character at the end of the line"
+    (interactive "s")
+    (save-excursion
+      (let (start end)
+        (save-excursion (beginning-of-line)
+                        (setq start (point)))
+        (save-excursion (end-of-line)
+                        (setq end (point)))
+        (replace-regexp "$" char nil start end))))
+  (defun insert-semicolon ()
+      (interactive)
+      (insert-end-of-line-char ";"))
+  (defun insert-newline ()
+      (insert-end-of-line-char "\n"))
+
   ;; In term-mode, Take result of snippet and set it to clipboard, then paste the result
   ;; Create new buffer. Enable term-mode Expand snippet in that buffer. Switch back to original buffer. Insert tmp buffer's
   ;; content. Remove tmp buffer.

@@ -1,6 +1,5 @@
 (defun jason-org/skip-entry-unless-clocked-in-today ()
   "Skip function. Only see tasks that
-    - have a today tag
     - have a clock entry for today"
   (save-excursion
     (let* ((entry-end (save-excursion (outline-next-heading) (1- (point))))
@@ -26,12 +25,30 @@
         entry-end))))
 
 (defun jason-org/skip-entry-unless-today-tag ()
-  (let ((end (save-excursion (org-end-of-subtree t)))
-        (entry-end (save-excursion (outline-next-heading) (1- (point))))
-        skip-not-today skip-not-clocked-today)
-    (save-excursion
-      (setq skip-not-today (not (member "today" (org-get-tags-at)))))
-    (and skip-not-today entry-end)))
+  "Skips tasks that don't have a today tag"
+  (save-excursion
+    (let ((end (save-excursion (org-end-of-subtree t)))
+          (entry-end (save-excursion (outline-next-heading) (1- (point))))
+          skip-not-today skip-not-clocked-today)
+      (save-excursion
+        (setq skip-not-today (not (member "today" (org-get-tags-at)))))
+      (and skip-not-today entry-end))))
+
+(defun jason-org/skip-entry-unless-done-today ()
+  "Skips tasks that weren't done today"
+  (save-excursion
+    (let ((entry-end (save-excursion (outline-next-heading) (1- (point))))
+          timestamp-start-pos timestamp-end-pos timestamp-str timestamp skip)
+      (setq timestamp-start-pos (re-search-forward "CLOSED: \\[" entry-end t))
+      (setq timestamp-end-pos (re-search-forward "\\]" entry-end t))
+      (if (and timestamp-start-pos timestamp-end-pos)
+          (progn
+            (setq timestamp-str (buffer-substring timestamp-start-pos timestamp-end-pos))
+            (setq timestamp (org-time-string-to-time timestamp-str))
+            (setq skip (not (jason-org/is-today timestamp)))
+            (and skip entry-end))
+        entry-end
+        ))))
 
 (defun jason-org/skip-nothing () nil)
 (defun jason-org/skip-everything ()
@@ -52,12 +69,6 @@
     ret
     ))
 
-(defun jason-org/skip-unless-done-today ()
-  (let (skip (entry-end (save-excursion (outline-next-heading) (1- (point)))))
-    (setq skip (not (eq "DONE" (org-get-todo-state))))
-    (and skip entry-end))
-  )
-
 ;; Custom agenda command definitions
 (setq org-agenda-custom-commands
       (quote (("X" "Xtra agenda" todo "TODO"
@@ -75,20 +86,24 @@
                 ;; Don't have anything actually on the agenda: we have this here so we can see the clock report.
                 (agenda "" nil)
                 ;; TODO Revert this back to "tags", thyat'll include DONE tasks, b/c tags-todo excludes DONE
-                (tags-todo "+twice"
+                (tags "+twice"
                            ((org-agenda-overriding-header "Twice")))
-                 (tags-todo "+life"
+                 (tags "+life"
                             ((org-agenda-overriding-header "Life")))
                 )
                ;; Settings that apply to the entire block agenda
                (
                 (org-agenda-skip-function
                     (lambda ()
-                      (and (jason-org/skip-entry-unless-today-tag) (jason-org/skip-entry-unless-clocked-in-today))))
-                (org-agenda-overriding-columns-format "%70ITEM(Task) %10Effort(Effort){:} %10CLOCKSUM(Clocksum) %10CLOCKSUM_T")
+                      (and (jason-org/skip-entry-unless-done-today)
+                           ;; Skip done subtrees: There could be headlines that have a today tag inherited from a todo headline.
+                           (or (org-agenda-skip-subtree-if 'todo 'done) (jason-org/skip-entry-unless-today-tag))
+                           (or (org-agenda-skip-subtree-if 'todo 'done) (jason-org/skip-entry-unless-clocked-in-today)))))
+                (org-agenda-overriding-columns-format "%50ITEM(Task) %10EFFORT_T(Effort today){:} %10CLOCKSUM(Clocked today){:} %10Effort(Effort){:} %10CLOCKSUM_T{:}")
                 (org-agenda-files '("~/Dropbox/org/life.org" "~/Dropbox/org/twice.org"))
                 (org-agenda-clockreport-parameter-plist
                  '(:maxlevel 6 :properties ("MAX_EFFORT" "Effort" "CLOCKSUM" "CLOCKSUM_T")))
+                (org-agenda-sorting-strategy '(todo-state-up))
                 )
                )
               (" " "Agenda"
