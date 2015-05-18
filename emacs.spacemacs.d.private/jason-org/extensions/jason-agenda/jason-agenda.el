@@ -117,18 +117,20 @@
               ("p" "Today Block Agenda"
                (
                 ;; Don't have anything actually on the agenda: we have this here so we can see the clock report.
-                (agenda "" nil)
+                (agenda)
                 ;; TODO Revert this back to "tags", thyat'll include DONE tasks, b/c tags-todo excludes DONE
                 (tags "+twice"
-                           ((org-agenda-overriding-header "Twice")))
-                 (tags "+life"
-                            ((org-agenda-overriding-header "Life")))
+                      ((org-agenda-overriding-header "Twice")))
+                (tags "+life"
+                      ((org-agenda-overriding-header "Life")))
                 )
                ;; Settings that apply to the entire block agenda
                (
+                ;; This skip function filters everything that reaches this agenda view at all. So habits and setuff
+                ;; will never appear for this block agenda.
                 (org-agenda-skip-function 'jason-skip-function)
                 (org-agenda-overriding-columns-format "%50ITEM(Task) %10EFFORT_T(Effort today){:} %10CLOCKSUM(Clocked today){:} %10Effort(Effort){:} %10CLOCKSUM_T{:}")
-                (org-agenda-files '("~/Dropbox/org/life.org" "~/Dropbox/org/twice.org"))
+                ;;(org-agenda-files '("~/Dropbox/org/life.org" "~/Dropbox/org/twice.org"))
                 (org-agenda-clockreport-parameter-plist
                  '(:maxlevel 6 :properties ("MAX_EFFORT" "Effort" "CLOCKSUM" "CLOCKSUM_T")))
                 (org-agenda-sorting-strategy '(todo-state-up))
@@ -137,8 +139,8 @@
               (" " "Agenda"
                ((agenda "" nil)
                 (tags-todo "refile"
-                      ((org-agenda-overriding-header "Tasks to Refile")
-                       (org-agenda-skip-function '(org-agenda-skip-subtree-if 'todo 'DONE))))
+                           ((org-agenda-overriding-header "Tasks to Refile")
+                            (org-agenda-skip-function '(org-agenda-skip-subtree-if 'todo 'DONE))))
                 (todo "WAITING"
                       ((org-agenda-overriding-header "Waiting")))
                 (todo "CODE REVIEW"
@@ -147,10 +149,10 @@
                            ((org-agenda-overriding-header "Tasks to do this week")
                             (org-agenda-skip-function '(org-agenda-skip-subtree-if 'todo '("DONE" "CODE REVIEW")))))
                 (todo "NEXT"
-                     ((org-agenda-overriding-header "All Next Tasks")))
+                      ((org-agenda-overriding-header "All Next Tasks")))
                 (tags-todo "today"
-                     ((org-agenda-overriding-header "Today tasks")
-                      (org-agenda-skip-function '(org-agenda-skip-subtree-if 'todo '("DONE" "CODE REVIEW")))))
+                           ((org-agenda-overriding-header "Today tasks")
+                            (org-agenda-skip-function '(org-agenda-skip-subtree-if 'todo '("DONE" "CODE REVIEW")))))
                 nil)))))
 
 (provide 'jason-agenda)
