@@ -1,0 +1,10 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: alert dialog view
+# key: adv
+# binding: direct-keybinding
+# --
+new AlertDialogView({
+    "title": ${1:title},
+    "message": ${2:message},
+    "cssClass": "error"
+});$0

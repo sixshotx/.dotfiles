@@ -1,0 +1,20 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: confirm dialog view              
+# key: cdv
+# binding: direct-keybinding
+# --
+new ConfirmDialogView({
+    "title": "${title}",
+    ${"content": ${content},}
+    ${"message": "${asdfasdf}",
+    ${"cancelLabel": "${Cancel}",}
+    ${"confirmLabel": "${Confirm}",}
+    ${"callback": this.s(function(isConfirmed) {
+        if (isConfirmed) {
+           ${doConfirmStuff()}
+        } else {
+           ${doNotConfirmStuff()}
+        }
+    })}
+});$0
+
