@@ -2,58 +2,74 @@
   "Skip function. Only see tasks that
     - have a clock entry for today"
   (save-excursion
-    (let* ((entry-end (save-excursion (outline-next-heading) (1- (point))))
-           ;; Get LOGBOOK
-           ;; Get timestamp start and end position.
-           (timestamp-start-pos (re-search-forward "CLOCK: \\[" entry-end t))
-           (timestamp-end-pos (save-excursion
-                                (re-search-forward "\\]" entry-end t)))
-           skip timestamp-str timestamp
-           )
-      (if (and timestamp-start-pos timestamp-end-pos)
-          ;; Get timestamp str itself
-          (progn
-            (setq timestamp-str (buffer-substring timestamp-start-pos (- timestamp-end-pos 1)))
-            (print "timestamp-str")
-            (print timestamp-str)
-            ;; Convert timestamp str to elisp time
-            (setq timestamp (org-time-string-to-time timestamp-str))
-            ;;(message "return value is %S" (jason-org/is-today timestamp))
-            ;; Skip if we don't find a timestamp
-            (setq skip (not (jason-org/is-today timestamp)))
-            (and skip entry-end))
-        entry-end))))
+    (save-restriction
+      (widen)
+      (let* ((entry-end (save-excursion (outline-next-heading) (1- (point))))
+             ;; Get LOGBOOK
+             ;; Get timestamp start and end position.
+             (timestamp-start-pos (re-search-forward "CLOCK: \\[" entry-end t))
+             (timestamp-end-pos (save-excursion
+                                  (re-search-forward "\\]" entry-end t)))
+             skip timestamp-str timestamp
+             )
+        (if (and timestamp-start-pos timestamp-end-pos)
+            ;; Get timestamp str itself
+            (progn
+              (setq timestamp-str (buffer-substring timestamp-start-pos (- timestamp-end-pos 1)))
+              (print "timestamp-str")
+              (print timestamp-str)
+              ;; Convert timestamp str to elisp time
+              (setq timestamp (org-time-string-to-time timestamp-str))
+              ;;(message "return value is %S" (jason-org/is-today timestamp))
+              ;; Skip if we don't find a timestamp
+              (setq skip (not (jason-org/is-today timestamp)))
+              (and skip entry-end))
+          entry-end)))))
 
 (defun jason-org/skip-entry-unless-today-tag ()
   "Skips tasks that don't have a today tag"
   (save-excursion
-    (let ((end (save-excursion (org-end-of-subtree t)))
-          (entry-end (save-excursion (outline-next-heading) (1- (point))))
-          skip-not-today skip-not-clocked-today)
-      (save-excursion
-        (setq skip-not-today (not (member "today" (org-get-tags-at)))))
-      (and skip-not-today entry-end))))
+    (save-restriction
+      (widen)
+      (let ((end (save-excursion (org-end-of-subtree t)))
+            (entry-end (save-excursion (outline-next-heading) (1- (point))))
+            skip-not-today skip-not-clocked-today)
+        (save-excursion
+          (setq skip-not-today (not (member "today" (org-get-tags-at)))))
+        (and skip-not-today entry-end)))))
 
 (defun jason-org/skip-entry-unless-done-today ()
   "Skips tasks that weren't done today"
   (save-excursion
-    (let ((entry-end (save-excursion (outline-next-heading) (1- (point))))
-          timestamp-start-pos timestamp-end-pos timestamp-str timestamp skip)
-      (setq timestamp-start-pos (re-search-forward "CLOSED: \\[" entry-end t))
-      (setq timestamp-end-pos (re-search-forward "\\]" entry-end t))
-      (if (and timestamp-start-pos timestamp-end-pos)
-          (progn
-            (setq timestamp-str (buffer-substring timestamp-start-pos timestamp-end-pos))
-            (setq timestamp (org-time-string-to-time timestamp-str))
-            (setq skip (not (jason-org/is-today timestamp)))
-            (and skip entry-end))
-        entry-end
-        ))))
+    (save-restriction
+      (widen)
+      (let ((entry-end (save-excursion (outline-next-heading) (1- (point))))
+            timestamp-start-pos timestamp-end-pos timestamp-str timestamp skip)
+        (setq timestamp-start-pos (re-search-forward "CLOSED: \\[" entry-end t))
+        (setq timestamp-end-pos (re-search-forward "\\]" entry-end t))
+        (if (and timestamp-start-pos timestamp-end-pos)
+            (progn
+              (setq timestamp-str (buffer-substring timestamp-start-pos timestamp-end-pos))
+              (setq timestamp (org-time-string-to-time timestamp-str))
+              (setq skip (not (jason-org/is-today timestamp)))
+              (and skip entry-end))
+          entry-end
+          )))))
 
 (defun jason-org/skip-nothing () nil)
 (defun jason-org/skip-everything ()
   (let* ((subtree-end (save-excursion (org-end-of-subtree t))))
     subtree-end))
+
+(defun get-entry-end () ""
+    (save-excursion (outline-next-heading) (1- (point))))
+(defun get-timestamp-between-pos (start end)
+  "Get the timestamp between the givn positions"
+  (if (and start end)
+      (let ((timestamp-str (buffer-substring timestamp-start-pos timestamp-end-pos))
+            (timestamp (org-time-string-to-time timestamp-str)))
+        timestamp
+        )))
 
 (defun jason-org/is-today (timestamp)
   "Takes a timestamp and return t if timestamp occurs during the current day"
@@ -69,6 +85,23 @@
     ret
     ))
 
+(defun jason-org/skip-subtree-if-done ()
+  "Skips this subtree if there's a done keyword in this entry"
+  (let* ((entry-end (get-entry-end))
+         (subtree-end (save-excursion (org-end-of-subtree t)))
+         (found-done (save-excursion (re-search-forward "* DONE" entry-end t))))
+    (if found-done subtree-end nil)))
+
+(defun jason-skip-function ()
+  "asdf"
+  (save-excursion
+    (save-restriction
+      (widen)
+      (and (jason-org/skip-entry-unless-done-today)
+           ;; Skip done subtrees: There could be headlines that have a today tag inherited from a todo headline.
+           (or (jason-org/skip-subtree-if-done) (jason-org/skip-entry-unless-today-tag))
+           (or (jason-org/skip-subtree-if-done) (jason-org/skip-entry-unless-clocked-in-today)))))
+  )
 ;; Custom agenda command definitions
 (setq org-agenda-custom-commands
       (quote (("X" "Xtra agenda" todo "TODO"
@@ -93,12 +126,7 @@
                 )
                ;; Settings that apply to the entire block agenda
                (
-                (org-agenda-skip-function
-                    (lambda ()
-                      (and (jason-org/skip-entry-unless-done-today)
-                           ;; Skip done subtrees: There could be headlines that have a today tag inherited from a todo headline.
-                           (or (org-agenda-skip-subtree-if 'todo 'done) (jason-org/skip-entry-unless-today-tag))
-                           (or (org-agenda-skip-subtree-if 'todo 'done) (jason-org/skip-entry-unless-clocked-in-today)))))
+                (org-agenda-skip-function 'jason-skip-function)
                 (org-agenda-overriding-columns-format "%50ITEM(Task) %10EFFORT_T(Effort today){:} %10CLOCKSUM(Clocked today){:} %10Effort(Effort){:} %10CLOCKSUM_T{:}")
                 (org-agenda-files '("~/Dropbox/org/life.org" "~/Dropbox/org/twice.org"))
                 (org-agenda-clockreport-parameter-plist
