@@ -16,6 +16,7 @@
     appt
     org
     org-autolist
+    moe-theme
     )
   "List of all packages to install and/or initialize. Built-in packages
 which require an initialization must be listed explicitly in the list.")
@@ -51,3 +52,6 @@ which require an initialization must be listed explicitly in the list.")
   (org-autolist-mode)
   )
 
+(defun jason-org/init-moe-theme ()
+  ""
+  (use-package moe-theme))
