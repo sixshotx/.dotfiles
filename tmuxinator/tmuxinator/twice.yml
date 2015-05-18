@@ -30,12 +30,13 @@ windows:
   - vulcan:
     - vagrant ssh
     - bin/webctl start vulcan
-  - ops:
-    - vagrant ssh
-    - bin/webctl start ops
-  - email:
-    - vagrant ssh
-    - bin/webctl start email
+  # Starting all these at once takes too much memory
+  # - ops:
+  #   - vagrant ssh
+  #   - bin/webctl start ops
+  # - email:
+  #   - vagrant ssh
+  #   - bin/webctl start email
   - shell:
     - vagrant ssh
     - bin/webctl start shell
