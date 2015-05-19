@@ -22,24 +22,23 @@ pre: vagrant up --no-provision; vagrant mount-nfs
 # startup_window: logs
 
 windows:
-  - main:
-      - gst -s
-  - store:
-    - vagrant ssh
-    - bin/webctl start store
-  - vulcan:
-    - vagrant ssh
-    - bin/webctl start vulcan
-  # Starting all these at once takes too much memory
-  # - ops:
-  #   - vagrant ssh
-  #   - bin/webctl start ops
-  # - email:
-  #   - vagrant ssh
-  #   - bin/webctl start email
-  - shell:
-    - vagrant ssh
-    - bin/webctl start shell
-  - shell-analytics:
-    - vagrant ssh
-    - bin/webctl start shell-analytics
+  - something:
+      layout: main-vertical
+      panes:
+          - something:
+              - gst -s
+          - shell:
+              - vssh
+              - bin/webctl start shell
+  - services:
+      layout: main-vertical
+      panes:
+        - store:
+            - vagrant ssh
+            - bin/webctl start store
+        - ops:
+            - vagrant ssh
+            - bin/webctl start ops
+        - vulcan:
+            - vagrant ssh
+            - bin/webctl start vulcan

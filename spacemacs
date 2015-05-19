@@ -33,6 +33,7 @@
       emacs-lisp
       ;; clojure
       gtags
+      multiple-cursors
       html
       org
       python
@@ -41,7 +42,7 @@
       ;;jason-js
       jason-eyebrowse
       jason-org
-      ;; jason-python
+      jason-python
       ;;  jason-smartparens
       jason-web
       ruby
@@ -87,8 +88,9 @@ before layers configuration."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(zenburn
-
+   dotspacemacs-themes '(moe-dark
+                         moe-light
+                         zenburn
                          leuven)
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
@@ -255,7 +257,8 @@ layers configuration."
     "i RET" '(lambda ()
                (interactive)
                (insert "\n"))
-    "i ;" 'insert-semicolon
+    "i;" 'insert-semicolon
+    "i," 'insert-comma
     )
 
   (defun insert-end-of-line-char (char)
@@ -271,6 +274,9 @@ layers configuration."
   (defun insert-semicolon ()
       (interactive)
       (insert-end-of-line-char ";"))
+  (defun insert-comma ()
+    (interactive)
+    (insert-end-of-line-char ","))
   (defun insert-newline ()
       (insert-end-of-line-char "\n"))
 
@@ -331,6 +337,25 @@ layers configuration."
     "oh>" 'sp-indent-adjust-sexp
     "oh<" 'sp-dedent-adjust-sexp)
 
+  (setq vc-follow-symlinks t)
+
+  ;; Whitespace
+  ;; Experimental: clean up whitespace automatically. Might need to make
+  ;; this language-specific.
+  (add-hook 'before-save-hook 'whitespace-cleanup)
+
+
+  ;; Indent amount hooks
+  ;; Maybe make a config file for different languages that evil mode
+  (add-hook 'python-mode-hook
+            (function (lambda ()
+                        (setq evil-shift-width python-indent))))
+  (add-hook 'ruby-mode-hook
+            (function (lambda ()
+                        (setq evil-shift-width ruby-indent-level))))
+  (add-hook 'yaml-mode-hook
+            (function (lambda ()
+                        (setq evil-shift-width yaml-indent-offset))))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -369,7 +394,8 @@ layers configuration."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
- '(enh-ruby-op-face ((t (:foreground "#DD1100"))))
- '(enh-ruby-string-delimiter-face ((t (:foreground "cornsilk3")))))
+ '(company-tooltip-common ((((class color) (min-colors 89)) (:background "#6c6c6c" :foreground "#afd7ff"))))
+ '(company-tooltip-common-selection ((((class color) (min-colors 89)) (:background "#005f87" :foreground "#afd7ff" :bold t))))
+ '(enh-ruby-op-face ((((class color) (min-colors 89)) (:foreground "#ff5d17" :bold t))))
+ '(enh-ruby-string-delimiter-face ((((class color) (min-colors 89)) (:foreground "#af87ff"))))
+ '(js2-external-variable ((t (:foreground "#ff0000" :underline t)))))

@@ -130,7 +130,7 @@
                 ;; will never appear for this block agenda.
                 (org-agenda-skip-function 'jason-skip-function)
                 (org-agenda-overriding-columns-format "%50ITEM(Task) %10EFFORT_T(Effort today){:} %10CLOCKSUM(Clocked today){:} %10Effort(Effort){:} %10CLOCKSUM_T{:}")
-                ;;(org-agenda-files '("~/Dropbox/org/life.org" "~/Dropbox/org/twice.org"))
+                (org-agenda-files '("~/Dropbox/org/life.org" "~/Dropbox/org/twice.org"))
                 (org-agenda-clockreport-parameter-plist
                  '(:maxlevel 6 :properties ("MAX_EFFORT" "Effort" "CLOCKSUM" "CLOCKSUM_T")))
                 (org-agenda-sorting-strategy '(todo-state-up))

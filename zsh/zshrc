@@ -138,6 +138,3 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 growl() { echo -e $'\e]9;'${1}'\007' ; return ; }
 
 setopt NO_NOMATCH
-
-# Tmuxinator
-source ~/.tmuxinator.zsh

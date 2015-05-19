@@ -44,6 +44,9 @@ which require an initialization must be listed explicitly in the list.")
   (setq org-agenda-skip-scheduled-if-done t)
   (setq org-agenda-span (quote day))
   (setq org-agenda-start-with-clockreport-mode t)
+
+  (evil-leader/set-key-for-mode 'org-mode
+    "mhi" 'org-insert-todo-heading-respect-content)
   )
 
 (defun jason-org/init-org-autolist ()
