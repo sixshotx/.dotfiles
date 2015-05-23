@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: ofun
+# key: ofun
+# binding: direct-keybinding
+# --
+${funName}: function(${params}) {
+    $0
+}

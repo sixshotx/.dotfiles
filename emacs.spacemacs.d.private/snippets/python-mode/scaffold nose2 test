@@ -1,0 +1,14 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: scaffold nose2 test
+# key: nose2
+# binding: direct-keybinding
+# --
+from nose2.tools import such
+
+from twiceweb.common.tests import factories
+from twiceweb.common.tests import layers
+
+with such.A(""${layer description}") as it:
+    layers.ConfigLayer(it)
+
+it.createTests(globals())

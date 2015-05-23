@@ -1,7 +1,7 @@
 # ~/.tmuxinator/abb.yml
 
 name: abb
-root: ~/Projects/abb_tracker/
+root: ~/Projects/rails_workout_tracker/rails_abb_tracker/
 
 # Optional tmux socket
 # socket_name: foo
@@ -22,5 +22,13 @@ root: ~/Projects/abb_tracker/
 # startup_window: logs
 
 windows:
-  - server: grunt serve
-  - whatever: ls
+  - stuff:
+      layout: main-vertical
+      panes:
+        - server:
+          - rails s
+          - ls
+        - console:
+          - rails console
+  - whatever:
+      - ls

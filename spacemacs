@@ -377,6 +377,7 @@ layers configuration."
  '(js2-bounce-indent-p nil)
  '(linum-format " %7d ")
  '(org-agenda-start-with-clockreport-mode t)
+ '(org-clock-auto-clock-resolution t)
  '(org-clock-continuously t)
  '(org-clock-history-length 23)
  '(org-clock-idle-time 10)
@@ -394,8 +395,12 @@ layers configuration."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((((class color) (min-colors 4096)) (:foreground "#c6c6c6" :background "#303030")) (((class color) (min-colors 256)) (:foreground "#c6c6c6" :background "#303030")) (((class color) (min-colors 89)) (:foreground "#c6c6c6" :background "#303030"))))
  '(company-tooltip-common ((((class color) (min-colors 89)) (:background "#6c6c6c" :foreground "#afd7ff"))))
  '(company-tooltip-common-selection ((((class color) (min-colors 89)) (:background "#005f87" :foreground "#afd7ff" :bold t))))
  '(enh-ruby-op-face ((((class color) (min-colors 89)) (:foreground "#ff5d17" :bold t))))
  '(enh-ruby-string-delimiter-face ((((class color) (min-colors 89)) (:foreground "#af87ff"))))
- '(js2-external-variable ((t (:foreground "#ff0000" :underline t)))))
+ '(font-lock-comment-delimiter-face ((((class color) (min-colors 89)) (:foreground "#6c6c6c" :slant italic))))
+ '(font-lock-comment-face ((((class color) (min-colors 89)) (:foreground "#6c6c6c" :slant italic))))
+ '(js2-external-variable ((((class color) (min-colors 89)) (:foreground "#ff8700" :underline t))))
+ '(web-mode-comment-face ((t (:foreground "#dddddd")))))

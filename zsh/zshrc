@@ -138,3 +138,11 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 growl() { echo -e $'\e]9;'${1}'\007' ; return ; }
 
 setopt NO_NOMATCH
+
+# Tmux session handling
+function fzf_tmux_session {
+    selection_string=$(tmux list-windows | fzf)
+    session_number=$(ruby -e "print '${selection_string}'[/^(\d+):/, 1]")
+    tmux select-window -t :$session_number
+}
+alias fzftmux=fzf_tmux_session

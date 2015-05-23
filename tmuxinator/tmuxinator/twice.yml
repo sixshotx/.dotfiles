@@ -22,23 +22,20 @@ pre: vagrant up --no-provision; vagrant mount-nfs
 # startup_window: logs
 
 windows:
-  - something:
-      layout: main-vertical
-      panes:
-          - something:
-              - gst -s
-          - shell:
-              - vssh
-              - bin/webctl start shell
-  - services:
-      layout: main-vertical
-      panes:
-        - store:
-            - vagrant ssh
-            - bin/webctl start store
-        - ops:
-            - vagrant ssh
-            - bin/webctl start ops
-        - vulcan:
-            - vagrant ssh
-            - bin/webctl start vulcan
+  - git:
+      - gst -s
+  - shell:
+      - vssh
+      - bin/webctl start shell
+  - shell-analytics:
+      - vssh
+      - bin/webctl start shell
+  - store:
+      - vagrant ssh
+      - bin/webctl start store
+  - ops:
+      - vagrant ssh
+      - bin/webctl start ops
+  - vulcan:
+      - vagrant ssh
+      - bin/webctl start vulcan

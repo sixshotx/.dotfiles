@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: utf8 (goes at the top of a file with unicode chars)
+# key: utf8
+# binding: direct-keybinding
+# --
+# -*- coding: utf-8 -*-
