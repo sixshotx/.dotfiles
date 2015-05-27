@@ -12,7 +12,7 @@
 
 (defvar jason-python-packages
   '(
-    pymacs
+    ;; pymacs
     ;; elpy
     ;; Mm, makes everythying too slow
     ;; jedi

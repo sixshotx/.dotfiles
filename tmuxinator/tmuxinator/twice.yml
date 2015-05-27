@@ -22,6 +22,8 @@ pre: vagrant up --no-provision; vagrant mount-nfs
 # startup_window: logs
 
 windows:
+  - editor:
+      - emacs
   - git:
       - gst -s
   - shell:

@@ -21,6 +21,7 @@
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-sort-by-usage t)
     dash
+    deft
     (colors :variables
             colors-enable-nyan-cat-progress-bar t
             colors-enable-rainbow-identifiers t)
@@ -46,13 +47,16 @@
       ;;  jason-smartparens
       jason-web
       ruby
+      (shell :variables
+             shell-default-position bottom
+             shell-default-height 30)
       osx
 
-      ;; haskell
-      syntax-checking
       markdown
-      themes-megapack
       restclient
+      syntax-checking
+      themes-megapack
+      writing
       )
   ;; A list of packages and/or extensions that will not be install and loaded.
   dotspacemacs-excluded-packages '()
@@ -88,9 +92,9 @@ before layers configuration."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(moe-dark
+   dotspacemacs-themes '(zenburn
+                         moe-dark
                          moe-light
-                         zenburn
                          leuven)
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
@@ -170,6 +174,11 @@ before layers configuration."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+  ;; TODO: let this be passed as a layer variable
+  (setq deft-directory "~/Dropbox/Apps/Plain.txt/")
+  (setq deft-extension "org")
+  (setq deft-text-mode 'org-mode)
+
   (setq helm-imenu-fuzzy-match t)
   ;; This function is wayyyyyy too slow.
   (defun magit-wazzup())
@@ -356,7 +365,37 @@ layers configuration."
   (add-hook 'yaml-mode-hook
             (function (lambda ()
                         (setq evil-shift-width yaml-indent-offset))))
+
+  ;; put H and L to line start an, end
+  (define-key evil-normal-state-map "H" "^")
+  (define-key evil-normal-state-map "L" "$")
+  ;; For quick recordings just type qq to start recording, then q to stop. You
+  ;; don't have to worry about the name this way (you just named the recording
+  ;; 'q'). Now, to play back the recording you just type Q. This will redefine the
+  ;; standard meaning of 'Q', but all that does is enter "Ex" mode which I can live
+  ;; without.
+  (define-key evil-normal-state-map "Q" "@q")
+  ;;To copy text to the end-of-line, you can press y$ or you can use the
+  ;;following and press Y instead. This mapping sets up Y to be consistent with
+  ;;the C and D operators, which act from the cursor to the end of the line. The
+  ;;default behavior of Y is to yank the whole line.
+  (define-key evil-normal-state-map "Y" "yy")
+  ;; TOod map an insert mode keybinding to go to
+  (define-key evil-insert-state-map (kbd "<C-return>")
+    (lambda ()
+    (end-of-line)
+    (newline-and-indent)
+    )
   )
+
+  ;; Screenshot
+  (defun take-screenshot ()
+    (interactive)
+    (let ((screenshot-path (concat "/Users/jason/Dropbox/Screenshots/" (md5 (current-time-string)) ".png")))
+      (call-process "screencapture" nil nil nil "-i" screenshot-path)
+      (kill-new screenshot-path)
+      ))
+)
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -390,17 +429,3 @@ layers configuration."
  '(org-clock-report-include-clocking-task t)
  '(org-clock-sound t)
  '(ring-bell-function (quote ignore) t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((((class color) (min-colors 4096)) (:foreground "#c6c6c6" :background "#303030")) (((class color) (min-colors 256)) (:foreground "#c6c6c6" :background "#303030")) (((class color) (min-colors 89)) (:foreground "#c6c6c6" :background "#303030"))))
- '(company-tooltip-common ((((class color) (min-colors 89)) (:background "#6c6c6c" :foreground "#afd7ff"))))
- '(company-tooltip-common-selection ((((class color) (min-colors 89)) (:background "#005f87" :foreground "#afd7ff" :bold t))))
- '(enh-ruby-op-face ((((class color) (min-colors 89)) (:foreground "#ff5d17" :bold t))))
- '(enh-ruby-string-delimiter-face ((((class color) (min-colors 89)) (:foreground "#af87ff"))))
- '(font-lock-comment-delimiter-face ((((class color) (min-colors 89)) (:foreground "#6c6c6c" :slant italic))))
- '(font-lock-comment-face ((((class color) (min-colors 89)) (:foreground "#6c6c6c" :slant italic))))
- '(js2-external-variable ((((class color) (min-colors 89)) (:foreground "#ff8700" :underline t))))
- '(web-mode-comment-face ((t (:foreground "#dddddd")))))
