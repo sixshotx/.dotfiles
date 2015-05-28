@@ -73,7 +73,8 @@
               ("w" "Twice One-Offs" entry (file+olp "~/Dropbox/org/twice.org" "Twice Root" "One-offs")
                "* TODO %? :week:")
               ("p" "Programming Productivity" entry (file+olp "~/Dropbox/org/life.org" "Life" "Extra Programming")
-               "* TODO %?"))))
+               "* TODO %?")
+              ("r" "Reminder" entry (file+olp "~/Dropbox/org/life.org" "Life" "Reminders") "* TODO %?"))))
 
 ;; Org habits
 ; position the habit graph on the agenda to the right of the default
@@ -114,7 +115,7 @@
 (setq org-modules (quote (org-habit org-checklist org-depend)))
 
 ; Org-mode specific shortcuts
-(add-hook 'org-mode-hook 
+(add-hook 'org-mode-hook
           (lambda ()
             (define-key org-mode-map [remap move-text-up] 'org-move-subtree-up)
             (define-key org-mode-map [remap move-text-down] 'org-move-subtree-down)
@@ -226,7 +227,7 @@
 ; Sexy autosyncing
 ;; Fork the work (async) of pushing to mobile
 ;; https://gist.github.com/3111823 ASYNC org mobile push...
-;(require 'gnus-async) 
+;(require 'gnus-async)
 ;; Define a timer variable
 ;; (defvar org-mobile-push-timer nil
 ;;   "Timer that `org-mobile-push-timer' used to reschedule itself, or nil.")
@@ -237,9 +238,9 @@
 ;;   (setq org-mobile-push-timer
 ;;         (run-with-idle-timer
 ;;          (* 1 secs) nil 'org-mobile-push)))
-;; After saving files, start an idle timer after which we are going to push 
-;; (add-hook 'after-save-hook 
-;;  (lambda () 
+;; After saving files, start an idle timer after which we are going to push
+;; (add-hook 'after-save-hook
+;;  (lambda ()
 ;;    (if (or (eq major-mode 'org-mode) (eq major-mode 'org-agenda-mode))
 ;;      (dolist (file (org-mobile-files-alist))
 ;;        (if (string= (expand-file-name (car file)) (buffer-file-name))
@@ -355,7 +356,7 @@
 
 ;; designate the window function for my-appt-send-notification
 (defun my-appt-display (min-to-app new-time msg)
-  (my-appt-send-notification 
+  (my-appt-send-notification
     (format "'Appointment in %s minutes'" min-to-app)    ;; passed to -title in terminal-notifier call
     (format "'%s'" msg)))                                ;; passed to -message in terminal-notifier call
 (setq appt-disp-window-function (function my-appt-display))
