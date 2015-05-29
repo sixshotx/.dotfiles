@@ -397,6 +397,18 @@ layers configuration."
 
   ;; Possibly fixes https://github.com/syl20bnr/spacemacs/issues/1300
   (savehist-mode -1)
+
+  ;;coffeescript testing
+  (sp-local-pair 'coffee-mode "{" nil :post-handlers '(my-create-newline-and-enter-sexp))
+
+  (defun my-create-newline-and-enter-sexp (&rest _ignored)
+    "Open a"
+    (message "called")
+    (newline)
+    (newline)
+    (forward-line -1)
+    (coffee-indent-line)
+    )
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
