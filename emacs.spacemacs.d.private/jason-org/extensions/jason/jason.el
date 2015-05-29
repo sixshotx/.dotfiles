@@ -45,6 +45,7 @@
               ("NEXT" :foreground "PaleVioletRed" :weight bold)
               ("DONE" :foreground "forest green" :weight bold)
               ("CODE_REVIEW" :foreground "orange" :weight bold)
+              ("CANCELED" :foreground "light green" :weight bold)
               ("WAITING" :foreground "forest green" :weight bold))))
 (setq org-tag-faces
       (quote (("@home" :foreground "light green" :weight bold)

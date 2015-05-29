@@ -51,7 +51,6 @@
              shell-default-position bottom
              shell-default-height 30)
       osx
-
       markdown
       restclient
       syntax-checking
@@ -97,7 +96,7 @@ before layers configuration."
                          moe-light
                          leuven)
    ;; If non nil the cursor color matches the state color.
-   dotspacemacs-colorize-cursor-according-to-state t
+   dotspacemacs-colorize-cursor-according-to-state nil
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
@@ -395,6 +394,9 @@ layers configuration."
       (call-process "screencapture" nil nil nil "-i" screenshot-path)
       (kill-new screenshot-path)
       ))
+
+  ;; Possibly fixes https://github.com/syl20bnr/spacemacs/issues/1300
+  (savehist-mode -1)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
