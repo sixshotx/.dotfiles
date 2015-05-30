@@ -75,7 +75,11 @@
                "* TODO %? :week:")
               ("p" "Programming Productivity" entry (file+olp "~/Dropbox/org/life.org" "Life" "Extra Programming")
                "* TODO %?")
-              ("r" "Reminder" entry (file+olp "~/Dropbox/org/life.org" "Life" "Reminders") "* TODO %?"))))
+              ;; ("r" "Reminder" entry
+              ;;  (file+olp "~/Dropbox/org/life.org" "Life" "Reminders")
+              ;;  ;; Using %a doesn't work in format-time-string here.
+              ;;  "* TODO %?\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %H:%M>\")")
+              )))
 
 ;; Org habits
 ; position the habit graph on the agenda to the right of the default

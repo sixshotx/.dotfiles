@@ -36,6 +36,8 @@
       gtags
       multiple-cursors
       html
+      hydra
+      lispy
       org
       python
      ;;  slime
@@ -50,6 +52,7 @@
       (shell :variables
              shell-default-position bottom
              shell-default-height 30)
+      slime
       osx
       markdown
       restclient
@@ -399,16 +402,25 @@ layers configuration."
   (savehist-mode -1)
 
   ;;coffeescript testing
-  (sp-local-pair 'coffee-mode "{" nil :post-handlers '(my-create-newline-and-enter-sexp))
+  (sp-local-pair 'coffee-mode "{" nil :post-handlers '((my-create-newline-and-enter-sexp "C-j")))
 
+  (local-unset)
   (defun my-create-newline-and-enter-sexp (&rest _ignored)
-    "Open a"
     (message "called")
     (newline)
     (newline)
     (forward-line -1)
     (coffee-indent-line)
     )
+
+  ;; Customize helm
+  ;; Remap SPC / to search the current buffer
+  (define-key evil-normal-state-map [remap spacemacs/helm-projectile-smart-do-search] 'helm-occur)
+  (define-key evil-normal-state-map (kbd "SPC p /") 'spacemacs/helm-projectile-smart-do-search)
+  ;; helm-regexp is pretty sexy http://tuhdo.github.io/helm-intro.html
+  ;; SPC r r for helm-register: view the contents of registers
+  ;; SPC r y for helm-kill-ring: use helm to choose the thing to paste.
+  ;; helm-top is amazing too
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -443,3 +455,12 @@ layers configuration."
  '(org-clock-report-include-clocking-task t)
  '(org-clock-sound t)
  '(ring-bell-function (quote ignore) t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:foreground "#DCDCCC" :background "#3F3F3F"))))
+ '(ace-jump-face-foreground ((t (:background "#3F3F3F" :foreground "#ff8300" :inverse-video nil))))
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
