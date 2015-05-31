@@ -1,0 +1,19 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: clojure card
+# key: cloj
+# binding: direct-keybinding
+# --
+* Question                                                                  :drill:
+   ${1:Question}
+   ${2:#+BEGIN_SRC clojure
+   ${3:Front code}
+   #+END_SRC
+   }
+${4:** Answer Code
+   #+BEGIN_SRC clojure
+   ${5:Back code}
+   #+END_SRC
+}
+${6:** Additional answer
+   ${7:Backside}
+}

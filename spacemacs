@@ -2,7 +2,8 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
-(defun dotspacemacs/layers ()
+
+ (defun dotspacemacs/layers ()
   "Configuration Layers declaration."
   (setq-default
    ;; List of additional paths where to look for configuration layers.
@@ -11,61 +12,62 @@
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
-  '(
-    ;; ----------------------------------------------------------------
-    ;; Example of useful layers you may want to use right away.
-    ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-    ;; <M-m f e R> (Emacs style) to install them.
-    ;; ----------------------------------------------------------------
-    (auto-completion :variables
+   '(
+     ;; ----------------------------------------------------------------
+     ;; Example of useful layers you may want to use right away.
+     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
+     ;; <M-m f e R> (Emacs style) to install them.
+     ;; ----------------------------------------------------------------
+     (auto-completion :variables
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-sort-by-usage t)
-    dash
-    deft
-    (colors :variables
-            colors-enable-nyan-cat-progress-bar t
-            colors-enable-rainbow-identifiers t)
+     dash
+     (deft :variables
+           deft-directory "~/Dropbox/Apps/Plain.txt/"
+           deft-custom-extension "org")
+     (colors :variables
+             colors-enable-nyan-cat-progress-bar t
+             colors-enable-rainbow-identifiers t)
      ;; better-defaults
-    (git :variables
+     (git :variables
           git-gutter-use-fringe t
           git-enable-github-support t)
-;;      markdown
-  ;;    beeminder
-      emacs-lisp
-      ;; clojure
-      gtags
-      multiple-cursors
-      html
-      hydra
-      lispy
-      org
-      python
+     ;;      markdown
+     ;;    beeminder
+     emacs-lisp
+     clojure
+     gtags
+     multiple-cursors
+     html
+     hydra
+     lispy
+     org
+     python
      ;;  slime
-      javascript
-      ;;jason-js
-      jason-eyebrowse
-      jason-org
-      jason-python
-      ;;  jason-smartparens
-      jason-web
-      ruby
-      (shell :variables
-             shell-default-position bottom
-             shell-default-height 30)
-      slime
-      osx
-      markdown
-      restclient
-      syntax-checking
-      themes-megapack
-      writing
-      )
-  ;; A list of packages and/or extensions that will not be install and loaded.
-  dotspacemacs-excluded-packages '()
-  ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
-  ;; are declared in a layer which is not a member of
-  ;; the list `dotspacemacs-configuration-layers'
-  dotspacemacs-delete-orphan-packages t))
+     javascript
+     ;;jason-js
+     jason-eyebrowse
+     jason-org
+     jason-python
+     ;;  jason-smartparens
+     jason-web
+     ruby
+     (shell :variables
+            shell-default-position bottom
+            shell-default-height 30)
+     slime
+     osx
+     markdown
+     restclient
+     syntax-checking
+     themes-megapack
+     writing)
+   ;; A list of packages and/or extensions that will not be install and loaded.
+   dotspacemacs-excluded-packages '()
+   ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
+   ;; are declared in a layer which is not a member of
+   ;; the list `dotspacemacs-configuration-layers'
+   dotspacemacs-delete-orphan-packages t))
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -94,8 +96,8 @@ before layers configuration."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(zenburn
-                         moe-dark
+   dotspacemacs-themes '(moe-dark
+                         zenburn
                          moe-light
                          leuven)
    ;; If non nil the cursor color matches the state color.
@@ -176,11 +178,6 @@ before layers configuration."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
-  ;; TODO: let this be passed as a layer variable
-  (setq deft-directory "~/Dropbox/Apps/Plain.txt/")
-  (setq deft-extension "org")
-  (setq deft-text-mode 'org-mode)
-
   (setq helm-imenu-fuzzy-match t)
   ;; This function is wayyyyyy too slow.
   (defun magit-wazzup())
@@ -283,13 +280,13 @@ layers configuration."
                         (setq end (point)))
         (replace-regexp "$" char nil start end))))
   (defun insert-semicolon ()
-      (interactive)
-      (insert-end-of-line-char ";"))
+    (interactive)
+    (insert-end-of-line-char ";"))
   (defun insert-comma ()
     (interactive)
     (insert-end-of-line-char ","))
   (defun insert-newline ()
-      (insert-end-of-line-char "\n"))
+    (insert-end-of-line-char "\n"))
 
   ;; In term-mode, Take result of snippet and set it to clipboard, then paste the result
   ;; Create new buffer. Enable term-mode Expand snippet in that buffer. Switch back to original buffer. Insert tmp buffer's
@@ -404,7 +401,6 @@ layers configuration."
   ;;coffeescript testing
   (sp-local-pair 'coffee-mode "{" nil :post-handlers '((my-create-newline-and-enter-sexp "C-j")))
 
-  (local-unset)
   (defun my-create-newline-and-enter-sexp (&rest _ignored)
     (message "called")
     (newline)
@@ -421,7 +417,26 @@ layers configuration."
   ;; SPC r r for helm-register: view the contents of registers
   ;; SPC r y for helm-kill-ring: use helm to choose the thing to paste.
   ;; helm-top is amazing too
-)
+
+  ;; Org-babel
+  ;; Requirements for Babel code execution for each language.
+  ;; Clojure requirements
+  (setq org-babel-clojure-backend 'cider)
+  (setq nrepl-hide-special-buffers t
+        cider-repl-pop-to-buffer-on-connect nil
+        cider-popup-stacktraces nil
+        cider-repl-popup-stacktraces t)
+  (require 'ob-clojure)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((python . t)
+     (clojure . t)))
+
+  ;; Syntax highlight org babel blocks of code.
+  (setq org-src-fontify-natively t)
+  (setq org-src-preserve-indentation t)
+  (setq org-confirm-babel-evaluate nil)
+  )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -454,6 +469,15 @@ layers configuration."
  '(org-clock-persist-query-resume nil)
  '(org-clock-report-include-clocking-task t)
  '(org-clock-sound t)
+ '(org-drill-optimal-factor-matrix
+   (quote
+    ((1
+      (1.7000000000000002 . 3.44)
+      (1.96 . 3.58)
+      (2.5 . 4.0)
+      (2.36 . 3.86)
+      (2.6 . 4.14)
+      (2.1799999999999997 . 3.72)))))
  '(ring-bell-function (quote ignore) t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
