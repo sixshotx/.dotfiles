@@ -17,7 +17,7 @@
     org
     org-autolist
     moe-theme
-    org-contrib-plus
+    ;; org-plus-contrib
     )
   "List of all packages to install and/or initialize. Built-in packages
 which require an initialization must be listed explicitly in the list.")
@@ -60,6 +60,7 @@ which require an initialization must be listed explicitly in the list.")
   ""
   (use-package moe-theme))
 
-(defun jason-org/init-org-contrib-plus
-    ""
-  (use-package org-contrib-plus))
+;; (defun jason-org/init-org-plus-contrib
+;;     ""
+;;   (eval-after-load 'org-mode
+;;     (use-package org-plus-contrib)))
