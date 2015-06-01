@@ -92,5 +92,15 @@ source /usr/local/opt/autoenv/activate.sh
 alias ij="open -a /Applications/IntelliJ\ IDEA\ 14.app/ "
 alias emacs="/usr/local/Cellar/emacs/24.5/Emacs.app/Contents/MacOS/Emacs -nw"
 
-# overrwriting my old vim alias
+# overwriting my old vim alias
 alias e="emacsclient -n"
+
+# Simulate a slow connection. Run these on the host machine.
+ipfw-throttle() {
+    port=$1
+    # sudo ipfw pipe 1 config bw 1024Kbyte/s delay 500ms
+    sudo ipfw pipe 1 config bw 4096Kbyte/s
+    sudo ipfw add 1 pipe 1 src-port $port
+}
+
+alias ipfw-restore="sudo ipfw delete 1; sudo ipfw pipe 1 delete"
