@@ -410,9 +410,10 @@ layers configuration."
     )
 
   ;; Customize helm
+  ;; Decide on this later
   ;; Remap SPC / to search the current buffer
-  (define-key evil-normal-state-map [remap spacemacs/helm-projectile-smart-do-search] 'helm-occur)
-  (define-key evil-normal-state-map (kbd "SPC p /") 'spacemacs/helm-projectile-smart-do-search)
+  ;; (define-key evil-normal-state-map (kbd "SPC /") 'helm-occur)
+  ;; (define-key evil-normal-state-map (kbd "SPC p /") 'spacemacs/helm-projectile-smart-do-search)
   ;; helm-regexp is pretty sexy http://tuhdo.github.io/helm-intro.html
   ;; SPC r r for helm-register: view the contents of registers
   ;; SPC r y for helm-kill-ring: use helm to choose the thing to paste.
@@ -436,6 +437,10 @@ layers configuration."
   (setq org-src-fontify-natively t)
   (setq org-src-preserve-indentation t)
   (setq org-confirm-babel-evaluate nil)
+
+
+  ;; Better lisp
+  (setq evil-move-cursor-back nil)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
