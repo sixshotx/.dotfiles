@@ -37,18 +37,18 @@ which require an initialization must be listed explicitly in the list.")
 ;; https://github.com/jwiegley/use-package
 (defun jason-web/init-web-mode ()
   "Init web stuff"
-  ;; Use web-mode for these files.
-  (add-to-list 'auto-mode-alist '("\\.htmlmk\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.jqt\\'" . web-mode))
+  ;; ;; Use web-mode for these files.
+  ;; (add-to-list 'auto-mode-alist '("\\.htmlmk\\'" . web-mode))
+  ;; (add-to-list 'auto-mode-alist '("\\.jqt\\'" . web-mode))
 
-  (setq web-mode-content-types-alist
-  '(("html" . "\\.jqt\\'")
-    ))
+  ;; (setq web-mode-content-types-alist
+  ;; '(("html" . "\\.jqt\\'")
+  ;;   ))
 
-  ;; Associate template engines
-  (setq web-mode-engines-alist
-        '(("mako"    . "\\.htmlmk\\'")
-          ("handlebars" . "\\.jqt\\'")))
+  ;; ;; Associate template engines
+  ;; (setq web-mode-engines-alist
+  ;;       '(("mako"    . "\\.htmlmk\\'")
+  ;;         ("handlebars" . "\\.jqt\\'")))
 
   ;; Emmet and snippets
   (setq web-mode-ac-sources-alist

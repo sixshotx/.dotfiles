@@ -447,6 +447,33 @@ layers configuration."
   ;; Better lisp
   (setq evil-move-cursor-back nil)
   ;; Open these buffers as soon as they're available
+
+  ;;;;;;;;;;;;;;
+  ;; Projectile
+  ;;;;;;;;;;;;;;
+  (evil-leader/set-key
+    "pw" 'helm-projectile-find-other-file)
+  (define-key evil-normal-state-map (kbd "SPC p /") 'spacemacs/helm-projectile-smart-do-search)
+  ;; Allow switching between js, scss, and html files more easily.
+  ;; (eval-after-load 'projectile
+  ;;   (add-to-list 'projectile-other-file-alist '("js" "scss" "jqt" "html" "htmlmk"))
+  ;;   (add-to-list 'projectile-other-file-alist '("scss" "js" "jqt" "html" "htmlmk"))
+  ;;   (add-to-list 'projectile-other-file-alist '("jqt" "scss" "js" "html" "htmlmk"))
+  ;;   (add-to-list 'projectile-other-file-alist '("htmlmk" "jqt" "scss" "js"))
+  ;;   (add-to-list 'projectile-other-file-alist '("html" "jqt" "scss" "js")))
+
+  ;;;;;;;;;;
+  ;; HTML ;;
+  ;;;;;;;;;;
+  ;; (evilify html-mode html-mode-map
+  ;;          (kbd "j") 'sp-next-sexp)
+  (add-to-list 'auto-mode-alist '("\\.htmlmk\\'" . html-mode))
+  (add-to-list 'auto-mode-alist '("\\.jqt\\'" . html-mode))
+  ;; (evil-define-key 'normal html-mode-map
+  ;;   (kbd "j") 'sp-next-sexp
+  ;;   (kbd "k") 'sp-previous-sexp
+  ;;   (kbd "l") 'sp-down-sexp
+  ;;   (kbd "h") 'sp-up-sexp)
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -494,9 +521,10 @@ layers configuration."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((((class color) (min-colors 4096)) (:foreground "#c6c6c6" :background "#303030")) (((class color) (min-colors 256)) (:foreground "#c6c6c6" :background "#303030")) (((class color) (min-colors 89)) (:foreground "#c6c6c6" :background "#303030"))))
+ '(default ((((class color) (min-colors 4096)) (:foreground "#c6c6c6" :background "#303030" :family "Source Code Pro" :foundry "nil" :slant normal :weight normal :height 130 :width normal)) (((class color) (min-colors 256)) (:foreground "#c6c6c6" :background "#303030" :family "Source Code Pro" :foundry "nil" :slant normal :weight normal :height 130 :width normal)) (((class color) (min-colors 89)) (:foreground "#c6c6c6" :background "#303030" :family "Source Code Pro" :foundry "nil" :slant normal :weight normal :height 130 :width normal))))
  '(ace-jump-face-foreground ((((class color) (min-colors 89)) (:foreground "#ff8700" :bold t))))
  '(company-tooltip-common ((((class color) (min-colors 89)) (:background "#6c6c6c" :foreground "#afd7ff"))))
  '(company-tooltip-common-selection ((((class color) (min-colors 89)) (:background "#005f87" :foreground "#afd7ff" :bold t))))
+ '(font-lock-comment-delimiter-face ((((class color) (min-colors 89)) (:foreground "#6c6c6c" :slant italic))))
  '(font-lock-comment-face ((t (:foreground "#DDD" :slant italic))))
  '(web-mode-comment-face ((((class color) (min-colors 89)) (:foreground "#4e4e4e")))))
