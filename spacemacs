@@ -52,9 +52,9 @@
      ;;  jason-smartparens
      jason-web
      ruby
-     (shell :variables
-            shell-default-position bottom
-            shell-default-height 30)
+     ;; (shell :variables
+     ;;        shell-default-position bottom
+     ;;        shell-default-height 30)
      slime
      osx
      markdown
