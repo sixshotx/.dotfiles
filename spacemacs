@@ -179,8 +179,6 @@ before layers configuration."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
   (setq helm-imenu-fuzzy-match t)
-  ;; This function is wayyyyyy too slow.
-  (defun magit-wazzup())
 
   ;; Matching everywhere!
   (global-evil-matchit-mode 1)
@@ -418,6 +416,8 @@ layers configuration."
   ;; SPC r r for helm-register: view the contents of registers
   ;; SPC r y for helm-kill-ring: use helm to choose the thing to paste.
   ;; helm-top is amazing too
+  ;; No idea where this is getting set, but I don't want it.
+  (setq helm-always-two-windows nil)
 
   ;; Org-babel
   ;; Requirements for Babel code execution for each language.
@@ -437,12 +437,17 @@ layers configuration."
   (setq org-src-fontify-natively t)
   (setq org-src-preserve-indentation t)
   (setq org-confirm-babel-evaluate nil)
+  ;; Tabe indents in src blocks just like in the real file.
+  (setq org-src-tab-acts-natively t)
 
-
+  ;; Org-pomodoro
+  (setq org-pomodoro-length 45)
+  (setq org-pomodoro-short-break-length 15)
+  (setq org-pomodoro-long-break-length 15)
   ;; Better lisp
   (setq evil-move-cursor-back nil)
+  ;; Open these buffers as soon as they're available
   )
-
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
@@ -489,7 +494,9 @@ layers configuration."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:foreground "#DCDCCC" :background "#3F3F3F"))))
- '(ace-jump-face-foreground ((t (:background "#3F3F3F" :foreground "#ff8300" :inverse-video nil))))
- '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+ '(default ((((class color) (min-colors 4096)) (:foreground "#c6c6c6" :background "#303030")) (((class color) (min-colors 256)) (:foreground "#c6c6c6" :background "#303030")) (((class color) (min-colors 89)) (:foreground "#c6c6c6" :background "#303030"))))
+ '(ace-jump-face-foreground ((((class color) (min-colors 89)) (:foreground "#ff8700" :bold t))))
+ '(company-tooltip-common ((((class color) (min-colors 89)) (:background "#6c6c6c" :foreground "#afd7ff"))))
+ '(company-tooltip-common-selection ((((class color) (min-colors 89)) (:background "#005f87" :foreground "#afd7ff" :bold t))))
+ '(font-lock-comment-face ((t (:foreground "#DDD" :slant italic))))
+ '(web-mode-comment-face ((((class color) (min-colors 89)) (:foreground "#4e4e4e")))))
