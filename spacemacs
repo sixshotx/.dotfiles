@@ -55,6 +55,7 @@
      ;; (shell :variables
      ;;        shell-default-position bottom
      ;;        shell-default-height 30)
+     semantic
      slime
      osx
      markdown
@@ -178,7 +179,12 @@ before layers configuration."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+  ;;;;;;;;
+  ;; Helm
+  ;;;;;;;;
   (setq helm-imenu-fuzzy-match t)
+  ;; Makes helm-projectile-search searches the word at point by default
+  (setq helm-ag-insert-at-point 'symbol)
 
   ;; Matching everywhere!
   (global-evil-matchit-mode 1)
@@ -474,6 +480,9 @@ layers configuration."
   ;;   (kbd "k") 'sp-previous-sexp
   ;;   (kbd "l") 'sp-down-sexp
   ;;   (kbd "h") 'sp-up-sexp)
+
+  ;; Miscellaenous
+  (aggressive-indent-mode 1)
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
