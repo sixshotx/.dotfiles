@@ -11,4 +11,5 @@ Run `./install`
 Manually import the settings
 ** Karabiner/Seil
 The install script will install Karabiner, but Seil can only be configured manually, so here's a screenshot of the settings you want:
+
 [[file:Seil/caps_lock.png]]

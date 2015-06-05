@@ -63,6 +63,7 @@
      syntax-checking
      themes-megapack
      writing)
+   dotspacemacs-additional-packages '(f s swiper)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -213,7 +214,7 @@ layers configuration."
             )
 
   ;; Gah, so annoying
-  ;; ehh, edoesn't actually work
+  ;; ehh, doesn't actually work
   (evil-search-highlight-persist nil)
 
 
@@ -356,7 +357,6 @@ layers configuration."
   ;; this language-specific.
   (add-hook 'before-save-hook 'whitespace-cleanup)
 
-
   ;; Indent amount hooks
   ;; Maybe make a config file for different languages that evil mode
   (add-hook 'python-mode-hook
@@ -483,6 +483,47 @@ layers configuration."
 
   ;; Miscellaenous
   (aggressive-indent-mode 1)
+
+  ;; Ediff
+  ;; http://oremacs.com/2015/01/17/setting-up-ediff/
+
+  ;; Uses custom-set variable value if it exists, otherwise just setq's.
+  (defmacro csetq (variable value)
+    `(funcall (or (get ',variable 'custom-set)
+                  'set-default)
+              ',variable ,value))
+  ;; Don't manage control panel in a separate frame.
+  (csetq ediff-window-setup-function 'ediff-setup-windows-plain)
+  ;; Split windows horizontally so it's easier to follow changes.
+  (csetq ediff-split-window-function 'split-window-horizontally)
+  ;; Ignore whitespace in diff. Useful in lisp and languages where whitespace isn't significant.
+  ;; (csetq ediff-diff-options "-w")
+
+  ;; Use 'j' and 'k' to navigate
+  (defun jy-ediff-hook ()
+    (ediff-setup-keymap)
+    (define-key ediff-mode-map "j" 'ediff-next-difference)
+    (define-key ediff-mode-map "k" 'ediff-previous-difference))
+  (add-hook 'ediff-mode-hook 'jy-ediff-hook)
+
+  ;; Restore window configuration when quitting ediff.
+  ;; (add-hook 'ediff-after-quit-hook-internal 'winner-undo)
+  (load "/Users/jason/browse-at-remote/browse-at-remote.el")
+  ;; (require 'browse-at-remote)
+
+
+  ;; Ivy
+  (ivy-mode 1)
+  (csetq ivy-use-virtual-buffers t)
+  (csetq projectile-completion-system 'ivy)
+  (csetq magit-completing-read-function 'ivy-completing-read)
+  (global-set-key "\C-s" 'swiper)
+  (global-set-key "\C-r" 'swiper)
+  (global-set-key (kbd "C-c C-r") 'ivy-resume)
+  (global-set-key [f6] 'ivy-resume)
+  ;; Bind this away from helm-m-x
+  (global-set-key "\M-x" 'execute-extended-command)
+  (global-set-key [remap ido-find-file] 'find-file)
   )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
