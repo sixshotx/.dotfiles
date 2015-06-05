@@ -1,0 +1,14 @@
+* To backup
+** OSX
+Run `./osx/save-hotkeys.sh` to backup your custom OSX hotkeys.
+This will create a `osx/apply-keys.sh`s script.
+
+** IntelliJ IDEA
+Export editor settings and move them here.
+* To setup
+Run `./install`
+** IntelliJ
+Manually import the settings
+** Karabiner/Seil
+The install script will install Karabiner, but Seil can only be configured manually, so here's a screenshot of the settings you want:
+[[file:Seil/caps_lock.png][seil]]

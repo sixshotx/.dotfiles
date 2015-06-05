@@ -20,5 +20,7 @@
     ~/.tmuxinator.zsh: tmuxinator/tmuxinator.zsh
     ~/.tmux.conf: tmuxinator/tmux.conf
     ~/.zenburn.conf: tmuxinator/zenburn.conf
+    # Karabiner
+    ~/Library/Application Support/Karabiner: Karabiner
 - shell:
     - [./osx/apply-keys.sh, Applying OSX keyboard shortcuts...]
