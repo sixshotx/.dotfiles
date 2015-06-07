@@ -385,10 +385,10 @@ layers configuration."
   ;; TOod map an insert mode keybinding to go to
   (define-key evil-insert-state-map (kbd "<C-return>")
     (lambda ()
-    (end-of-line)
-    (newline-and-indent)
+      (end-of-line)
+      (newline-and-indent)
+      )
     )
-  )
 
   ;; Screenshot
   (defun take-screenshot ()
@@ -480,9 +480,6 @@ layers configuration."
   ;;   (kbd "l") 'sp-down-sexp
   ;;   (kbd "h") 'sp-up-sexp)
 
-  ;; Miscellaenous
-  (aggressive-indent-mode 1)
-
   ;; Ediff
   ;; http://oremacs.com/2015/01/17/setting-up-ediff/
 
@@ -522,8 +519,14 @@ layers configuration."
   (global-set-key [f6] 'ivy-resume)
   ;; Bind this away from helm-m-x
   (global-set-key "\M-x" 'execute-extended-command)
-  (global-set-key [remap ido-find-file] 'find-file)
-  )
+  (global-set-key [remap ido-find-file] 'find-file))
+
+
+  ;; Remap sexp commands to be more vim-like
+  (global-set-key "\C-\M-j" 'forward-sexp)
+  (global-set-key "\C-\M-k" 'backward-sexp)
+  (global-set-key "\C-\M-l" 'down-list)
+  (global-set-key "\C-\M-h" 'backward-up-list)
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
