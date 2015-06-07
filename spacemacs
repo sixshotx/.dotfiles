@@ -3,7 +3,7 @@
 ;; It must be stored in your home directory.
 
 
- (defun dotspacemacs/layers ()
+(defun dotspacemacs/layers ()
   "Configuration Layers declaration."
   (setq-default
    ;; List of additional paths where to look for configuration layers.
@@ -23,8 +23,9 @@
                       auto-completion-enable-sort-by-usage t)
      dash
      (deft :variables
-           deft-directory "~/Dropbox/Apps/Plain.txt/"
-           deft-custom-extension "org")
+       deft-directory "~/Dropbox/Apps/Plain.txt/"
+       deft-custom-extension "org"
+       deft-auto-save-interval 30)
      (colors :variables
              colors-enable-nyan-cat-progress-bar t
              colors-enable-rainbow-identifiers t)
@@ -208,11 +209,9 @@ layers configuration."
   (add-hook 'prog-mode-hook
             '(lambda ()
                (progn
+                 (aggressive-indent-mode 1)
                  (linum-mode 1)
-                 (yas-minor-mode 1))
-               )
-            )
-
+                 (yas-minor-mode 1))))
   ;; Gah, so annoying
   ;; ehh, doesn't actually work
   (evil-search-highlight-persist nil)
