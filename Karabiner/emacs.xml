@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<root>
+  <item>
+    <name>Jason Emacs</name>
+    <appendix>Requires mapping Caps lock to f19 (80) and left command to f18 (79)</appendix>
+    <item>
+      <name>Remap F19 (caps lock) to Ctrl</name>
+      <appendix>Map F19 to Ctrl</appendix>
+
+      <identifier>caps_lock_to_ctrl</identifier>
+
+      <autogen>
+        --KeyOverlaidModifier--
+        KeyCode::F19,
+
+        KeyCode::CONTROL_L
+      </autogen>
+    </item>
+
+    <item>
+      <name>Remap F18 (left command) to Hyper</name>
+      <appendix>Map F18 to Hyper</appendix>
+
+      <identifier>f18_to_hyper</identifier>
+
+      <autogen>
+        --KeyOverlaidModifier--
+        KeyCode::F18,
+
+        KeyCode::COMMAND_L,
+        ModifierFlag::OPTION_L | ModifierFlag::CONTROL_L
+      </autogen>
+    </item>
+
+    <item>
+      <name>Remap left ctrl to command</name>
+      <appendix>Map left ctrl to mcd</appendix>
+
+      <identifier>left_ctrl_to_cmd</identifier>
+
+      <autogen>
+        --KeyOverlaidModifier--
+        KeyCode::CONTROL_L,
+
+        KeyCode::COMMAND_L
+      </autogen>
+    </item>
+  </item>
+</root>
