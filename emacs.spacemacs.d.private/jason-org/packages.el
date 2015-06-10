@@ -18,6 +18,7 @@
     org-autolist
     moe-theme
     ;; org-plus-contrib
+    visual-fill-column
     )
   "List of all packages to install and/or initialize. Built-in packages
 which require an initialization must be listed explicitly in the list.")
@@ -37,7 +38,6 @@ which require an initialization must be listed explicitly in the list.")
 
 (defun jason-org/init-org ()
   "Init my really custom org mode setup"
-  (setq fill-column 85)
 
   (org-clock-persistence-insinuate)
   (setq org-agenda-clockreport-parameter-plist (quote (:link t :maxlevel 6)))
@@ -47,8 +47,7 @@ which require an initialization must be listed explicitly in the list.")
   (setq org-agenda-start-with-clockreport-mode t)
 
   (evil-leader/set-key-for-mode 'org-mode
-    "mhi" 'org-insert-todo-heading-respect-content)
-  )
+    "mhi" 'org-insert-todo-heading-respect-content))
 
 (defun jason-org/init-org-autolist ()
   "Calvin's autolist mode"
@@ -64,3 +63,8 @@ which require an initialization must be listed explicitly in the list.")
 ;;     ""
 ;;   (eval-after-load 'org-mode
 ;;     (use-package org-plus-contrib)))
+
+(defun jason-org/init-visual-fill-column ()
+  ""
+
+  )

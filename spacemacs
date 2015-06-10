@@ -145,7 +145,7 @@ before layers configuration."
    ;; If non nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup nil
+   dotspacemacs-maximized-at-startup t
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'.
@@ -209,7 +209,6 @@ layers configuration."
   (add-hook 'prog-mode-hook
             '(lambda ()
                (progn
-                 (aggressive-indent-mode 1)
                  (linum-mode 1)
                  (yas-minor-mode 1))))
   ;; Gah, so annoying
@@ -504,8 +503,6 @@ layers configuration."
 
   ;; Restore window configuration when quitting ediff.
   ;; (add-hook 'ediff-after-quit-hook-internal 'winner-undo)
-  (load "/Users/jason/browse-at-remote/browse-at-remote.el")
-  ;; (require 'browse-at-remote)
 
 
   ;; Ivy
@@ -519,14 +516,20 @@ layers configuration."
   (global-set-key [f6] 'ivy-resume)
   ;; Bind this away from helm-m-x
   (global-set-key "\M-x" 'execute-extended-command)
-  (global-set-key [remap ido-find-file] 'find-file))
+  (global-set-key [remap ido-find-file] 'find-file)
+
+  (setq fill-column 85)
+  (add-hook 'org-mode-hook
+            (visual-line-mode 1)
+            (visual-fill-column-mode 1)))
 
 
-  ;; Remap sexp commands to be more vim-like
-  (global-set-key "\C-\M-j" 'forward-sexp)
-  (global-set-key "\C-\M-k" 'backward-sexp)
-  (global-set-key "\C-\M-l" 'down-list)
-  (global-set-key "\C-\M-h" 'backward-up-list)
+
+;; Remap sexp commands to be more vim-like
+(global-set-key "\C-\M-j" 'forward-sexp)
+(global-set-key "\C-\M-k" 'backward-sexp)
+(global-set-key "\C-\M-l" 'down-list)
+(global-set-key "\C-\M-h" 'backward-up-list)
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
