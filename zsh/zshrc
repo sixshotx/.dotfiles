@@ -52,8 +52,8 @@ alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
+    # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+    # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
@@ -147,4 +147,3 @@ function fzf_tmux_session {
 }
 alias fzftmux=fzf_tmux_session
 
-alias ec="emacsclient -nc"
