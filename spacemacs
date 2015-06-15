@@ -185,25 +185,10 @@ layers configuration."
   ;; Helm
   ;;;;;;;;
   (setq helm-imenu-fuzzy-match t)
-  ;; Makes helm-projectile-search searches the word at point by default
-  (setq helm-ag-insert-at-point 'symbol)
 
   ;; Matching everywhere!
   (global-evil-matchit-mode 1)
   (golden-ratio-mode 1)
-
-  ;; Paredit stuff
-  ;; (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
-  ;; (add-hook 'emacs-lisp-mode-hook       'enable-paredit-mode)
-  ;; (add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode)
-  ;; (add-hook 'ielm-mode-hook             'enable-paredit-mode)
-  ;; (add-hook 'lisp-mode-hook             'enable-paredit-mode)
-  ;; (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
-  ;; (add-hook 'scheme-mode-hook           'enable-paredit-mode)
-
-  ;; Expand a snippet by name. Mostly useful when you've selected a region
-  ;; and you want your snippet to use.
-  (evil-leader/set-key "oe" 'helm-yas-complete)
 
   ;; I want my line numbers.
   (add-hook 'prog-mode-hook
@@ -211,10 +196,9 @@ layers configuration."
                (progn
                  (linum-mode 1)
                  (yas-minor-mode 1))))
-  ;; Gah, so annoying
-  ;; ehh, doesn't actually work
-  (evil-search-highlight-persist nil)
 
+  ;; Gah, so annoying
+  (setq evil-search-highlight-persist nil)
 
   ;; yasnippet
   ;; make it work with evil visual
@@ -459,6 +443,7 @@ layers configuration."
     "pw" 'helm-projectile-find-other-file)
   (define-key evil-normal-state-map (kbd "SPC p /") 'spacemacs/helm-projectile-smart-do-search)
   ;; Allow switching between js, scss, and html files more easily.
+  ;; TODO - this doesn't work right now
   ;; (eval-after-load 'projectile
   ;;   (add-to-list 'projectile-other-file-alist '("js" "scss" "jqt" "html" "htmlmk"))
   ;;   (add-to-list 'projectile-other-file-alist '("scss" "js" "jqt" "html" "htmlmk"))
@@ -570,13 +555,14 @@ layers configuration."
       (2.36 . 3.86)
       (2.6 . 4.14)
       (2.1799999999999997 . 3.72)))))
- '(ring-bell-function (quote ignore) t))
+ '(ring-bell-function (quote ignore) t)
+ '(safe-local-variable-values (quote ((sgml-basic-offset . 4)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((((class color) (min-colors 4096)) (:foreground "#c6c6c6" :background "#303030" :family "Source Code Pro" :foundry "nil" :slant normal :weight normal :height 130 :width normal)) (((class color) (min-colors 256)) (:foreground "#c6c6c6" :background "#303030" :family "Source Code Pro" :foundry "nil" :slant normal :weight normal :height 130 :width normal)) (((class color) (min-colors 89)) (:foreground "#c6c6c6" :background "#303030" :family "Source Code Pro" :foundry "nil" :slant normal :weight normal :height 130 :width normal))))
+ '(default ((((class color) (min-colors 4096)) (:foreground "#c6c6c6" :background "#303030")) (((class color) (min-colors 256)) (:foreground "#c6c6c6" :background "#303030")) (((class color) (min-colors 89)) (:foreground "#c6c6c6" :background "#303030"))))
  '(ace-jump-face-foreground ((((class color) (min-colors 89)) (:foreground "#ff8700" :bold t))))
  '(company-tooltip-common ((((class color) (min-colors 89)) (:background "#6c6c6c" :foreground "#afd7ff"))))
  '(company-tooltip-common-selection ((((class color) (min-colors 89)) (:background "#005f87" :foreground "#afd7ff" :bold t))))
