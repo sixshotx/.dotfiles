@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: lorem ipsum text
+# key: lorem
+# binding: direct-keybinding
+# --
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque congue lorem in accumsan faucibus. Vivamus magna neque, scelerisque ac facilisis vel, efficitur quis est. Pellentesque a quam nec quam sodales efficitur sit amet vel nibh. Etiam dapibus semper nisl, sollicitudin suscipit nisi accumsan eget. Mauris iaculis, mi quis hendrerit ultrices, augue magna condimentum velit, ut dignissim est erat eu purus. Aliquam sed diam nec tortor pharetra gravida sit amet at massa. Morbi venenatis dui sed ligula placerat posuere. Nullam nec cursus neque, in feugiat diam. Duis cursus, velit quis accumsan accumsan, tellus arcu vestibulum nunc, porta imperdiet nisi felis ac ipsum. Curabitur tristique sapien eget ipsum iaculis, elementum dignissim risus volutpat. Donec fermentum, ex eu dignissim dignissim, mi ligula tincidunt nulla, vitae finibus odio urna ac ligula. Pellentesque ullamcorper metus neque, vel maximus ante rutrum non. Sed tincidunt quam ut metus vestibulum hendrerit. In hac habitasse platea dictumst. Etiam augue felis, semper sit amet dolor quis, feugiat euismod nulla. Etiam semper lorem vitae elementum rhoncus.

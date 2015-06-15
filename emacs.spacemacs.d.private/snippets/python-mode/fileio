@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: fileio
+# key: fileio
+# binding: direct-keybinding
+# --
+with open(${1:file_name}${2:, "w"}) as f:
+    f.write(${3:content})
