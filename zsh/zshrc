@@ -146,3 +146,5 @@ function fzf_tmux_session {
     tmux select-window -t :$session_number
 }
 alias fzftmux=fzf_tmux_session
+
+alias ec="emacsclient -nc"
