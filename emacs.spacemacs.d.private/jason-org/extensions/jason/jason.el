@@ -3,7 +3,10 @@
 ;; (add-hook 'org-mode-hook (lambda () (whitespace-mode 0)))
 
 ; Agenda hooks
-;; (add-hook 'org-agenda-mode-hook (lambda () (visual-line-mode 1)))
+(add-hook 'org-agenda-mode-hook
+          (lambda ()
+            (visual-line-mode 1)
+            (golden-ratio)))
 
 ;; Use sticky agenda's so they persist. Useful to have an agenda view per buffer and just navigate among them
 

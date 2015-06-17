@@ -12,7 +12,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="3den"
+ZSH_THEME="Soliah"
 
 # Example aliases
 alias zshconfig="$EDITOR ~/.zshrc"
@@ -135,7 +135,6 @@ markedwatch() {
 #zle -N zle-keymap-select
 ##export KEYTIMEOUT=1
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 growl() { echo -e $'\e]9;'${1}'\007' ; return ; }
 
 setopt NO_NOMATCH
@@ -147,3 +146,8 @@ function fzf_tmux_session {
     tmux select-window -t :$session_number
 }
 alias fzftmux=fzf_tmux_session
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# Put this last
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

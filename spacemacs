@@ -107,8 +107,13 @@ before layers configuration."
    dotspacemacs-colorize-cursor-according-to-state nil
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+   ;; dotspacemacs-default-font '("Source Code Pro"
+   ;;                             :size 13
+   ;;                             :weight normal
+   ;;                             :width normal
+   ;;                             :powerline-scale 1.1)
+   dotspacemacs-default-font '("Anonymous Pro for Powerline"
+                               :size 16
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -181,6 +186,8 @@ before layers configuration."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+  ;; I *probably* want this
+  (setq require-final-newline t)
   ;;;;;;;;
   ;; Helm
   ;;;;;;;;
@@ -195,7 +202,8 @@ layers configuration."
             '(lambda ()
                (progn
                  (linum-mode 1)
-                 (yas-minor-mode 1))))
+                 (yas-minor-mode 1)
+                 (centered-cursor-mode 1))))
 
   ;; Gah, so annoying
   (setq evil-search-highlight-persist nil)
@@ -445,11 +453,12 @@ layers configuration."
   ;; Allow switching between js, scss, and html files more easily.
   ;; TODO - this doesn't work right now
   ;; (eval-after-load 'projectile
-  ;;   (add-to-list 'projectile-other-file-alist '("js" "scss" "jqt" "html" "htmlmk"))
-  ;;   (add-to-list 'projectile-other-file-alist '("scss" "js" "jqt" "html" "htmlmk"))
-  ;;   (add-to-list 'projectile-other-file-alist '("jqt" "scss" "js" "html" "htmlmk"))
-  ;;   (add-to-list 'projectile-other-file-alist '("htmlmk" "jqt" "scss" "js"))
-  ;;   (add-to-list 'projectile-other-file-alist '("html" "jqt" "scss" "js")))
+  ;;   (progn
+  ;;     (add-to-list 'projectile-other-file-alist '("js" "scss" "jqt" "html" "htmlmk"))
+  ;;     (add-to-list 'projectile-other-file-alist '("scss" "js" "jqt" "html" "htmlmk"))
+  ;;     (add-to-list 'projectile-other-file-alist '("jqt" "scss" "js" "html" "htmlmk"))
+  ;;     (add-to-list 'projectile-other-file-alist '("htmlmk" "jqt" "scss" "js"))
+  ;;     (add-to-list 'projectile-other-file-alist '("html" "jqt" "scss" "js"))))
 
   ;;;;;;;;;;
   ;; HTML ;;

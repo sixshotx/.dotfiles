@@ -1,3 +1,5 @@
+# -*- mode: sh -*-
+
 # Toggle back and forth between vim and shell with ctrl-z
 fancy-ctrl-z () {
   if [[ $#BUFFER -eq 0 ]]; then
