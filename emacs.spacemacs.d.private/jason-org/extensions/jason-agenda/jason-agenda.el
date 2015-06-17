@@ -155,4 +155,18 @@
                             (org-agenda-skip-function '(org-agenda-skip-subtree-if 'todo '("DONE" "CODE REVIEW")))))
                 nil)))))
 
+
+;; http://kyleam.com/posts/org-agenda-fullscreen/
+(defadvice org-agenda-list (around org-agenda-fullscreen activate)
+  "Start agenda in fullscreen.
+
+After agenda loads, delete other windows.
+`org-agenda-restore-windows-after-quit' should non-nil to restore
+the previous window configuration. If `org-agenda-sticky' is
+non-nil, configurations with more than one window do not seem to
+be restored properly."
+  ad-do-it
+  (delete-other-windows))
+(setq org-agenda-restore-windows-after-quit t)
+(setq org-agenda-sticky nil)
 (provide 'jason-agenda)
