@@ -18,7 +18,6 @@
     org-autolist
     moe-theme
     ;; org-plus-contrib
-    visual-fill-column
     )
   "List of all packages to install and/or initialize. Built-in packages
 which require an initialization must be listed explicitly in the list.")
@@ -63,8 +62,3 @@ which require an initialization must be listed explicitly in the list.")
 ;;     ""
 ;;   (eval-after-load 'org-mode
 ;;     (use-package org-plus-contrib)))
-
-(defun jason-org/init-visual-fill-column ()
-  ""
-
-  )

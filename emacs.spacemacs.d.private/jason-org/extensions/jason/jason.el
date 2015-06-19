@@ -352,7 +352,9 @@
 (appt-activate 1)                ;; activate appointment notification
 (display-time)                   ;; activate time display
 
-(org-agenda-to-appt)             ;; generate the appt list from org agenda files on emacs launch
+
+;; TODO: Fix this later
+;; (org-agenda-to-appt)             ;; generate the appt list from org agenda files on emacs launch
 (run-at-time "24:01" 3600 'org-agenda-to-appt)           ;; update appt list hourly
 (add-hook 'org-finalize-agenda-hook 'org-agenda-to-appt) ;; update appt list on agenda view
 
