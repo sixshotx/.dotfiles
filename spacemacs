@@ -516,6 +516,10 @@ layers configuration."
   (add-hook 'org-mode-hook
             (visual-line-mode 1)
             (visual-fill-column-mode 1))
+
+  ;; Regexp stuff
+  (require 're-builder)
+  (setq reb-re-syntax 'string)
   )
 
 
