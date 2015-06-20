@@ -1,0 +1,18 @@
+- clean: ['~']
+- link:
+    ~/.gitconfig: gitconfig
+    ~/.vimrc: vimrc
+    ~/.oh-my-zsh: oh-my-zsh
+    ~/.oh-my-zsh/custom: zsh/oh-my-zsh-custom
+    # Spacemacs
+    ~/.emacs.d: emacs.spacemacs.d
+    ~/.spacemacs: spacemacs
+    emacs.spacemacs.d/private: emacs.spacemacs.d.private
+    ~/.zshrc: zsh/zshrc
+    ~/.zsh_profile: zsh/zsh_profile
+    ~/.flake8rc: flake8rc
+    # Tmuxinator
+    ~/.tmuxinator: tmuxinator/tmuxinator
+    ~/.tmuxinator.zsh: tmuxinator/tmuxinator.zsh
+    ~/.tmux.conf: tmuxinator/tmux.conf
+    ~/.zenburn.conf: tmuxinator/zenburn.conf
