@@ -195,7 +195,6 @@ layers configuration."
 
   ;; Matching everywhere!
   (global-evil-matchit-mode 1)
-  (golden-ratio-mode 1)
 
   ;; I want my line numbers.
   (add-hook 'prog-mode-hook
@@ -520,6 +519,15 @@ layers configuration."
   ;; Regexp stuff
   (require 're-builder)
   (setq reb-re-syntax 'string)
+
+  ;;;;;;;;;
+  ;; Avy ;;
+  ;;;;;;;;;
+  (evil-leader/set-key
+    ;; SPC SPC
+    "SPC" 'avy-goto-char-2)
+  (setq avy-style 'de-bruijn)
+  (setq avy-keys '(?a ?s ?d ?f ?j ?k ?l))
   )
 
 

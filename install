@@ -2,8 +2,12 @@
 
 # Install stuff via dotbot
 set -e
+if [ `uname` == "Darwin" ]; then
+    CONFIG="osx.conf.yaml"
+else
+    CONFIG="linux.conf.yaml"
+fi
 
-CONFIG="install.conf.yaml"
 DOTBOT_DIR="dotbot"
 
 DOTBOT_BIN="bin/dotbot"
