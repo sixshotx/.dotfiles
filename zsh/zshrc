@@ -79,7 +79,7 @@ alias e=$EDITOR
 
 source ~/.zsh_profile
 # Source with bash
-bash ~/.bashrc.twice
+source ~/.bashrc.twice
 
 # Aliases
 alias editenv="$EDITOR ~/.zsh_profile"
@@ -179,6 +179,10 @@ ftpane () {
             tmux select-window -t $target_window
     fi
 }
+
+if [[ `whoami`== "vagrant" ]]; then
+    source ~/.zshrc.twice
+fi
 
 # Put this last
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
