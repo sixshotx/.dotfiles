@@ -19,6 +19,7 @@
     ~/.tmuxinator: tmuxinator/tmuxinator
     ~/.tmuxinator.zsh: tmuxinator/tmuxinator.zsh
     ~/.tmux.conf: tmuxinator/tmux.osx.conf
+    ~/.tmux.common.conf: tmuxinator/tmux.common.conf
     ~/.zenburn.conf: tmuxinator/zenburn.conf
     # Karabiner
     ~/Library/Application Support/Karabiner: Karabiner
