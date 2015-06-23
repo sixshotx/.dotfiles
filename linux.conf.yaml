@@ -7,7 +7,7 @@
     # Spacemacs
     ~/.emacs.d: emacs.spacemacs.d
     ~/.spacemacs: spacemacs
-    emacs.spacemacs.d/private: emacs.spacemacs.d.private
+    ~/.emacs.d/private: emacs.spacemacs.d.private
     ~/.zshrc: zsh/zshrc
     ~/.zsh_profile: zsh/zsh_profile
     ~/.flake8rc: flake8rc
