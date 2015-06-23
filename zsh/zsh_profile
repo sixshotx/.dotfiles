@@ -92,7 +92,13 @@ emacsclient -c "$@"
 # alia lsof -i :9000
 source /usr/local/opt/autoenv/activate.sh
 alias ij="open -a /Applications/IntelliJ\ IDEA\ 14.app/ "
-alias emacs="/usr/local/Cellar/emacs/24.5/Emacs.app/Contents/MacOS/Emacs -nw"
+emacs() {
+    if [[ `uname` == "Darwin" ]]; then
+        /usr/local/Cellar/emacs/24.5/Emacs.app/Contents/MacOS/Emacs -nw $1
+    else
+        emacs -nw $1
+    fi
+}
 
 # overwriting my old vim alias
 alias e="emacsclient -n"
