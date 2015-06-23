@@ -164,7 +164,7 @@ c() {
 # ftpane - switch pane
 ftpane () {
     local panes current_window target target_window target_pane
-    panes=$(tmux list-panes -s -F '#I:#P - #{pane_current_path} #{pane_current_command}')
+    panes=$(tmux list-panes -s -F '#I:#P - #{pane_current_path} #{pane_title}')
     current_window=$(tmux display-message  -p '#I')
 
     target=$(echo "$panes" | fzf) || return
