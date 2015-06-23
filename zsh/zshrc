@@ -146,5 +146,38 @@ alias fzftmux=fzf_tmux_session
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
+# c - browse chrome history
+c() {
+    local cols sep
+    cols=$(( COLUMNS / 3 ))
+    sep='{::}'
+
+    cp -f ~/Library/Application\ Support/Google/Chrome/Profile\ 2/History /tmp/h
+    sqlite3 -separator $sep /tmp/h \
+            "select substr(title, 1, $cols), url
+     from urls order by last_visit_time desc" |
+        awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
+        fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs open
+}
+
+# ftpane - switch pane
+ftpane () {
+    local panes current_window target target_window target_pane
+    panes=$(tmux list-panes -s -F '#I:#P - #{pane_current_path} #{pane_current_command}')
+    current_window=$(tmux display-message  -p '#I')
+
+    target=$(echo "$panes" | fzf) || return
+
+    target_window=$(echo $target | awk 'BEGIN{FS=":|-"} {print$1}')
+    target_pane=$(echo $target | awk 'BEGIN{FS=":|-"} {print$2}' | cut -c 1)
+
+    if [[ $current_window -eq $target_window ]]; then
+        tmux select-pane -t ${target_window}.${target_pane}
+    else
+        tmux select-pane -t ${target_window}.${target_pane} &&
+            tmux select-window -t $target_window
+    fi
+}
+
 # Put this last
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
