@@ -14,5 +14,5 @@
     # Tmuxinator
     ~/.tmuxinator: tmuxinator/tmuxinator
     ~/.tmuxinator.zsh: tmuxinator/tmuxinator.zsh
-    ~/.tmux.conf: tmuxinator/tmux.conf
+    ~/.tmux.conf: tmuxinator/tmux.linux.conf
     ~/.zenburn.conf: tmuxinator/zenburn.conf

@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 # Install stuff via dotbot
 set -e
@@ -29,8 +29,3 @@ cd "${BASEDIR}"
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
-
-# TODO: Check for existence of brew/brew cask and make the user install them first
-installBrewStuff() {
-    '(karabiner seil)
-}
