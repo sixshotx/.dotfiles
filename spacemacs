@@ -27,7 +27,7 @@
        deft-custom-extension "org"
        deft-auto-save-interval 30)
      (colors :variables
-             colors-enable-nyan-cat-progress-bar t
+             ;; colors-enable-nyan-cat-progress-bar t
              colors-enable-rainbow-identifiers t)
      ;; better-defaults
      (git :variables
@@ -35,7 +35,10 @@
           git-enable-github-support t)
      ;;      markdown
      ;;    beeminder
-     emacs-lisp
+     (emacs-lisp :variables
+                 evil-snipe-enable-alternate-f-and-t-behaviors t
+                 evil-snipe-scope 'buffer)
+     evil-snipe
      clojure
      gtags
      multiple-cursors
@@ -100,6 +103,7 @@ before layers configuration."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(moe-dark
+                         spacemacs-dark
                          zenburn
                          moe-light
                          leuven)
@@ -332,6 +336,8 @@ layers configuration."
     )
   ;; Toggle modeline clock on by default
   (setq spacemacs-mode-line-org-clock-current-taskp t)
+  ;; Disable showing minor modes
+  (setq spacemacs-mode-line-minor-modesp nil)
 
   ;; Hybrid s-expression
   (evil-leader/set-key
@@ -560,19 +566,28 @@ layers configuration."
           (beeminder-add-data "tockmore" 1 (current-time-string))
           (shell-command "python /Users/jason/pushbullet_wrapper.py tock_done")))
   (defun jason/pomodoro-break-finished ()
-       "Makes a notification"
-       (lambda ()
-         (shell-command "python /Users/jason/pushbullet_wrapper.py break_done")))
+    "Makes a notification"
+    (lambda ()
+      (shell-command "python /Users/jason/pushbullet_wrapper.py break_done")))
 
   (setq org-pomodoro-break-finished-hook 'jason/pomodoro-break-finished)
   (setq org-pomodoro-long-break-finished-hook 'jason/pomodoro-break-finished)
-  )
 
-;; Remap sexp commands to be more vim-like
-(global-set-key "\C-\M-j" 'forward-sexp)
-(global-set-key "\C-\M-k" 'backward-sexp)
-(global-set-key "\C-\M-l" 'down-list)
-(global-set-key "\C-\M-h" 'backward-up-list)
+  ;; Remap sexp commands to be more vim-like
+  (global-set-key "\C-\M-j" 'forward-sexp)
+  (global-set-key "\C-\M-k" 'backward-sexp)
+  (global-set-key "\C-\M-l" 'down-list)
+  (global-set-key "\C-\M-h" 'backward-up-list)
+
+  ;;;;;;;;;;;
+  ;; Theme ;;
+  ;;;;;;;;;;;
+  ;; This makes the mode-line legible
+  (moe-theme-set-color 'red)
+  ;; Highlights the entire expression in parentheses
+  (show-paren-mode t)
+  (setq show-paren-style 'expression)
+  )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
