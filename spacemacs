@@ -190,32 +190,35 @@ before layers configuration."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
-  ;; I *probably* want this
+  ;;;;;;;;;;;;;;;;;;;;;;
+  ;; Editing defaults ;;
+  ;;;;;;;;;;;;;;;;;;;;;;
   (setq require-final-newline t)
-  ;;;;;;;;
-  ;; Helm
-  ;;;;;;;;
-  (setq helm-imenu-fuzzy-match t)
 
-  ;; Matching everywhere!
+  ;; Allow vim-style %-matching everywhere
   (global-evil-matchit-mode 1)
+
   ;; Navigate by visual line rather than absolute line.
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 
-  ;; I want my line numbers.
   (add-hook 'prog-mode-hook
             '(lambda ()
                (progn
+                 ;; Line numbers
                  (linum-mode 1)
+                 ;; yas-snippet availability
                  (yas-minor-mode 1)
+                 ;; Always have cursor's line be in the center of the screen
                  (centered-cursor-mode 1))))
 
-  ;; Gah, so annoying
-  (setq evil-search-highlight-persist nil)
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; Shitty yasnippet hack that doesn't work ;;
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-  ;; yasnippet
-  ;; make it work with evil visual
+
+  ;; Selecting a block of text and then expanding a snippet around it doesn't
+  ;; work in evil visual mode.
   (setq jason-yas-delete-region nil)
   (add-hook 'yas-before-expand-snippet-hook
             #'(lambda()
@@ -233,9 +236,15 @@ layers configuration."
                   (delete-region (mark) (point))
                   (setq jason-yas-delete-region nil))))
 
+  ;;;;;;;;;;;;;;
+  ;; Terminal ;;
+  ;;;;;;;;;;;;;;
+
+
   ;; Term settings
-  ;; Let all snippets be expanded in term-mode b/c we could be using
-  ;; any language.
+  ;; Allow expanding python snippets in term-mode. The idea was that we could
+  ;; use yasnippets in a terminal, but there are too many weirdnesses around
+  ;; using a terminal in emacs for that to be worth it right now.
   (add-hook 'shell-mode-hook
             '(lambda ()
                (yas-minor-mode 1)
