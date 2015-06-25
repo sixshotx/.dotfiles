@@ -211,12 +211,9 @@ layers configuration."
                  (yas-minor-mode 1)
                  ;; Always have cursor's line be in the center of the screen
                  (centered-cursor-mode 1))))
-
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; Shitty yasnippet hack that doesn't work ;;
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
+  ;;;;;;;;;;;;;;;
+  ;; Yasnippet ;;
+  ;;;;;;;;;;;;;;;
   ;; Selecting a block of text and then expanding a snippet around it doesn't
   ;; work in evil visual mode.
   (setq jason-yas-delete-region nil)
@@ -235,12 +232,9 @@ layers configuration."
                 (when jason-yas-delete-region
                   (delete-region (mark) (point))
                   (setq jason-yas-delete-region nil))))
-
   ;;;;;;;;;;;;;;
   ;; Terminal ;;
   ;;;;;;;;;;;;;;
-
-
   ;; Term settings
   ;; Allow expanding python snippets in term-mode. The idea was that we could
   ;; use yasnippets in a terminal, but there are too many weirdnesses around
@@ -250,57 +244,10 @@ layers configuration."
                (yas-minor-mode 1)
                (yas-activate-extra-mode 'python-mode)))
 
-  ;; Temporary tags stuff. I'll move this out eventually
-  (setq twice-root "~/twicevm/twice-web-root/")
-  (defun build-ctags ()
-    (interactive)
-    (message "building project tags")
-    (shell-command
-     ;; -e Generate etags
-     ;; +f Generate file name as part of tag
-     (concat "ack -f | ctags -e -R --extra=+f --exclude=test --exclude=.git --exclude=public -L - " twice-root "TAGS " twice-root))
-    (visit-project-tags)
-    (message "tags built successfully"))
-
-  (defun visit-project-tags ()
-    (interactive)
-    ;; TODO, don't hardcode path separator
-    (let ((tags-file (concat twice-root "TAGS")))
-      (visit-tags-table tags-file)
-      (message (concat "Loaded " tags-file))))
-
-  (evil-leader/set-key
-    ;; t for tag
-    "of" 'find-tag
-    "i RET" '(lambda ()
-               (interactive)
-               (insert "\n"))
-    "i;" 'insert-semicolon
-    "i," 'insert-comma
-    )
-
-  (defun insert-end-of-line-char (char)
-    "Inserts the given character at the end of the line"
-    (interactive "s")
-    (save-excursion
-      (let (start end)
-        (save-excursion (beginning-of-line)
-                        (setq start (point)))
-        (save-excursion (end-of-line)
-                        (setq end (point)))
-        (replace-regexp "$" char nil start end))))
-  (defun insert-semicolon ()
-    (interactive)
-    (insert-end-of-line-char ";"))
-  (defun insert-comma ()
-    (interactive)
-    (insert-end-of-line-char ","))
-  (defun insert-newline ()
-    (insert-end-of-line-char "\n"))
-
-  ;; In term-mode, Take result of snippet and set it to clipboard, then paste the result
-  ;; Create new buffer. Enable term-mode Expand snippet in that buffer. Switch back to original buffer. Insert tmp buffer's
-  ;; content. Remove tmp buffer.
+  ;; In term-mode, Take result of snippet and set it to clipboard,
+  ;; then paste the result Create new buffer. Enable term-mode.
+  ;; Expand snippet in that buffer. Switch back to original buffer.
+  ;; Insert tmp buffer's content. Remove tmp buffer.
   (setq jason-yas-term-use-extra-hook nil)
   (defun jason-yas/yas-term-expand ()
     (interactive)
@@ -343,6 +290,49 @@ layers configuration."
     ;; x for expand
     "ox" 'jason-yas/yas-term-expand
     )
+
+
+  ;;;;;;;;;;
+  ;; Text ;;
+  ;;;;;;;;;;
+
+
+  (evil-leader/set-key
+    ;; t for tag
+    "of" 'find-tag
+    "i RET" '(lambda ()
+               (interactive)
+               (insert "\n"))
+    "i;" 'insert-semicolon
+    "i," 'insert-comma
+    )
+
+  (defun insert-end-of-line-char (char)
+    "Inserts the given character at the end of the line"
+    (interactive "s")
+    (save-excursion
+      (let (start end)
+        (save-excursion (beginning-of-line)
+                        (setq start (point)))
+        (save-excursion (end-of-line)
+                        (setq end (point)))
+        (replace-regexp "$" char nil start end))))
+  (defun insert-semicolon ()
+    (interactive)
+    (insert-end-of-line-char ";"))
+  (defun insert-comma ()
+    (interactive)
+    (insert-end-of-line-char ","))
+  (defun insert-newline ()
+    (insert-end-of-line-char "\n"))
+
+  ;; Whitespace
+  (add-hook 'before-save-hook 'whitespace-cleanup)
+
+
+  ;;;;;;;;;;;;;;
+  ;; Modeline ;;
+  ;;;;;;;;;;;;;;
   ;; Toggle modeline clock on by default
   (setq spacemacs-mode-line-org-clock-current-taskp t)
   ;; Disable showing minor modes
@@ -357,12 +347,18 @@ layers configuration."
     "oh>" 'sp-indent-adjust-sexp
     "oh<" 'sp-dedent-adjust-sexp)
 
+
+  ;;;;;;;;;;;;;;;;;;;;;
+  ;; Version control ;;
+  ;;;;;;;;;;;;;;;;;;;;;
+
+
   (setq vc-follow-symlinks t)
 
-  ;; Whitespace
-  ;; Experimental: clean up whitespace automatically. Might need to make
-  ;; this language-specific.
-  (add-hook 'before-save-hook 'whitespace-cleanup)
+
+  ;;;;;;;;;;;;;;;;;;;;;;;
+  ;; Language-specific ;;
+  ;;;;;;;;;;;;;;;;;;;;;;;
 
   ;; Indent amount hooks
   ;; Maybe make a config file for different languages that evil mode
@@ -375,6 +371,11 @@ layers configuration."
   (add-hook 'yaml-mode-hook
             (function (lambda ()
                         (setq evil-shift-width yaml-indent-offset))))
+
+  ;;;;;;;;;;
+  ;; Evil ;;
+  ;;;;;;;;;;
+
 
   ;; put H and L to line start an, end
   (define-key evil-normal-state-map "H" "^")
