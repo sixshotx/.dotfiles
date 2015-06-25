@@ -35,10 +35,10 @@
           git-enable-github-support t)
      ;;      markdown
      ;;    beeminder
-     (emacs-lisp :variables
+     emacs-lisp
+     (evil-snipe :variables
                  evil-snipe-enable-alternate-f-and-t-behaviors t
                  evil-snipe-scope 'buffer)
-     evil-snipe
      clojure
      gtags
      multiple-cursors
