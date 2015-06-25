@@ -64,7 +64,7 @@
      syntax-checking
      themes-megapack
      writing)
-   dotspacemacs-additional-packages '(f s swiper)
+   dotspacemacs-additional-packages '(f s swiper beeminder)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -195,6 +195,9 @@ layers configuration."
 
   ;; Matching everywhere!
   (global-evil-matchit-mode 1)
+  ;; Navigate by visual line rather than absolute line.
+  (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
+  (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 
   ;; I want my line numbers.
   (add-hook 'prog-mode-hook
@@ -528,9 +531,42 @@ layers configuration."
     "SPC" 'avy-goto-char-2)
   (setq avy-style 'de-bruijn)
   (setq avy-keys '(?a ?s ?d ?f ?j ?k ?l))
+
+
+  (defun prelude-copy-file-name-to-clipboard ()
+    "Copy the current buffer file name to the clipboard."
+    (interactive)
+    (let ((filename (if (equal major-mode 'dired-mode)
+                        default-directory
+                      (buffer-file-name))))
+      (when filename
+        (kill-new filename)
+        (message "Copied buffer file name '%s' to the clipboard." filename))))
+  ;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; Custom org-pomodoro ;;
+  ;;;;;;;;;;;;;;;;;;;;;;;;;
+  (load-file "/Users/jason/.dotfiles/emacs.spacemacs.d.private/jason-org/extensions/org-pomodoro/org-pomodoro.el")
+  (setq org-pomodoro-start-sound "/Users/jason/.dotfiles/emacs.spacemacs.d.private/jason-org/extensions/org-pomodoro/resources/marine_gogogo.wav")
+  (setq org-pomodoro-long-break-sound "/Users/jason/.dotfiles/emacs.spacemacs.d.private/jason-org/extensions/org-pomodoro/resources/reap_the_whirlwind.wav")
+  (setq org-pomodoro-short-break-sound "/Users/jason/.dotfiles/emacs.spacemacs.d.private/jason-org/extensions/org-pomodoro/resources/reap_the_whirlwind.wav")
+
+  (require 'beeminder)
+  (setq beeminder-username "zinbiel")
+  (setq beeminder-auth-token "GyCzXFnDQNMmBPqSwWDb")
+  ;; The appt stuff in defined in "jason.el" in org mode customizations
+  (setq org-pomodoro-finished-hook
+        (lambda ()
+          (message "Pomodoro done. Hook running.")
+          (beeminder-add-data "tockmore" 1 (current-time-string))
+          (shell-command "python /Users/jason/pushbullet_wrapper.py tock_done")))
+  (defun jason/pomodoro-break-finished ()
+       "Makes a notification"
+       (lambda ()
+         (shell-command "python /Users/jason/pushbullet_wrapper.py break_done")))
+
+  (setq org-pomodoro-break-finished-hook 'jason/pomodoro-break-finished)
+  (setq org-pomodoro-long-break-finished-hook 'jason/pomodoro-break-finished)
   )
-
-
 
 ;; Remap sexp commands to be more vim-like
 (global-set-key "\C-\M-j" 'forward-sexp)

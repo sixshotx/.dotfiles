@@ -25,6 +25,7 @@
     org-subtask-reset
     jason
     jason-agenda
+    org-pomodoro
     )
   "List of all extensions to load after the packages.")
 
@@ -72,3 +73,10 @@
     (use-package jason-agenda))
   )
 
+(defun jason-org/init-org-pomodoro ()
+  "Initialize my extension"
+  (message "loading org-pomodoro")
+  (use-package org-pomodoro
+    :config
+    (message "loading org-pomodoro")
+    ))

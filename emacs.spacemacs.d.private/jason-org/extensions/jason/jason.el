@@ -7,6 +7,10 @@
           (lambda ()
             (visual-line-mode 1)
             (golden-ratio)))
+(add-hook 'org-mode-hook
+          (lambda ()
+            (visual-line-mode 1)
+            (visual-fill-column-mode 1)))
 
 ;; Use sticky agenda's so they persist. Useful to have an agenda view per buffer and just navigate among them
 
@@ -362,7 +366,7 @@
 ;; Set terminal-notifier notification preferences in System Preferences if you want them to be sticky.
 (defalias 'sqa 'shell-quote-argument)
 (defvar my-notifier-path
-  "/Users/jason/.rvm/gems/ruby-2.1.0@global/bin/terminal-notifier")
+  "/usr/bin/terminal-notifier")
 (defun my-appt-send-notification (title msg)
   (shell-command (concat my-notifier-path " -message " (sqa msg) " -title " (sqa title))))
 

@@ -79,7 +79,7 @@ alias e=$EDITOR
 
 source ~/.zsh_profile
 # Source with bash
-source ~/.bashrc.twice
+bash ~/.bashrc.twice
 
 # Aliases
 alias editenv="$EDITOR ~/.zsh_profile"
@@ -180,7 +180,7 @@ ftpane () {
     fi
 }
 
-if [[ `whoami`== "vagrant" ]]; then
+if [[ `whoami` == "vagrant" ]]; then
     source ~/.zshrc.twice
 fi
 
