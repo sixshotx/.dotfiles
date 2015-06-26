@@ -192,6 +192,9 @@ before layers configuration."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+  ;; Set the relevant variables
+  (load-file "~/Dropbox/auth_tokens.el")
+
   ;;;;;;;;;;;;;;;;;;;;;;
   ;; Editing defaults ;;
   ;;;;;;;;;;;;;;;;;;;;;;
@@ -570,7 +573,7 @@ layers configuration."
 
   (require 'beeminder)
   (setq beeminder-username "zinbiel")
-  (setq beeminder-auth-token "kgpkoUFG9srtF6HDxqoo")
+  (setq beeminder-auth-token (getenv "BEEMINDER_AUTH_TOKEN"))
   ;; The appt stuff in defined in "jason.el" in org mode customizations
   (setq org-pomodoro-finished-hook
         (lambda ()
@@ -622,7 +625,7 @@ layers configuration."
  '(linum-format " %7d ")
  '(org-agenda-start-with-clockreport-mode t)
  '(org-clock-auto-clock-resolution t)
- '(org-clock-continuously t)
+ '(org-clock-continuously nil)
  '(org-clock-history-length 23)
  '(org-clock-idle-time 10)
  '(org-clock-in-resume t)
