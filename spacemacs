@@ -26,6 +26,8 @@
        deft-directory "~/Dropbox/Apps/Plain.txt/"
        deft-custom-extension "org"
        deft-auto-save-interval 30)
+     ;; Git gutter replacement
+     diff-hl
      (colors :variables
              ;; colors-enable-nyan-cat-progress-bar t
              colors-enable-rainbow-identifiers t)
@@ -37,7 +39,7 @@
      ;;    beeminder
      emacs-lisp
      (evil-snipe :variables
-                 evil-snipe-enable-alternate-f-and-t-behaviors t
+                 evil-snipe-enable-alternate-f-and-t-behaviors nil
                  evil-snipe-scope 'buffer)
      clojure
      gtags
@@ -138,7 +140,7 @@ before layers configuration."
    ;; If non nil the paste micro-state is enabled. While enabled pressing `p`
    ;; several times cycle between the kill ring content.
    dotspacemacs-enable-paste-micro-state t
-   ;; Guide-key delay in seconds. The Guide-key is the popup buffer listing
+   ;; Guide-key deoay in seconds. The Guide-key is the popup buffer listing
    ;; the commands bound to the current keystrokes.
    dotspacemacs-guide-key-delay 0.2
    ;; If non nil a progress bar is displayed when spacemacs is loading. This
@@ -568,7 +570,7 @@ layers configuration."
 
   (require 'beeminder)
   (setq beeminder-username "zinbiel")
-  (setq beeminder-auth-token "GyCzXFnDQNMmBPqSwWDb")
+  (setq beeminder-auth-token "kgpkoUFG9srtF6HDxqoo")
   ;; The appt stuff in defined in "jason.el" in org mode customizations
   (setq org-pomodoro-finished-hook
         (lambda ()
@@ -593,11 +595,13 @@ layers configuration."
   ;; Theme ;;
   ;;;;;;;;;;;
   ;; This makes the mode-line legible
-  (moe-theme-set-color 'red)
+  (moe-theme-set-color 'magenta)
   ;; Highlights the entire expression in parentheses
   (show-paren-mode t)
   (setq show-paren-style 'expression)
   )
+
+
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables

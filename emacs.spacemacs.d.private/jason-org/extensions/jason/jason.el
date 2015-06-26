@@ -6,6 +6,7 @@
 (add-hook 'org-agenda-mode-hook
           (lambda ()
             (visual-line-mode 1)
+            (visual-fill-column-mode -1)
             (golden-ratio)))
 (add-hook 'org-mode-hook
           (lambda ()
