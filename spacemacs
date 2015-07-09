@@ -5,6 +5,10 @@
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration."
+  ;; Set auth tokens before any layers are loaded so that layers can rely
+  ;; on these guys already being set.
+  (load-file "~/Dropbox/auth_tokens.el")
+
   (setq-default
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (ie. `~/.mycontribs/')
@@ -25,9 +29,10 @@
      (deft :variables
        deft-directory "~/Dropbox/Apps/Plain.txt/"
        deft-custom-extension "org"
-       deft-auto-save-interval 30)
+       deft-auto-save-interval 30
+       deft-use-filename-as-title t
+       deft-use-filter-string-for-filename t)
      ;; Git gutter replacement
-     diff-hl
      (colors :variables
              ;; colors-enable-nyan-cat-progress-bar t
              colors-enable-rainbow-identifiers t)
@@ -68,10 +73,11 @@
      restclient
      syntax-checking
      themes-megapack
+     version-control
      writing)
    dotspacemacs-additional-packages '(f s swiper beeminder)
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(git-gutter git-gutter-fringe)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'
@@ -192,9 +198,6 @@ before layers configuration."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
-  ;; Set the relevant variables
-  (load-file "~/Dropbox/auth_tokens.el")
-
   ;;;;;;;;;;;;;;;;;;;;;;
   ;; Editing defaults ;;
   ;;;;;;;;;;;;;;;;;;;;;;
@@ -216,6 +219,7 @@ layers configuration."
                  (yas-minor-mode 1)
                  ;; Always have cursor's line be in the center of the screen
                  (centered-cursor-mode 1))))
+
   ;;;;;;;;;;;;;;;
   ;; Yasnippet ;;
   ;;;;;;;;;;;;;;;
@@ -300,8 +304,6 @@ layers configuration."
   ;;;;;;;;;;
   ;; Text ;;
   ;;;;;;;;;;
-
-
   (evil-leader/set-key
     ;; t for tag
     "of" 'find-tag
@@ -396,7 +398,7 @@ layers configuration."
   ;;the C and D operators, which act from the cursor to the end of the line. The
   ;;default behavior of Y is to yank the whole line.
   (define-key evil-normal-state-map "Y" "yy")
-  ;; TOod map an insert mode keybinding to go to
+  ;; TODO map an insert mode keybinding to go to
   (define-key evil-insert-state-map (kbd "<C-return>")
     (lambda ()
       (end-of-line)
@@ -467,6 +469,11 @@ layers configuration."
   (setq evil-move-cursor-back nil)
   ;; Open these buffers as soon as they're available
 
+  ;;;;;;;;;
+  ;; Git ;;
+  ;;;;;;;;;
+  (setq diff-hl-side 'right)
+
   ;;;;;;;;;;;;;;
   ;; Projectile
   ;;;;;;;;;;;;;;
@@ -524,9 +531,9 @@ layers configuration."
 
   ;; Ivy
   (ivy-mode 1)
-  (csetq ivy-use-virtual-buffers t)
-  (csetq projectile-completion-system 'ivy)
-  (csetq magit-completing-read-function 'ivy-completing-read)
+  (setq ivy-use-virtual-buffers t)
+  (setq projectile-completion-system 'ivy)
+  (setq magit-completing-read-function 'ivy-completing-read)
   (global-set-key "\C-s" 'swiper)
   (global-set-key "\C-r" 'swiper)
   (global-set-key (kbd "C-c C-r") 'ivy-resume)
@@ -582,11 +589,10 @@ layers configuration."
           (shell-command "python /Users/jason/pushbullet_wrapper.py tock_done")))
   (defun jason/pomodoro-break-finished ()
     "Makes a notification"
-    (lambda ()
-      (shell-command "python /Users/jason/pushbullet_wrapper.py break_done")))
+      (message "Pomodoro break finished. Hook running.")
+      (shell-command "python /Users/jason/pushbullet_wrapper.py break_done"))
 
   (setq org-pomodoro-break-finished-hook 'jason/pomodoro-break-finished)
-  (setq org-pomodoro-long-break-finished-hook 'jason/pomodoro-break-finished)
 
   ;; Remap sexp commands to be more vim-like
   (global-set-key "\C-\M-j" 'forward-sexp)

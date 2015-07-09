@@ -19,3 +19,5 @@
     ~/.tmux.conf: tmuxinator/tmux.linux.conf
     ~/.tmux.common.conf: tmuxinator/tmux.common.conf
     ~/.zenburn.conf: tmuxinator/zenburn.conf
+    # Vimperator
+    ~/.vimperratorrc: vimperratorrc
