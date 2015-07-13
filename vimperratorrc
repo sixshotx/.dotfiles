@@ -1,0 +1,14 @@
+set hintchars=sadfjklewcpgh
+" Hint text
+" highlight Hint font-size: 150%;
+
+" CSS applied when some of the hint chars have been typed
+" eighlight HintActive color: #dcbc2a;
+
+" The dom element on the page we're generating a hint for
+" highlight HintElem
+
+nnoremap J gt
+nnoremap K :tabprevious<Enter>
+nnoremap d <C-d>
+nnoremap u <C-u>

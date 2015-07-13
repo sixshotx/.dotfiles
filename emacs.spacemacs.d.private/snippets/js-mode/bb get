@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+#name : bbget
+#key : bb get
+#contributor : Jason Yu
+# --
+this.model.get("$1");$0
