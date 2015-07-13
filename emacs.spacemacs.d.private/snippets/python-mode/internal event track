@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+#name : internal event track
+#key : ietrack
+#contributor : Jason Yu
+# --
+with internal_event_util.track(
+    ${1:model}, ${2:name}, force_save=True,
+    station_name=None, user=None):
+    $0

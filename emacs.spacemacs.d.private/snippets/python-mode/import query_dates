@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+#name : import query_dates
+#key : impqd
+#contributor : Jason Yu
+# --
+from twiceweb.common import query_dates as qd

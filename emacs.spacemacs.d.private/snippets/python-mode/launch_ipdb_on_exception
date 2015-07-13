@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: launch_ipdb_on_exception
+# key: withipdb
+# binding: direct-keybinding
+# --
+import ipdb
+with ipdb.launch_ipdb_on_exception():
+    $0

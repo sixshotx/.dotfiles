@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: pretty print
+# key: pp
+# binding: direct-keybinding
+# --
+import pprint
+pprint.pprint($1)
+$0

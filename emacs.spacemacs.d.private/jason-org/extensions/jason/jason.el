@@ -370,16 +370,15 @@
 ;; set up the call to terminal-notifier
 ;; Set terminal-notifier notification preferences in System Preferences if you want them to be sticky.
 (defalias 'sqa 'shell-quote-argument)
-(defvar my-notifier-path
-  "/usr/bin/terminal-notifier")
 (defun my-appt-send-notification (title msg)
-  (shell-command (concat my-notifier-path " -message " (sqa msg) " -title " (sqa title))))
+  (shell-command (concat pushbullet " --title " (sqa title) " --message " (sqa msg))))
 
 ;; designate the window function for my-appt-send-notification
 (defun my-appt-display (min-to-app new-time msg)
   (my-appt-send-notification
-    (format "'Appointment in %s minutes'" min-to-app)    ;; passed to -title in terminal-notifier call
-    (format "'%s'" msg)))                                ;; passed to -message in terminal-notifier call
+   (format "'%s'" msg)
+   (format "'in %s minutes'" min-to-app)
+   ))
 (setq appt-disp-window-function (function my-appt-display))
 
 ;; Get rid of whitespace mode. Annoying in org files

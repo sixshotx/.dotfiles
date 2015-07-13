@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+#name : import api_clients
+#key : impapi
+#contributor : Jason Yu
+# --
+from twiceweb.common import api_clients

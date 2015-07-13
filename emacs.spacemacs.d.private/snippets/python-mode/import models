@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+#name : import models
+#key : impmod
+#contributor : Jason Yu
+# --
+from twiceweb.common import models

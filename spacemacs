@@ -8,6 +8,11 @@
   ;; Set auth tokens before any layers are loaded so that layers can rely
   ;; on these guys already being set.
   (load-file "~/Dropbox/auth_tokens.el")
+  (setq
+   pushbullet
+   (s-join " "
+           (list "~/.emacs.d/bin/python ~/.emacs.d/pushbullet_wrapper.py"
+                      (getenv "PUSHBULLET_API_KEY"))))
 
   (setq-default
    ;; List of additional paths where to look for configuration layers.
@@ -558,7 +563,8 @@ layers configuration."
     ;; SPC SPC
     "SPC" 'avy-goto-char-2)
   (setq avy-style 'de-bruijn)
-  (setq avy-keys '(?a ?s ?d ?f ?j ?k ?l))
+  (setq avy-keys (number-sequence ?A ?Z))
+  (setq avy-translate-char-function #'upcase)
 
 
   (defun prelude-copy-file-name-to-clipboard ()
@@ -581,16 +587,15 @@ layers configuration."
   (require 'beeminder)
   (setq beeminder-username "zinbiel")
   (setq beeminder-auth-token (getenv "BEEMINDER_AUTH_TOKEN"))
-  ;; The appt stuff in defined in "jason.el" in org mode customizations
   (setq org-pomodoro-finished-hook
         (lambda ()
           (message "Pomodoro done. Hook running.")
           (beeminder-add-data "tockmore" 1 (current-time-string))
-          (shell-command "python /Users/jason/pushbullet_wrapper.py tock_done")))
+          (shell-command (concat pushbullet " --tock=tock_done"))))
   (defun jason/pomodoro-break-finished ()
     "Makes a notification"
       (message "Pomodoro break finished. Hook running.")
-      (shell-command "python /Users/jason/pushbullet_wrapper.py break_done"))
+      (shell-command (concat pushbullet "--tock=break_done")))
 
   (setq org-pomodoro-break-finished-hook 'jason/pomodoro-break-finished)
 
