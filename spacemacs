@@ -8,11 +8,15 @@
   ;; Set auth tokens before any layers are loaded so that layers can rely
   ;; on these guys already being set.
   (load-file "~/Dropbox/auth_tokens.el")
+
+  ;; Can't use the 's library since it's not loaded at this point
   (setq
    pushbullet
-   (s-join " "
-           (list "~/.emacs.d/bin/python ~/.emacs.d/pushbullet_wrapper.py"
-                      (getenv "PUSHBULLET_API_KEY"))))
+   (mapconcat
+    'identity
+    (list "~/.emacs.d/bin/python ~/.emacs.d/pushbullet_wrapper.py"
+          (getenv "PUSHBULLET_API_KEY"))
+    " "))
 
   (setq-default
    ;; List of additional paths where to look for configuration layers.
