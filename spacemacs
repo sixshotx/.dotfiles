@@ -41,7 +41,6 @@
        deft-auto-save-interval 30
        deft-use-filename-as-title t
        deft-use-filter-string-for-filename t)
-     ;; Git gutter replacement
      (colors :variables
              ;; colors-enable-nyan-cat-progress-bar t
              colors-enable-rainbow-identifiers t)
@@ -49,8 +48,8 @@
      (git :variables
           git-gutter-use-fringe t
           git-enable-github-support t)
-     ;;      markdown
-     ;;    beeminder
+     ;; markdown
+     ;; beeminder
      emacs-lisp
      (evil-snipe :variables
                  evil-snipe-enable-alternate-f-and-t-behaviors nil
@@ -63,13 +62,13 @@
      lispy
      org
      python
-     ;;  slime
+     ;; slime
      javascript
-     ;;jason-js
+     ;; jason-js
      jason-eyebrowse
      jason-org
      jason-python
-     ;;  jason-smartparens
+     ;; jason-smartparens
      jason-web
      ruby
      ;; (shell :variables
@@ -82,7 +81,7 @@
      restclient
      syntax-checking
      themes-megapack
-     ;; version-control
+     version-control
      writing)
    dotspacemacs-additional-packages '(f s swiper beeminder)
    ;; A list of packages and/or extensions that will not be install and loaded.
@@ -552,6 +551,7 @@ layers configuration."
   ;; Bind this away from helm-m-x
   (global-set-key "\M-x" 'execute-extended-command)
   (global-set-key [remap ido-find-file] 'find-file)
+  (global-set-key "\M-p" 'pop-to-mark-command)
   ;; Don't use IDO; that way, ivy is used instead.
   (setq org-completion-use-ido nil)
 
@@ -564,7 +564,6 @@ layers configuration."
     "pr"  'projectile-recentf
     "pv"  'vc
     "sgp" 'projectile-grep)
-
 
   (setq fill-column 85)
   (add-hook 'org-mode-hook
@@ -611,10 +610,11 @@ layers configuration."
           (message "Pomodoro done. Hook running.")
           (beeminder-add-data "tockmore" 1 (current-time-string))
           (shell-command (concat pushbullet " --tock=tock_done"))))
+
   (defun jason/pomodoro-break-finished ()
     "Makes a notification"
     (message "Pomodoro break finished. Hook running.")
-    (shell-command (concat pushbullet "--tock=break_done")))
+    (shell-command (concat pushbullet " --tock=break_done")))
 
   (setq org-pomodoro-break-finished-hook 'jason/pomodoro-break-finished)
 
