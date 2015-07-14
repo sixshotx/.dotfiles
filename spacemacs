@@ -82,11 +82,13 @@
      restclient
      syntax-checking
      themes-megapack
-     version-control
+     ;; version-control
      writing)
    dotspacemacs-additional-packages '(f s swiper beeminder)
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '(git-gutter git-gutter-fringe)
+   dotspacemacs-excluded-packages '(git-gutter git-gutter-fringe
+                                               ;; Taking this out so we can use ivy
+                                               helm-projectile)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'
@@ -207,9 +209,9 @@ before layers configuration."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
-  ;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;
   ;; Editing defaults ;;
-  ;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;
   (setq require-final-newline t)
 
   ;; Allow vim-style %-matching everywhere
@@ -229,9 +231,9 @@ layers configuration."
                  ;; Always have cursor's line be in the center of the screen
                  (centered-cursor-mode 1))))
 
-  ;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
   ;; Yasnippet ;;
-  ;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
   ;; Selecting a block of text and then expanding a snippet around it doesn't
   ;; work in evil visual mode.
   (setq jason-yas-delete-region nil)
@@ -250,9 +252,9 @@ layers configuration."
                 (when jason-yas-delete-region
                   (delete-region (mark) (point))
                   (setq jason-yas-delete-region nil))))
-  ;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;
   ;; Terminal ;;
-  ;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;
   ;; Term settings
   ;; Allow expanding python snippets in term-mode. The idea was that we could
   ;; use yasnippets in a terminal, but there are too many weirdnesses around
@@ -310,9 +312,9 @@ layers configuration."
     )
 
 
-  ;;;;;;;;;;
+;;;;;;;;;;
   ;; Text ;;
-  ;;;;;;;;;;
+;;;;;;;;;;
   (evil-leader/set-key
     ;; t for tag
     "of" 'find-tag
@@ -346,9 +348,9 @@ layers configuration."
   (add-hook 'before-save-hook 'whitespace-cleanup)
 
 
-  ;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;
   ;; Modeline ;;
-  ;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;
   ;; Toggle modeline clock on by default
   (setq spacemacs-mode-line-org-clock-current-taskp t)
   ;; Disable showing minor modes
@@ -364,17 +366,17 @@ layers configuration."
     "oh<" 'sp-dedent-adjust-sexp)
 
 
-  ;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;
   ;; Version control ;;
-  ;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;
 
 
   (setq vc-follow-symlinks t)
 
 
-  ;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;
   ;; Language-specific ;;
-  ;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;
 
   ;; Indent amount hooks
   ;; Maybe make a config file for different languages that evil mode
@@ -388,9 +390,9 @@ layers configuration."
             (function (lambda ()
                         (setq evil-shift-width yaml-indent-offset))))
 
-  ;;;;;;;;;;
+;;;;;;;;;;
   ;; Evil ;;
-  ;;;;;;;;;;
+;;;;;;;;;;
 
 
   ;; put H and L to line start an, end
@@ -478,14 +480,14 @@ layers configuration."
   (setq evil-move-cursor-back nil)
   ;; Open these buffers as soon as they're available
 
-  ;;;;;;;;;
+;;;;;;;;;
   ;; Git ;;
-  ;;;;;;;;;
+;;;;;;;;;
   (setq diff-hl-side 'right)
 
-  ;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;
   ;; Projectile
-  ;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;
   (evil-leader/set-key
     "pw" 'helm-projectile-find-other-file)
   (define-key evil-normal-state-map (kbd "SPC p /") 'spacemacs/helm-projectile-smart-do-search)
@@ -499,9 +501,9 @@ layers configuration."
   ;;     (add-to-list 'projectile-other-file-alist '("htmlmk" "jqt" "scss" "js"))
   ;;     (add-to-list 'projectile-other-file-alist '("html" "jqt" "scss" "js"))))
 
-  ;;;;;;;;;;
+;;;;;;;;;;
   ;; HTML ;;
-  ;;;;;;;;;;
+;;;;;;;;;;
   ;; (evilify html-mode html-mode-map
   ;;          (kbd "j") 'sp-next-sexp)
   (add-to-list 'auto-mode-alist '("\\.htmlmk\\'" . html-mode))
@@ -553,6 +555,16 @@ layers configuration."
   ;; Don't use IDO; that way, ivy is used instead.
   (setq org-completion-use-ido nil)
 
+  (evil-leader/set-key
+    "pb"  'projectile-switch-to-buffer
+    "pd"  'projectile-find-dir
+    "pf"  'projectile-find-file
+    "ph"  'projectile
+    "pp"  'projectile-switch-project
+    "pr"  'projectile-recentf
+    "pv"  'vc
+    "sgp" 'projectile-grep)
+
 
   (setq fill-column 85)
   (add-hook 'org-mode-hook
@@ -563,9 +575,9 @@ layers configuration."
   (require 're-builder)
   (setq reb-re-syntax 'string)
 
-  ;;;;;;;;;
+;;;;;;;;;
   ;; Avy ;;
-  ;;;;;;;;;
+;;;;;;;;;
   (evil-leader/set-key
     ;; SPC SPC
     "SPC" 'avy-goto-char-2)
@@ -583,9 +595,9 @@ layers configuration."
       (when filename
         (kill-new filename)
         (message "Copied buffer file name '%s' to the clipboard." filename))))
-  ;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; Custom org-pomodoro ;;
-  ;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
   (load-file "/Users/jason/.dotfiles/emacs.spacemacs.d.private/jason-org/extensions/org-pomodoro/org-pomodoro.el")
   (setq org-pomodoro-start-sound "/Users/jason/.dotfiles/emacs.spacemacs.d.private/jason-org/extensions/org-pomodoro/resources/marine_gogogo.wav")
   (setq org-pomodoro-long-break-sound "/Users/jason/.dotfiles/emacs.spacemacs.d.private/jason-org/extensions/org-pomodoro/resources/reap_the_whirlwind.wav")
@@ -606,15 +618,16 @@ layers configuration."
 
   (setq org-pomodoro-break-finished-hook 'jason/pomodoro-break-finished)
 
+
   ;; Remap sexp commands to be more vim-like
   (global-set-key "\C-\M-j" 'forward-sexp)
   (global-set-key "\C-\M-k" 'backward-sexp)
   (global-set-key "\C-\M-l" 'down-list)
   (global-set-key "\C-\M-h" 'backward-up-list)
 
-  ;;;;;;;;;;;
+;;;;;;;;;;;
   ;; Theme ;;
-  ;;;;;;;;;;;
+;;;;;;;;;;;
   ;; This makes the mode-line legible
   (moe-theme-set-color 'magenta)
   ;; Highlights the entire expression in parentheses
