@@ -550,6 +550,9 @@ layers configuration."
   ;; Bind this away from helm-m-x
   (global-set-key "\M-x" 'execute-extended-command)
   (global-set-key [remap ido-find-file] 'find-file)
+  ;; Don't use IDO; that way, ivy is used instead.
+  (setq org-completion-use-ido nil)
+
 
   (setq fill-column 85)
   (add-hook 'org-mode-hook
@@ -598,8 +601,8 @@ layers configuration."
           (shell-command (concat pushbullet " --tock=tock_done"))))
   (defun jason/pomodoro-break-finished ()
     "Makes a notification"
-      (message "Pomodoro break finished. Hook running.")
-      (shell-command (concat pushbullet "--tock=break_done")))
+    (message "Pomodoro break finished. Hook running.")
+    (shell-command (concat pushbullet "--tock=break_done")))
 
   (setq org-pomodoro-break-finished-hook 'jason/pomodoro-break-finished)
 
