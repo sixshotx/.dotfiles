@@ -18,6 +18,7 @@
     org-autolist
     moe-theme
     ;; org-plus-contrib
+    worf
     )
   "List of all packages to install and/or initialize. Built-in packages
 which require an initialization must be listed explicitly in the list.")
@@ -62,3 +63,7 @@ which require an initialization must be listed explicitly in the list.")
 ;;     ""
 ;;   (eval-after-load 'org-mode
 ;;     (use-package org-plus-contrib)))
+
+(defun jason-org/init-worf ()
+  "abo-abo's org package that's like speed keys on crack"
+  )
