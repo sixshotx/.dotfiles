@@ -89,7 +89,8 @@ NeoBundle 'svermeulen/vim-easyclip'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'sophacles/vim-bundle-mako'
 NeoBundle 'FelikZ/ctrlp-py-matcher'
-NeoBundle 'Valloric/YouCompleteMe'
+" Started segfaulting. Whatever
+" NeoBundle 'Valloric/YouCompleteMe'
 " NeoBundle 'klen/python-mode', 'af70229'
 "
 NeoBundle 'terryma/vim-multiple-cursors'
