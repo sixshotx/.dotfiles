@@ -102,7 +102,7 @@ before layers configuration."
   (setq-default
    ;; Either `vim' or `emacs'. Evil is always enabled but if the variable
    ;; is `emacs' then the `holy-mode' is enabled at startup.
-   dotspacemacs-editing-style 'vim
+   dotspacemacs-editing-style 'emacs
    ;; If non nil output loading progress in `*Messages*' buffer.
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -281,8 +281,7 @@ layers configuration."
       (yas-minor-mode 1)
       (yas-activate-extra-mode 'python-mode)
       (yas-activate-extra-mode 'term-mode)
-      (spacemacs/helm-yas)
-      )
+      (spacemacs/helm-yas))
     )
 
   (defun jason-yas/copy-expanded-snippet ()
@@ -369,9 +368,7 @@ layers configuration."
   ;; Version control ;;
 ;;;;;;;;;;;;;;;;;;;;;
 
-
   (setq vc-follow-symlinks t)
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;
   ;; Language-specific ;;
@@ -582,8 +579,6 @@ layers configuration."
     "SPC" 'avy-goto-char-2)
   (setq avy-style 'de-bruijn)
   (setq avy-keys (number-sequence ?A ?Z))
-  (setq avy-translate-char-function #'upcase)
-
 
   (defun prelude-copy-file-name-to-clipboard ()
     "Copy the current buffer file name to the clipboard."
@@ -633,6 +628,7 @@ layers configuration."
   ;; Highlights the entire expression in parentheses
   (show-paren-mode t)
   (setq show-paren-style 'expression)
+
   )
 
 
