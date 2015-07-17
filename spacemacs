@@ -102,6 +102,7 @@ before layers configuration."
   (setq-default
    ;; Either `vim' or `emacs'. Evil is always enabled but if the variable
    ;; is `emacs' then the `holy-mode' is enabled at startup.
+   ;; TODO: Start in normal mode everywhere, but have emacs in insert mode
    dotspacemacs-editing-style 'emacs
    ;; If non nil output loading progress in `*Messages*' buffer.
    dotspacemacs-verbose-loading nil
@@ -578,7 +579,7 @@ layers configuration."
     ;; SPC SPC
     "SPC" 'avy-goto-char-2)
   (setq avy-style 'de-bruijn)
-  (setq avy-keys (number-sequence ?A ?Z))
+  (setq avy-keys (number-sequence ?a ?z))
 
   (defun prelude-copy-file-name-to-clipboard ()
     "Copy the current buffer file name to the clipboard."
@@ -627,9 +628,7 @@ layers configuration."
   (moe-theme-set-color 'magenta)
   ;; Highlights the entire expression in parentheses
   (show-paren-mode t)
-  (setq show-paren-style 'expression)
-
-  )
+  (setq show-paren-style 'expression))
 
 
 ;; Do not write anything past this comment. This is where Emacs will
