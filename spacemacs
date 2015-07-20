@@ -565,6 +565,7 @@ layers configuration."
 
   (setq fill-column 85)
   (add-hook 'org-mode-hook
+            (worf-mode 1)
             (visual-line-mode 1)
             (visual-fill-column-mode 1))
 
