@@ -33,6 +33,7 @@
 
 (defun lispy/init-lispy ()
   "Initialize my package"
+  (add-hook 'spacemacs-mode-hook (lambda () (lispy-mode 1)))
   (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
   (add-hook 'clojure-mode-hook (lambda () (lispy-mode 1)))
   )
