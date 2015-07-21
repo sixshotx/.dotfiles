@@ -112,4 +112,12 @@ _p_rint
       ("c" org-capture)
       ("l" org-capture-goto-last-stored))
 
-    (evil-leader/set-key "oo" 'hydra-global-org/body))
+  (evil-leader/set-key "oo" 'hydra-global-org/body)
+
+  (defhydra hydra-git ()
+    "git"
+    ("j" diff-hl-next-hunk "next")
+    ("k" diff-hl-previous-hunk "prev")
+    ("g" diff-hl-diff-goto-hunk "goto")
+    ("r" diff-hl-revert-hunk "revert"))
+  (evil-leader/set-key "og" 'hydra-git/body))
