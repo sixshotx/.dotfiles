@@ -53,7 +53,8 @@
     ("i" nil "cancel"))
 
   ;; to escape
-  ;; (define-key helm-map (kbd "<escape>") 'hydra-helm-like-unite/body)
+  (with-eval-after-load 'helm
+    (define-key helm-map (kbd ".") 'hydra-helm-like-unite/body))
   ;; or with key-chord.el; suggested by ReneFroger
   ;; (key-chord-define minibuffer-local-map "jk" 'hydra-helm-like-unite/body)
 
