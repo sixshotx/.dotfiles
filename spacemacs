@@ -50,7 +50,7 @@
           git-enable-github-support t)
      ;; markdown
      ;; beeminder
-     emacs-lisp
+     ;; emacs-lisp
      (evil-snipe :variables
                  evil-snipe-enable-alternate-f-and-t-behaviors nil
                  evil-snipe-scope 'buffer)
@@ -62,7 +62,6 @@
      lispy
      org
      python
-     ;; slime
      javascript
      ;; jason-js
      jason-eyebrowse
@@ -75,7 +74,6 @@
      ;;        shell-default-position bottom
      ;;        shell-default-height 30)
      semantic
-     slime
      osx
      markdown
      restclient
