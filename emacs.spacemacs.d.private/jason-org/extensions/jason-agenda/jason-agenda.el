@@ -114,6 +114,8 @@
                ((org-agenda-overriding-header "Habits")
                 (org-agenda-sorting-strategy
                  '(todo-state-down effort-up category-keep))))
+              ("." "Today" tags-todo "today"
+               ((org-agenda-overriding-header "Tasks we DEFINITELY want to do today")))
               ("p" "Today Block Agenda"
                (
                 ;; Don't have anything actually on the agenda: we have this here so we can see the clock report.
