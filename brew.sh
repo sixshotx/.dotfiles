@@ -13,6 +13,9 @@ brew update
 brew install caskroom/cask/brew-cask
 brew cask install amethyst
 brew cask install slate
+brew cask install iterm2
+brew cask install google-chrome
+brew cask install dropbox
 
 # Install GNU core utilities (those that come with OS X are outdated)
 brew install coreutils
@@ -40,6 +43,7 @@ brew install php54
 
 # Install everything else
 brew install ag
+
 
 #########
 # Emacs #

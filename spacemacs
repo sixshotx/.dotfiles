@@ -2,7 +2,6 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
-
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration."
   ;; Set auth tokens before any layers are loaded so that layers can rely
@@ -592,10 +591,10 @@ layers configuration."
 ;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; Custom org-pomodoro ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;
-  (load-file "/Users/jason/.dotfiles/emacs.spacemacs.d.private/jason-org/extensions/org-pomodoro/org-pomodoro.el")
-  (setq org-pomodoro-start-sound "/Users/jason/.dotfiles/emacs.spacemacs.d.private/jason-org/extensions/org-pomodoro/resources/marine_gogogo.wav")
-  (setq org-pomodoro-long-break-sound "/Users/jason/.dotfiles/emacs.spacemacs.d.private/jason-org/extensions/org-pomodoro/resources/reap_the_whirlwind.wav")
-  (setq org-pomodoro-short-break-sound "/Users/jason/.dotfiles/emacs.spacemacs.d.private/jason-org/extensions/org-pomodoro/resources/reap_the_whirlwind.wav")
+  (load-file "~/.dotfiles/emacs.spacemacs.d.private/jason-org/extensions/org-pomodoro/org-pomodoro.el")
+  (setq org-pomodoro-start-sound "~/.dotfiles/emacs.spacemacs.d.private/jason-org/extensions/org-pomodoro/resources/marine_gogogo.wav")
+  (setq org-pomodoro-long-break-sound "~/.dotfiles/emacs.spacemacs.d.private/jason-org/extensions/org-pomodoro/resources/reap_the_whirlwind.wav")
+  (setq org-pomodoro-short-break-sound "~/.dotfiles/emacs.spacemacs.d.private/jason-org/extensions/org-pomodoro/resources/reap_the_whirlwind.wav")
 
   (require 'beeminder)
   (setq beeminder-username "zinbiel")
