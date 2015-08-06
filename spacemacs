@@ -13,7 +13,7 @@
    pushbullet
    (mapconcat
     'identity
-    (list "~/.emacs.d/bin/python ~/.emacs.d/pushbullet_wrapper.py"
+    (list "~/usr/local/bin/python ~/.emacs.d/pushbullet_wrapper.py"
           (getenv "PUSHBULLET_API_KEY"))
     " "))
 

@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Ask for the administrator password upfront.
 sudo -v
 
@@ -9,13 +8,16 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # Make sure we’re using the latest Homebrew
 brew update
 
-# One-time install (i.e. repeatedly running this script is bad)
 brew install caskroom/cask/brew-cask
+brew tap caskroom/versions
+brew cask install alfred
 brew cask install amethyst
-brew cask install slate
-brew cask install iterm2
-brew cask install google-chrome
 brew cask install dropbox
+brew cask install google-chrome
+brew cask install iterm2
+brew cask install slack
+brew cask install slate
+brew cask install sublime-text3
 
 # Install GNU core utilities (those that come with OS X are outdated)
 brew install coreutils
@@ -40,10 +42,13 @@ brew install homebrew/dupes/grep
 brew tap josegonzalez/homebrew-php
 brew install php54
 
+# We're installing python from brew so that pip comes with it
+brew install python
+pip install click
+pip install pushbullet.py
 
 # Install everything else
 brew install ag
-
 
 #########
 # Emacs #
