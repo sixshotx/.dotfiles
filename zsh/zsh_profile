@@ -16,52 +16,10 @@ bindkey '^Z' fancy-ctrl-z
 # Nicer less behavior
 export LESS=-Ri
 
-# Twice db ssh
-# our ssh machines:
-local -A machine_map
-machine_map[lb1]="ubuntu@www.liketwice.com"
-machine_map[prod1]="ubuntu@ec2-54-91-138-62.compute-1.amazonaws.com"
-machine_map[prod2]="ubuntu@ec2-54-91-143-48.compute-1.amazonaws.com"
-machine_map[prod3]="ubuntu@50.17.208.119"
-machine_map[staging]="ubuntu@staging.liketwice.com"
-machine_map[vulcan-staging]="ubuntu@vulcan-staging.liketwice.com"
-machine_map[ops-staging]="ubuntu@ops-staging.liketwice.com"
-machine_map[mq1]="ubuntu@ec2-50-16-22-24.compute-1.amazonaws.com"
-machine_map[worker1]="ubuntu@ec2-50-16-16-150.compute-1.amazonaws.com"
-machine_map[worker2]="ubuntu@ec2-54-87-75-112.compute-1.amazonaws.com"
-machine_map[worker3]="ubuntu@ec2-54-81-88-255.compute-1.amazonaws.com"
-machine_map[worker4]="ubuntu@ec2-54-227-116-9.compute-1.amazonaws.com"
-machine_map[worker5]="ubuntu@ec2-54-91-149-182.compute-1.amazonaws.com"
-machine_map[worker-ebay]="ubuntu@ec2-54-87-159-239.compute-1.amazonaws.com"
-machine_map[db2]="ubuntu@ec2-23-20-186-158.compute-1.amazonaws.com"
-machine_map[db3]="ubuntu@ec2-184-73-81-77.compute-1.amazonaws.com"
-machine_map[db4]="ubuntu@ec2-107-21-74-175.compute-1.amazonaws.com"
-machine_map[axdb]="ubuntu@ec2-54-205-81-217.compute-1.amazonaws.com"
-machine_map[devops]="ubuntu@devops.liketwice.com"
-machine_map[sellwithtarget]="ubuntu@www.sellwithtarget.com"
-
-list_keys () {
-  for key in ${(k)machine_map};
-  do
-    echo $key
-  done
-}
-
-twssh () {
-  machine=$(list_keys| fzf)
-  full_address=machine_map[$machine]
-  echo $full_address
-  # ssh $machine_to_ssh
-}
 # For twice ops desktop
 # After installing greadlink from brew,
 alias readlink=greadlink
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-
-# Checklist for deploy
-alias cldep="e ~/Dropbox/Apps/Plain.txt/deploy\ checklists.txt"
-
-
 
 # Set EDITOR to vim just for the vit command b/c mvim doesn't play nice
 # with it.
@@ -86,8 +44,9 @@ vman() {
 # emacs shortcut
 ec() {
     which osascript > /dev/null 2>&1 && osascript -e 'tell application "Emacs" to activate'
-emacsclient -c "$@"
+emacsclient -n -q "$@"
 }
+
 # Find out which process is using a port, for example 9000
 # alia lsof -i :9000
 source /usr/local/opt/autoenv/activate.sh
