@@ -554,6 +554,7 @@ layers configuration."
     "pb"  'projectile-switch-to-buffer
     "pd"  'projectile-find-dir
     "pf"  'projectile-find-file
+    "pF"  'projectile-find-file-other-window
     "ph"  'projectile
     "pp"  'projectile-switch-project
     "pr"  'projectile-recentf
