@@ -200,6 +200,10 @@ before layers configuration."
    ;; Not used for now.
    dotspacemacs-default-package-repository nil)
   ;; User initialization goes here
+
+  ;; Make the default mode in buffers normal mode rather than holy mode
+  ;; with the 'emacs editing style
+  (add-hook 'holy-mode-hook (lambda () (setq evil-default-state 'normal)))
   )
 
 (defun dotspacemacs/config ()
