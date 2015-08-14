@@ -1,50 +1,50 @@
 [user]
-	name = jasoncyu
-	email = jason@liketwice.com
+  name = jasoncyu
+  email = jason@liketwice.com
 [color]
-	ui = true
+  ui = true
 [push]
-	default = simple
+  default = simple
 [merge]
-	tool = sublimerge
-	conflictstyle = merge
+  tool = sublimerge
+  conflictstyle = merge
 [alias]
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [alias]
-	blg = log --color --no-merges --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
-	b = "!git log --color --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" \"$(git rev-parse --abbrev-ref HEAD)\" --not master"
-	c = "!git log \"$(git rev-parse --abbrev-ref HEAD)\" --not master"
+  blg = log --color --no-merges --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  b = "!git log --color --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" \"$(git rev-parse --abbrev-ref HEAD)\" --not master"
+  c = "!git log \"$(git rev-parse --abbrev-ref HEAD)\" --not master"
 [mergetool]
-	keepBackup = true
+  keepBackup = true
 [alias]
-	find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
-	stash-unapply = !git stash show -p | git apply -R
+  find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
+  stash-unapply = !git stash show -p | git apply -R
 [mergetool "sublime"]
-	cmd = subl -w $MERGED
-	trustExitCode = false
+  cmd = subl -w $MERGED
+  trustExitCode = false
 [filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+  clean = git-media-clean %f
+  smudge = git-media-smudge %f
 [mergetool "sublimerge"]
-	cmd = subl -n --wait \"$REMOTE\" \"$BASE\" \"$LOCAL\" \"$MERGED\" --command \"sublimerge_diff_views\"
-	trustExitCode = false
+  cmd = subl -n --wait \"$REMOTE\" \"$BASE\" \"$LOCAL\" \"$MERGED\" --command \"sublimerge_diff_views\"
+  trustExitCode = false
 
 [diff]
-	tool = sublimerge
+  tool = sublimerge
 
 [difftool "sublimerge"]
-	cmd = subl -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\"
+  cmd = subl -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\"
 [core]
-	trustctime = false
-	editor = vim
-	preloadindex = true
+  trustctime = false
+  editor = emacsclient -q
+  preloadindex = true
 [alias]
     ss = stash save WIP.
     sa = stash apply
     sl = stash list
-	unstage = reset HEAD --
-	last = log -1 HEAD
+  unstage = reset HEAD --
+  last = log -1 HEAD
 [github]
-	user = jasoncyu
-	password = a5a0f6a0
-	oauth-token = 248d30c01291b6207aa4b5ef73f6373cd73741d3
+  user = jasoncyu
+  password = a5a0f6a0
+  oauth-token = 248d30c01291b6207aa4b5ef73f6373cd73741d3

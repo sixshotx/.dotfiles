@@ -80,7 +80,7 @@
      themes-megapack
      version-control
      writing)
-   dotspacemacs-additional-packages '(f s swiper beeminder)
+   dotspacemacs-additional-packages '(f s swiper beeminder jsx-mode)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(git-gutter git-gutter-fringe
                                                ;; Taking this out so we can use ivy
@@ -537,6 +537,22 @@ layers configuration."
   ;; Restore window configuration when quitting ediff.
   ;; (add-hook 'ediff-after-quit-hook-internal 'winner-undo)
 
+  ;; React/Web stuff
+  ;; Javascript default settings
+  ;; Set default indentation to 2 spaces
+  (setq js2-basic-offset 2)
+  (setq web-mode-markup-indent-offset 2)
+  (defun buffer-mode (buffer-or-string)
+    "Returns the major mode associated with a buffer."
+    (with-current-buffer buffer-or-string
+      major-mode))
+
+  ;; Toggles between js and html mode so we can edit react jsx easily
+  (defun toggle-js-html-mode ()
+    (interactive)
+    (cond ((eq 'js2-mode major-mode) (html-mode))
+          ((eq 'html-mode major-mode) (js2-mode))))
+  (evil-leader/set-key "ot" 'toggle-js-html-mode)
 
   ;; Ivy
   (ivy-mode 1)
@@ -553,6 +569,17 @@ layers configuration."
   (global-set-key "\M-p" 'pop-to-mark-command)
   ;; Don't use IDO; that way, ivy is used instead.
   (setq org-completion-use-ido nil)
+
+  (ivy-set-actions
+   'ivy-switch-buffer
+   '(("k"
+      (lambda (x)
+        (kill-buffer x)
+        (ivy--reset-state ivy-last))
+      "kill")
+     ("j"
+      ivy--switch-buffer-other-window-action
+      "other")))
 
   (evil-leader/set-key
     "pb"  'projectile-switch-to-buffer
@@ -616,7 +643,6 @@ layers configuration."
     (shell-command (concat pushbullet " --tock=break_done")))
 
   (setq org-pomodoro-break-finished-hook 'jason/pomodoro-break-finished)
-
 
   ;; Remap sexp commands to be more vim-like
   (global-set-key "\C-\M-j" 'forward-sexp)
