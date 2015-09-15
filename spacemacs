@@ -1,4 +1,4 @@
-;; -*- mode: dotspacemacs -*-
+;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -50,16 +50,15 @@
      ;; markdown
      ;; beeminder
      ;; emacs-lisp
-     (evil-snipe :variables
-                 evil-snipe-enable-alternate-f-and-t-behaviors nil
-                 evil-snipe-scope 'buffer)
      clojure
      gtags
-     multiple-cursors
+     ;; multiple-cursors
      html
      hydra
      lispy
      org
+     ;; To use the python layer, you have to install these dependencies manually:
+     ;; pip install jedi==0.8.1 json-rpc==1.8.1 service_factory==0.1.2
      python
      javascript
      ;; jason-js
@@ -80,7 +79,7 @@
      themes-megapack
      version-control
      writing)
-   dotspacemacs-additional-packages '(f s swiper beeminder jsx-mode)
+   dotspacemacs-additional-packages '(alert f s swiper beeminder jsx-mode)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(git-gutter git-gutter-fringe
                                                ;; Taking this out so we can use ivy
@@ -127,7 +126,7 @@ before layers configuration."
    dotspacemacs-colorize-cursor-according-to-state nil
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("Hack"
                                :size 13
                                :weight normal
                                :width normal
@@ -206,7 +205,7 @@ before layers configuration."
   (add-hook 'holy-mode-hook (lambda () (setq evil-default-state 'normal)))
   )
 
-(defun dotspacemacs/config ()
+(defun dotspacemacs/user-config ()
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
@@ -347,7 +346,6 @@ layers configuration."
   ;; Whitespace
   (add-hook 'before-save-hook 'whitespace-cleanup)
 
-
 ;;;;;;;;;;;;;;
   ;; Modeline ;;
 ;;;;;;;;;;;;;;
@@ -387,6 +385,10 @@ layers configuration."
   (add-hook 'yaml-mode-hook
             (function (lambda ()
                         (setq evil-shift-width yaml-indent-offset))))
+  (add-hook 'json-mode-hook
+            (function (lambda ()
+                        (setq js-indent-level 2)
+                        (setq evil-shift-width 2))))
 
 ;;;;;;;;;;
   ;; Evil ;;
@@ -555,21 +557,27 @@ layers configuration."
   (evil-leader/set-key "ot" 'toggle-js-html-mode)
 
   ;; Ivy
+  ;; Turn on ivy
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
+  ;; Use ivy for projectile
   (setq projectile-completion-system 'ivy)
+  ;; Use ivy for magit
   (setq magit-completing-read-function 'ivy-completing-read)
   (global-set-key "\C-s" 'swiper)
   (global-set-key "\C-r" 'swiper)
   (global-set-key (kbd "C-c C-r") 'ivy-resume)
-  (global-set-key [f6] 'ivy-resume)
   ;; Bind this away from helm-m-x
   (global-set-key "\M-x" 'execute-extended-command)
   (global-set-key [remap ido-find-file] 'find-file)
   (global-set-key "\M-p" 'pop-to-mark-command)
+  ;; Remap SPC b b from helm-mini to ivy buffer
+  (evil-leader/set-key "b b" 'ivy-switch-buffer)
   ;; Don't use IDO; that way, ivy is used instead.
   (setq org-completion-use-ido nil)
 
+
+  ;; To use these actions, type M-o and then the action
   (ivy-set-actions
    'ivy-switch-buffer
    '(("k"
@@ -577,7 +585,7 @@ layers configuration."
         (kill-buffer x)
         (ivy--reset-state ivy-last))
       "kill")
-     ("j"
+     ("o"
       ivy--switch-buffer-other-window-action
       "other")))
 
