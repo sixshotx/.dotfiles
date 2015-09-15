@@ -102,6 +102,14 @@
            (or (jason-org/skip-subtree-if-done) (jason-org/skip-entry-unless-today-tag))
            (or (jason-org/skip-subtree-if-done) (jason-org/skip-entry-unless-clocked-in-today)))))
   )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; All agenda settings ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Show 1 day by default on the agenda.
+(setq org-agenda-ndays 1)
+
 ;; Custom agenda command definitions
 (setq org-agenda-custom-commands
       (quote (("X" "Xtra agenda" todo "TODO"
@@ -138,6 +146,7 @@
                 (org-agenda-sorting-strategy '(todo-state-up))
                 )
                )
+              ;; Space agenda
               (" " "Agenda"
                ((agenda "" nil)
                 (tags-todo "refile"
