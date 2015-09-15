@@ -12,12 +12,14 @@ brew install caskroom/cask/brew-cask
 brew tap caskroom/versions
 brew cask install alfred
 brew cask install amethyst
+brew cask install android-file-transfer
 brew cask install dropbox
 brew cask install google-chrome
 brew cask install iterm2
 brew cask install slack
 brew cask install slate
 brew cask install sublime-text3
+brew cask install vlc
 
 # Install GNU core utilities (those that come with OS X are outdated)
 brew install coreutils
@@ -26,6 +28,12 @@ echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH.
 brew install findutils
 # Install Bash 4
 brew install bash
+
+
+# FZF. Shell fuzzy finder
+brew reinstall --HEAD fzf
+# Install shell extensions
+/usr/local/Cellar/fzf/HEAD/install
 
 # Macvim!
 brew install macvim --override-system-vim --with-lua --with-luajit --with-python3
