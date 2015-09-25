@@ -118,7 +118,7 @@
 ;; Org clocking
 ;; Resume clocking task when emacs is restarted
 (org-clock-persistence-insinuate)
-;; Show lot of clocking history so it's easy to pick items off the C-F11 list
+;; Show lot of clocking history so it's easy to pick items to resume clocking
 (setq org-clock-history-length 23)
 ;; Resume clocking task on clock-in if the clock is open
 (setq org-clock-in-resume t)
@@ -161,7 +161,7 @@
             (local-set-key "\C-\M-y" 'org-table-paste-rectangle)
             (local-set-key "\C-\M-l" 'org-table-sort-lines)
             ;; display images
-            (local-set-key "\M-I" 'org-toggle-iimage-in-org)
+            (local-set-key "\M-I" 'org-toggle-image-in-org)
             ;; fix tab
             (local-set-key "\C-y" 'yank)
             (local-set-key (kbd "<C-M-return>") 'org-insert-todo-subheading)))
@@ -169,7 +169,7 @@
 ; Text editing
 
 ;; Compact the block agenda view
-;; (setq org-agenda-compact-blocks t)
+(setq org-agenda-compact-blocks t)
 
 (defun skip-waiting ()
   "Skip trees that aren't waiting"
