@@ -16,11 +16,6 @@ bindkey '^Z' fancy-ctrl-z
 # Nicer less behavior
 export LESS=-Ri
 
-# For twice ops desktop
-# After installing greadlink from brew,
-alias readlink=greadlink
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-
 # Set EDITOR to vim just for the vit command b/c mvim doesn't play nice
 # with it.
 vitt () {

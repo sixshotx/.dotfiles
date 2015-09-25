@@ -79,7 +79,6 @@ alias e=$EDITOR
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 source ~/.zsh_profile
-source ~/.bashrc.twice
 
 # Aliases
 alias editenv="$EDITOR ~/.zsh_profile"

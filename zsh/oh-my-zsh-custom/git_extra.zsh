@@ -122,7 +122,6 @@ function grc() {
 }
 # Jump to Pull request on github
 alias gcmp="hub compare"
-alias pulls="open https://github.com/twiceclothes/twice-web-root/pulls/jasoncyu"
 
 # even faster pushing
 alias gp=ggpush
