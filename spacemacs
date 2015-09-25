@@ -99,7 +99,7 @@ before layers configuration."
    ;; Either `vim' or `emacs'. Evil is always enabled but if the variable
    ;; is `emacs' then the `holy-mode' is enabled at startup.
    ;; TODO: Start in normal mode everywhere, but have emacs in insert mode
-   dotspacemacs-editing-style 'emacs
+   dotspacemacs-editing-style 'hybrid
    ;; If non nil output loading progress in `*Messages*' buffer.
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -202,7 +202,7 @@ before layers configuration."
 
   ;; Make the default mode in buffers normal mode rather than holy mode
   ;; with the 'emacs editing style
-  (add-hook 'holy-mode-hook (lambda () (setq evil-default-state 'normal)))
+  ;; (add-hook 'holy-mode-hook (lambda () (setq evil-default-state 'normal)))
   )
 
 (defun dotspacemacs/user-config ()
@@ -667,7 +667,6 @@ layers configuration."
   (show-paren-mode t)
   (setq show-paren-style 'expression))
 
-
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
@@ -699,15 +698,6 @@ layers configuration."
  '(org-clock-persist-query-resume nil)
  '(org-clock-report-include-clocking-task t)
  '(org-clock-sound t)
- '(org-drill-optimal-factor-matrix
-   (quote
-    ((1
-      (1.7000000000000002 . 3.44)
-      (1.96 . 3.58)
-      (2.5 . 4.0)
-      (2.36 . 3.86)
-      (2.6 . 4.14)
-      (2.1799999999999997 . 3.72)))))
  '(ring-bell-function (quote ignore) t)
  '(safe-local-variable-values (quote ((sgml-basic-offset . 4)))))
 (custom-set-faces
