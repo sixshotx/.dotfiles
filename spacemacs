@@ -51,6 +51,7 @@
      ;; beeminder
      ;; emacs-lisp
      clojure
+     eyebrowse
      gtags
      ;; multiple-cursors
      html
