@@ -86,7 +86,6 @@ alias editenv="$EDITOR ~/.zsh_profile"
 alias upenv="source ~/.zshrc"
 alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
 alias tasks="vim ~/.tasks"
-alias web="cd ~/twicevm/twice-web-root"
 
 function mkdircd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
 
@@ -179,10 +178,6 @@ ftpane () {
             tmux select-window -t $target_window
     fi
 }
-
-if [[ `whoami` == "vagrant" ]]; then
-    source ~/.zshrc.twice
-fi
 
 # Put this last
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

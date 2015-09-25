@@ -1,3 +1,0 @@
-# -*- sh -*-
-source /usr/local/bin/virtualenvwrapper.sh
-workon twice-web-root
