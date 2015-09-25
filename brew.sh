@@ -19,6 +19,7 @@ brew cask install iterm2
 brew cask install slack
 brew cask install slate
 brew cask install sublime-text3
+brew cask install sogouinput
 brew cask install vlc
 
 # Install GNU core utilities (those that come with OS X are outdated)
@@ -28,7 +29,6 @@ echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH.
 brew install findutils
 # Install Bash 4
 brew install bash
-
 
 # FZF. Shell fuzzy finder
 brew reinstall --HEAD fzf
