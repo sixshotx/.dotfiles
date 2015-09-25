@@ -109,6 +109,8 @@
 
 ;; Show 1 day by default on the agenda.
 (setq org-agenda-ndays 1)
+;; Show the daily log of things you've clocked by default in the agenda
+(setq org-agenda-show-log t)
 
 ;; Custom agenda command definitions
 (setq org-agenda-custom-commands
