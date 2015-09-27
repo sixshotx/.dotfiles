@@ -658,6 +658,8 @@ layers configuration."
   (global-set-key "\C-\M-k" 'backward-sexp)
   (global-set-key "\C-\M-l" 'down-list)
   (global-set-key "\C-\M-h" 'backward-up-list)
+  ;; Temporary eBay stuff
+  (add-to-list 'auto-mode-alist '("\\.marko\\'" . web-mode))
 
 ;;;;;;;;;;;
   ;; Theme ;;

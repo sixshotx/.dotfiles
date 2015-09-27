@@ -36,15 +36,8 @@ vman() {
   fi
 }
 
-# emacs shortcut
-ec() {
-    which osascript > /dev/null 2>&1 && osascript -e 'tell application "Emacs" to activate'
-emacsclient -n -q "$@"
-}
-
 # Find out which process is using a port, for example 9000
 # alia lsof -i :9000
-source /usr/local/opt/autoenv/activate.sh
 alias ij="open -a /Applications/IntelliJ\ IDEA\ 14.app/ "
 emacs() {
     if [[ `uname` == "Darwin" ]]; then
