@@ -104,7 +104,7 @@
               ;; For one-off reminders. Templates here will
               ("r" "Reminder/Scheduled" entry
                (file+olp "~/Dropbox/org/life.org" "Life" "Reminders")
-               "* TODO %?\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a %H:%M>\")")
+               "* TODO %?\nSCHEDULED: %T")
               ;; ("r" "Reminder" entry
               ;;  (file+olp "~/Dropbox/org/life.org" "Life" "Reminders")
               ;;  ;; Using %a doesn't work in format-time-string here.

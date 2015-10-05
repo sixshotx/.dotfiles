@@ -15,3 +15,5 @@ The install script will install Karabiner, but Seil can only be configured manua
 [[file:Seil/caps_lock.png]]
 ** Brew
 ./brew.sh
+** Keyboard Maestro
+Sync Keyboard Maestro with the ~/Dropbox/Keyboard Maestro Macros.kmsync file

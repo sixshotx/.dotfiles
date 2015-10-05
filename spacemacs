@@ -702,7 +702,10 @@ layers configuration."
  '(org-clock-report-include-clocking-task t)
  '(org-clock-sound t)
  '(ring-bell-function (quote ignore) t)
- '(safe-local-variable-values (quote ((sgml-basic-offset . 4)))))
+ '(safe-local-variable-values
+   (quote
+    ((web-mode-markup-indent-offset . 4)
+     (sgml-basic-offset . 4)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -713,5 +716,5 @@ layers configuration."
  '(company-tooltip-common ((((class color) (min-colors 89)) (:background "#6c6c6c" :foreground "#afd7ff"))))
  '(company-tooltip-common-selection ((((class color) (min-colors 89)) (:background "#005f87" :foreground "#afd7ff" :bold t))))
  '(font-lock-comment-delimiter-face ((((class color) (min-colors 89)) (:foreground "#6c6c6c" :slant italic))))
- '(font-lock-comment-face ((t (:foreground "#DDD" :slant italic))))
+ '(font-lock-comment-face ((t (:foreground "#ddd" :slant italic))))
  '(web-mode-comment-face ((((class color) (min-colors 89)) (:foreground "#4e4e4e")))))
