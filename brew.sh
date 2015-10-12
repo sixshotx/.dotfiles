@@ -10,12 +10,16 @@ brew update
 
 brew install caskroom/cask/brew-cask
 brew tap caskroom/versions
+brew cask install 1password
 brew cask install alfred
 brew cask install amethyst
 brew cask install android-file-transfer
 brew cask install dropbox
 brew cask install google-chrome
 brew cask install iterm2
+brew cask install karabiner
+brew cask install keyboard-maestro
+brew cask install seil
 brew cask install slack
 brew cask install slate
 brew cask install sublime-text3
