@@ -9,17 +9,121 @@
           (lambda ()
             (message "org mode hook")
             (visual-line-mode 1)
-            (visual-fill-column-mode 1)))
+            (visual-fill-column-mode 1)
+            (evil-leader/set-key-for-mode 'org-mode
+              "m'" 'org-edit-special
+              "mc" 'org-capture
+              "md" 'org-deadline
+              "me" 'org-export-dispatch
+              "mf" 'org-set-effort
+              "m:" 'org-set-tags
+
+              "ma" 'org-agenda
+              "mb" 'org-tree-to-indirect-buffer
+              "mA" 'org-archive-subtree
+              "ml" 'org-open-at-point
+              "mT" 'org-show-todo-tree
+
+              "m." 'org-time-stamp
+
+              ;; headings
+              "mhi" 'org-insert-heading-after-current
+              "mhI" 'org-insert-heading
+
+              ;; More cycling options (timestamps, headlines, items, properties)
+              "mL" 'org-shiftright
+              "mH" 'org-shiftleft
+              "mJ" 'org-shiftdown
+              "mK" 'org-shiftup
+
+              ;; Change between TODO sets
+              "m C-S-l" 'org-shiftcontrolright
+              "m C-S-h" 'org-shiftcontrolleft
+              "m C-S-j" 'org-shiftcontroldown
+              "m C-S-k" 'org-shiftcontrolup
+
+              ;; Subtree editing
+              "mSl" 'org-demote-subtree
+              "mSh" 'org-promote-subtree
+              "mSj" 'org-move-subtree-down
+              "mSk" 'org-move-subtree-up
+
+              ;; tables
+              "mta" 'org-table-align
+              "mtb" 'org-table-blank-field
+              "mtc" 'org-table-convert
+              "mtdc" 'org-table-delete-column
+              "mtdr" 'org-table-kill-row
+              "mte" 'org-table-eval-formula
+              "mtE" 'org-table-export
+              "mth" 'org-table-previous-field
+              "mtH" 'org-table-move-column-left
+              "mtic" 'org-table-insert-column
+              "mtih" 'org-table-insert-hline
+              "mtiH" 'org-table-hline-and-move
+              "mtir" 'org-table-insert-row
+              "mtI" 'org-table-import
+              "mtj" 'org-table-next-row
+              "mtJ" 'org-table-move-row-down
+              "mtK" 'org-table-move-row-up
+              "mtl" 'org-table-next-field
+              "mtL" 'org-table-move-column-right
+              "mtn" 'org-table-create
+              "mtN" 'org-table-create-with-table.el
+              "mtr" 'org-table-recalculate
+              "mts" 'org-table-sort-lines
+              "mttf" 'org-table-toggle-formula-debugger
+              "mtto" 'org-table-toggle-coordinate-overlays
+              "mtw" 'org-table-wrap-region
+
+              "mI" 'org-clock-in
+              (if dotspacemacs-major-mode-leader-key
+                  (concat "m" dotspacemacs-major-mode-leader-key)
+                "m,") 'org-ctrl-c-ctrl-c
+              "mn" 'org-narrow-to-subtree
+              "mN" 'widen
+              "mO" 'org-clock-out
+              "mq" 'org-clock-cancel
+              "mR" 'org-refile
+              "ms" 'org-schedule
+
+              ;; insertion of common elements
+              "mil" 'org-insert-link
+              "mif" 'org-footnote-new
+              "mik" 'spacemacs/insert-keybinding-org
+
+              ;; images and other link types have no commands in org mode-line
+              ;; could be inserted using yasnippet?
+              ;; region manipulation
+              ;; "mxb" (spacemacs|org-emphasize spacemacs/org-bold ?*)
+              ;; "mxc" (spacemacs|org-emphasize spacemacs/org-code ?~)
+              ;; "mxi" (spacemacs|org-emphasize spacemacs/org-italic ?/)
+              ;; "mxr" (spacemacs|org-emphasize spacemacs/org-clear ? )
+              ;; "mxs" (spacemacs|org-emphasize spacemacs/org-strike-through ?+)
+              ;; "mxu" (spacemacs|org-emphasize spacemacs/org-underline ?_)
+              ;; "mxv" (spacemacs|org-emphasize spacemacs/org-verbose ?=)
+              )
+            ))
 
 (add-hook 'org-finalize-agenda-hook
           (lambda ()
             (message "org agenda hook")
             (visual-line-mode 0)
-            (visual-fill-column-mode 0)))
+            (visual-fill-column-mode 0)
+            (eval-after-load "org-agenda"
+              '(progn
+                 (define-key org-agenda-mode-map "j" 'org-agenda-next-line)
+                 (define-key org-agenda-mode-map "k" 'org-agenda-previous-line)
+                 ;; Since we override SPC, let's make RET do that functionality
+                 (define-key org-agenda-mode-map
+                   (kbd "RET") 'org-agenda-show-and-scroll-up)
+                 (define-key org-agenda-mode-map
+                   (kbd "SPC") evil-leader--default-map)))
+            ))
 
 ;; Use sticky agenda's so they persist. Useful to have an agenda view per buffer and just navigate among them
 
-; Navigation
+                                        ; Navigation
 (defun org-goto-last-heading ()
   (interactive)
   (org-forward-heading-same-level 1)     ; 1. Move to next tree
@@ -27,7 +131,7 @@
   (let ((org-special-ctrl-a/e t))        ; 3. Ignore tags when
     (org-end-of-line)))                  ;    moving to the end of the line
 
-; Replace prelude's smart open above w/ org mode's insert heading
+                                        ; Replace prelude's smart open above w/ org mode's insert heading
 (add-hook 'org-mode-hook
           '(lambda ()
              (define-key org-mode-map [remap prelude-smart-open-line-above] 'org-insert-todo-heading-respect-content)
@@ -36,7 +140,7 @@
 (setq org-agenda-follow-mode t)
 
 ;; Org mode
-; Necessary org global commands
+                                        ; Necessary org global commands
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
@@ -44,7 +148,7 @@
 (global-set-key (kbd "<f8>") 'org-cycle-agenda-files)
 (global-set-key (kbd "<f9> n") 'bh/toggle-next-task-display)
 
-; Org mode todo settings
+                                        ; Org mode todo settings
 
 ;; Keywords after "|" are terminal
 ;; STATE(@/!).
@@ -112,7 +216,7 @@
               )))
 
 ;; Org habits
-; position the habit graph on the agenda to the right of the default
+                                        ; position the habit graph on the agenda to the right of the default
 (setq org-habit-graph-column 50)
 
 ;; Org clocking
@@ -149,7 +253,7 @@
 ;; Enable habit tracking (and a bunch of other modules)
 (setq org-modules (quote (org-habit org-checklist org-depend)))
 
-; Org-mode specific shortcuts
+                                        ; Org-mode specific shortcuts
 (add-hook 'org-mode-hook
           (lambda ()
             (define-key org-mode-map [remap move-text-up] 'org-move-subtree-up)
@@ -166,7 +270,7 @@
             (local-set-key "\C-y" 'yank)
             (local-set-key (kbd "<C-M-return>") 'org-insert-todo-subheading)))
 
-; Text editing
+                                        ; Text editing
 
 ;; Compact the block agenda view
 (setq org-agenda-compact-blocks t)
@@ -178,7 +282,7 @@
         nil
       subtree-end)))
 
-;(setq org-clock-sound "/Users/jason/Downloads/Sound/Terran/Goliath/TGoRdy00.wav")
+                                        ;(setq org-clock-sound "/Users/jason/Downloads/Sound/Terran/Goliath/TGoRdy00.wav")
 (setq org-clock-sound t)
 
 (setq org-use-speed-commands t)
@@ -240,11 +344,11 @@
       (switch-to-buffer "*Org Agenda( )*")
     (switch-to-buffer "*Org Agenda*"))
   (delete-other-windows))
-; Clocking
-; Org mode will resolve idle time if I'm away for more than n minutes.
+                                        ; Clocking
+                                        ; Org mode will resolve idle time if I'm away for more than n minutes.
 (setq org-clock-idle-time 10)
 
-; Mobile org required setup
+                                        ; Mobile org required setup
 ;; Set to the location of your Org files on your local system
 (setq org-directory "~/Dropbox/org")
 ;; Set to the name of the file where new notes will be stored
@@ -252,19 +356,19 @@
 ;; Set to <your Dropbox root directory>/MobileOrg.
 ;; Set to public b/c otherwise there are permissions issues.
 (setq org-mobile-directory "~/Dropbox/Public/MobileOrg")
-; Set default column view headings: Task Effort Clock_Summary
+                                        ; Set default column view headings: Task Effort Clock_Summary
 (setq org-columns-default-format "%80ITEM(Task) %10Effort(Effort){:} %10CLOCKSUM")
-                                       ; global Effort estimate values
+                                        ; global Effort estimate values
                                         ; global STYLE property values for completion
 
 ;; Use multiples of 0:45 to support tocks.
 (setq org-global-properties (quote (("Effort_ALL" . "0:45 1:30 2:15 3:00 3:45 4:30 5:15 6:00")
                                     ("STYLE_ALL" . "habit")
                                     ("EFFORT_T_ALL" . "0:45 1:30 2:15 3:00 3:45 4:30 5:15 6:00"))))
-; Sexy autosyncing
+                                        ; Sexy autosyncing
 ;; Fork the work (async) of pushing to mobile
 ;; https://gist.github.com/3111823 ASYNC org mobile push...
-;(require 'gnus-async)
+                                        ;(require 'gnus-async)
 ;; Define a timer variable
 ;; (defvar org-mobile-push-timer nil
 ;;   "Timer that `org-mobile-push-timer' used to reschedule itself, or nil.")
@@ -300,37 +404,37 @@
 ;; (defvar monitor-timer (install-monitor (concat org-mobile-directory "/mobileorg.org") 30)
 ;;   "Check if file changed every 30 s.")
 
-; Miscellaneous agenda settings
+                                        ; Miscellaneous agenda settings
 ;; Diary
 (setq org-agenda-diary-file "~/Dropbox/org/diary.org")
 
 ;; Refile
-; Targets include this file and any file contributing to the agenda - up to 9 levels deep
+                                        ; Targets include this file and any file contributing to the agenda - up to 9 levels deep
 (setq org-refile-targets (quote ((nil :maxlevel . 9)
                                  (org-agenda-files :maxlevel . 9))))
-; Use full outline paths for refile targets - we file directly with IDO
+                                        ; Use full outline paths for refile targets - we file directly with IDO
 (setq org-refile-use-outline-path t)
 
-; Targets complete directly with IDO
+                                        ; Targets complete directly with IDO
 (setq org-outline-path-complete-in-steps nil)
 
-; Allow refile to create parent tasks with confirmation
+                                        ; Allow refile to create parent tasks with confirmation
 
 
 
-; Use IDO for both buffer and file completion and ido-everywhere to t
+                                        ; Use IDO for both buffer and file completion and ido-everywhere to t
 (setq org-completion-use-ido t)
 (setq ido-everywhere t)
 (setq ido-max-directory-size 100000)
 (ido-mode (quote both))
-; Use the current window when visiting files and buffers with ido
+                                        ; Use the current window when visiting files and buffers with ido
 (setq ido-default-file-method 'selected-window)
 (setq ido-default-buffer-method 'selected-window)
-; Use the current window for indirect buffer display
+                                        ; Use the current window for indirect buffer display
 (setq org-indirect-buffer-display 'current-window)
 
 ;;;; Refile settings
-; Exclude DONE state tasks from refile targets
+                                        ; Exclude DONE state tasks from refile targets
 (defun bh/verify-refile-target ()
   "Exclude todo keywords with a done state from refile targets"
   (not (member (nth 2 (org-heading-components)) org-done-keywords)))
@@ -339,14 +443,14 @@
 (setq org-refile-allow-creating-parent-nodes t)
 
 (setq org-ctrl-k-protect-subtree t)
-; Org mode attachments
+                                        ; Org mode attachments
 (setq org-file-apps '((auto-mode . default)
- ("\\.mm\\'" . default)
- ("\\.x?html?\\'" . default)
- ("\\.pdf\\'" . default)))
+                      ("\\.mm\\'" . default)
+                      ("\\.x?html?\\'" . default)
+                      ("\\.pdf\\'" . default)))
 
-; org tags
-; Fast tag setting/unsetting
+                                        ; org tags
+                                        ; Fast tag setting/unsetting
 (setq org-tag-alist (quote ((:startgroup)
                             ("@home" . ?H)
                             ("@work" . ?W)
@@ -361,21 +465,21 @@
 
 ;; For tag searches ignore tasks with scheduled and deadline dates
 (setq org-agenda-tags-todo-honor-ignore-options t)
-; Deft
-;(require 'deft)
-;(setq deft-extension "txt")
-;(setq deft-directory "~/Dropbox/nvalt_notes/")
+                                        ; Deft
+                                        ;(require 'deft)
+                                        ;(setq deft-extension "txt")
+                                        ;(setq deft-directory "~/Dropbox/nvalt_notes/")
 
-;(setq org-blank-before-new-entry nil)
+                                        ;(setq org-blank-before-new-entry nil)
 
-; Mac notifications for org mode
-;(require 'appt)
+                                        ; Mac notifications for org mode
+                                        ;(require 'appt)
 (setq appt-time-msg-list nil)    ;; clear existing appt list
 (setq appt-display-interval '10) ;; warn every 10 minutes from t - appt-message-warning-time
 (setq
-  appt-message-warning-time '10  ;; send first warning 10 minutes before appointment
-  appt-display-mode-line nil     ;; don't show in the modeline
-  appt-display-format 'window)   ;; pass warnings to the designated window function
+ appt-message-warning-time '10  ;; send first warning 10 minutes before appointment
+ appt-display-mode-line nil     ;; don't show in the modeline
+ appt-display-format 'window)   ;; pass warnings to the designated window function
 (appt-activate 1)                ;; activate appointment notification
 (display-time)                   ;; activate time display
 
