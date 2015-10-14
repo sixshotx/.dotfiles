@@ -2,7 +2,5 @@
   ;; Org *j*ump to current clock
   "mj" 'org-clock-jump-to-current-clock
   ;; Org set *tags
-  "mt" 'org-set-tags
+  ;; "mt" 'org-set-tags
   )
-
-
