@@ -176,14 +176,24 @@
               ("CODE_REVIEW" :foreground "orange" :weight bold)
               ("CANCELED" :foreground "light green" :weight bold)
               ("WAITING" :foreground "forest green" :weight bold))))
+;; Org tags
 (setq org-tag-faces
       (quote (("@home" :foreground "light green" :weight bold)
               ("@work" :foreground "light red" :weight bold)
               ("@errand" :foreground "SteelBlue1" :weight bold)
               ("scheduled" :foreground "yellow1" :weight bold)
               ("today" :foreground "OrangeRed2" :weight bold)
+              ("overdue" :foreground "hi-red-b" :weight bold)
               ("week" :foreground "salmon1" :weight bold))))
-
+(setq org-tag-alist (quote ((:startgroup)
+                            ("@home" . ?H)
+                            ("@work" . ?W)
+                            ("@errand" . ?E)
+                            (:endgroup)
+                            ("today" . ?t)
+                            ("overdue" . ?o)
+                            ("week" . ?w)
+                            )))
 (setq org-enforce-todo-dependencies t)
 (setq org-enforce-todo-checkbox-dependencies t)
 ;; I use C-c c to start capture mode
@@ -443,22 +453,15 @@
 (setq org-refile-allow-creating-parent-nodes t)
 
 (setq org-ctrl-k-protect-subtree t)
-                                        ; Org mode attachments
+;; Org mode attachments
 (setq org-file-apps '((auto-mode . default)
                       ("\\.mm\\'" . default)
                       ("\\.x?html?\\'" . default)
-                      ("\\.pdf\\'" . default)))
+                      ("\\.pdf\\'" . default)
+                      ("\\.jpg\\'" . default)
+                      ("\\.jpeg\\'" . default)
+                      ("\\.png\\'" . default)))
 
-                                        ; org tags
-                                        ; Fast tag setting/unsetting
-(setq org-tag-alist (quote ((:startgroup)
-                            ("@home" . ?H)
-                            ("@work" . ?W)
-                            ("@errand" . ?E)
-                            (:endgroup)
-                            ("today" . ?t)
-                            ("week" . ?w)
-                            )))
 
 ;; Allow setting single tags without the menu
 (setq org-fast-tag-selection-single-key (quote expert))
