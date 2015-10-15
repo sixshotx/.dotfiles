@@ -421,7 +421,7 @@ layers configuration."
   ;; Screenshot
   (defun take-screenshot ()
     (interactive)
-    (let ((screenshot-path (concat "/Users/jason/Dropbox/Screenshots/" (md5 (current-time-string)) ".png")))
+    (let ((screenshot-path (expand-file-name (concat "~/Dropbox/Screenshots/" (md5 (current-time-string)) ".png") )))
       (call-process "screencapture" nil nil nil "-i" screenshot-path)
       (kill-new screenshot-path)
       ))
