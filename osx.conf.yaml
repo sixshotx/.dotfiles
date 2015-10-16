@@ -1,4 +1,8 @@
 - clean: ['~']
+- shell:
+    - [./osx/apply-keys.sh, Applying OSX keyboard shortcuts...]
+    # Manually make directory since there are multiple levels
+    - [mkdir -p ~/.tmux/plugins, Creating tmux directory...]
 - link:
     ~/.amethyst: amethyst
     ~/.gitconfig: gitconfig
@@ -18,11 +22,11 @@
     # Tmuxinator
     ~/.tmuxinator: tmuxinator/tmuxinator
     ~/.tmuxinator.zsh: tmuxinator/tmuxinator.zsh
-    ~/.tmux.conf: tmuxinator/tmux.osx.conf
-    ~/.tmux.common.conf: tmuxinator/tmux.common.conf
+    # Tmux
+    ~/.tmux/plugins/tpm: tmux/plugins/tpm
+    ~/.tmux.conf: tmux/tmux.osx.conf
+    ~/.tmux.common.conf: tmux/tmux.common.conf
     ~/.vimperatorrc: vimperratorrc
-    ~/.zenburn.conf: tmuxinator/zenburn.conf
+    ~/.zenburn.conf: tmux/zenburn.conf
     # Karabiner
     ~/Library/Application Support/Karabiner: Karabiner
-- shell:
-    - [./osx/apply-keys.sh, Applying OSX keyboard shortcuts...]

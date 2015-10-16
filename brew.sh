@@ -33,6 +33,8 @@ echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH.
 brew install findutils
 # Install Bash 4
 brew install bash
+# Install Zsh 5
+brew install zsh
 
 # FZF. Shell fuzzy finder
 brew reinstall --HEAD fzf
