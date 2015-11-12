@@ -17,8 +17,6 @@
     org
     org-autolist
     moe-theme
-    ;; org-plus-contrib
-    worf
     )
   "List of all packages to install and/or initialize. Built-in packages
 which require an initialization must be listed explicitly in the list.")
@@ -40,11 +38,6 @@ which require an initialization must be listed explicitly in the list.")
   "Init my really custom org mode setup"
 
   (org-clock-persistence-insinuate)
-  (setq org-agenda-clockreport-parameter-plist (quote (:link t :maxlevel 6)))
-  (setq org-agenda-log-mode-items (quote (clock)))
-  (setq org-agenda-skip-scheduled-if-done t)
-  (setq org-agenda-span (quote day))
-  (setq org-agenda-start-with-clockreport-mode t)
 
   (evil-leader/set-key-for-mode 'org-mode
     "mhi" 'org-insert-todo-heading-respect-content))
@@ -58,12 +51,3 @@ which require an initialization must be listed explicitly in the list.")
 (defun jason-org/init-moe-theme ()
   ""
   (use-package moe-theme))
-
-;; (defun jason-org/init-org-plus-contrib
-;;     ""
-;;   (eval-after-load 'org-mode
-;;     (use-package org-plus-contrib)))
-
-(defun jason-org/init-worf ()
-  "abo-abo's org package that's like speed keys on crack"
-  )

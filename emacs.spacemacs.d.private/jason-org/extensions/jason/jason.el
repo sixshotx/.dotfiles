@@ -1,13 +1,21 @@
-;; TODO Not sure if I need these
+;; TODO: Not sure if I need these
 ;; (add-hook 'org-mode-hook (lambda () (visual-line-mode 1)))
 ;; (add-hook 'org-mode-hook (lambda () (whitespace-mode 0)))
+(setq org-agenda-clockreport-parameter-plist (quote (:link t :maxlevel 6)))
+(setq org-agenda-log-mode-items (quote (clock)))
+(setq org-agenda-skip-scheduled-if-done t)
+(setq org-agenda-span (quote day))
+;; Start org agenda with logging things
+(setq org-agenda-start-with-log-mode t)
+;; Start org
+(setq org-agenda-start-with-clockreport-mode t)
 
-; Agenda hooks
-;; Remove visual fill column mode for the agenda b/c it
-;; breaks the clock report table
+(setq fill-column 85)
 (add-hook 'org-mode-hook
           (lambda ()
             (message "org mode hook")
+            ;; Remove visual fill column mode for the agenda b/c it
+            ;; breaks the clock report table
             (visual-line-mode 1)
             (visual-fill-column-mode 1)
             (evil-leader/set-key-for-mode 'org-mode
