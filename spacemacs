@@ -42,14 +42,15 @@
        deft-use-filter-string-for-filename t)
      (colors :variables
              ;; colors-enable-nyan-cat-progress-bar t
-             colors-enable-rainbow-identifiers t)
+             colors-enable-rainbow-identifiers t
+             )
      ;; better-defaults
      (git :variables
           git-gutter-use-fringe t
           git-enable-github-support t)
      ;; markdown
      ;; beeminder
-     ;; emacs-lisp
+     emacs-lisp
      clojure
      eyebrowse
      gtags
@@ -69,10 +70,13 @@
      ;; jason-smartparens
      jason-web
      ruby
+     react
      ;; (shell :variables
      ;;        shell-default-position bottom
      ;;        shell-default-height 30)
      semantic
+     shell
+     spell-checking
      osx
      markdown
      restclient
@@ -82,9 +86,7 @@
      writing)
    dotspacemacs-additional-packages '(alert f s swiper beeminder jsx-mode)
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '(git-gutter git-gutter-fringe
-                                               ;; Taking this out so we can use ivy
-                                               helm-projectile)
+   dotspacemacs-excluded-packages '(git-gutter git-gutter-fringe)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'
@@ -390,7 +392,6 @@ layers configuration."
             (function (lambda ()
                         (setq js-indent-level 2)
                         (setq evil-shift-width 2))))
-
 ;;;;;;;;;;
   ;; Evil ;;
 ;;;;;;;;;;
@@ -541,6 +542,12 @@ layers configuration."
   ;; (add-hook 'ediff-after-quit-hook-internal 'winner-undo)
 
   ;; React/Web stuff
+  ;; (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
+  ;; (defadvice web-mode-highlight-part (around tweak-jsx activate)
+  ;;   (if (equal web-mode-content-type "jsx")
+  ;;       (let ((web-mode-enable-part-face nil))
+  ;;         ad-do-it)
+  ;;     ad-do-it))
   ;; Javascript default settings
   ;; Set default indentation to 2 spaces
   (setq js2-basic-offset 2)
@@ -559,36 +566,36 @@ layers configuration."
 
   ;; Ivy
   ;; Turn on ivy
-  (ivy-mode 1)
-  (setq ivy-use-virtual-buffers t)
-  ;; Use ivy for projectile
-  (setq projectile-completion-system 'ivy)
-  ;; Use ivy for magit
-  (setq magit-completing-read-function 'ivy-completing-read)
-  (global-set-key "\C-s" 'swiper)
-  (global-set-key "\C-r" 'swiper)
-  (global-set-key (kbd "C-c C-r") 'ivy-resume)
-  ;; Bind this away from helm-m-x
-  (global-set-key "\M-x" 'execute-extended-command)
-  (global-set-key [remap ido-find-file] 'find-file)
-  (global-set-key "\M-p" 'pop-to-mark-command)
-  ;; Remap SPC b b from helm-mini to ivy buffer
-  (evil-leader/set-key "b b" 'ivy-switch-buffer)
-  ;; Don't use IDO; that way, ivy is used instead.
+  ;; (ivy-mode 1)
+  ;; (setq ivy-use-virtual-buffers t)
+  ;; ;; Use ivy for projectile
+  ;; (setq projectile-completion-system 'ivy)
+  ;; ;; Use ivy for magit
+  ;; (setq magit-completing-read-function 'ivy-completing-read)
+  ;; (global-set-key "\C-s" 'swiper)
+  ;; (global-set-key "\C-r" 'swiper)
+  ;; (global-set-key (kbd "C-c C-r") 'ivy-resume)
+  ;; ;; Bind this away from helm-m-x
+  ;; (global-set-key "\M-x" 'execute-extended-command)
+  ;; (global-set-key [remap ido-find-file] 'find-file)
+  ;; (global-set-key "\M-p" 'pop-to-mark-command)
+  ;; ;; Remap SPC b b from helm-mini to ivy buffer
+  ;; (evil-leader/set-key "b b" 'ivy-switch-buffer)
+
+  ;; Don't use IDO; that way
   (setq org-completion-use-ido nil)
 
-
   ;; To use these actions, type M-o and then the action
-  (ivy-set-actions
-   'ivy-switch-buffer
-   '(("k"
-      (lambda (x)
-        (kill-buffer x)
-        (ivy--reset-state ivy-last))
-      "kill")
-     ("o"
-      ivy--switch-buffer-other-window-action
-      "other")))
+  ;; (ivy-set-actions
+  ;;  'ivy-switch-buffer
+  ;;  '(("k"
+  ;;     (lambda (x)
+  ;;       (kill-buffer x)
+  ;;       (ivy--reset-state ivy-last))
+  ;;     "kill")
+  ;;    ("o"
+  ;;     ivy--switch-buffer-other-window-action
+  ;;     "other")))
 
   (evil-leader/set-key
     "pb"  'projectile-switch-to-buffer
@@ -600,12 +607,6 @@ layers configuration."
     "pr"  'projectile-recentf
     "pv"  'vc
     "sgp" 'projectile-grep)
-
-  (setq fill-column 85)
-  (add-hook 'org-mode-hook
-            (worf-mode 1)
-            (visual-line-mode 1)
-            (visual-fill-column-mode 1))
 
   ;; Regexp stuff
   (require 're-builder)
@@ -658,8 +659,9 @@ layers configuration."
   (global-set-key "\C-\M-k" 'backward-sexp)
   (global-set-key "\C-\M-l" 'down-list)
   (global-set-key "\C-\M-h" 'backward-up-list)
-  ;; Temporary eBay stuff
-  (add-to-list 'auto-mode-alist '("\\.marko\\'" . web-mode))
+  ;; Web-mode
+  (setq web-mode-comment-face '((t (:foreground "#ddd"))))
+
 
 ;;;;;;;;;;;
   ;; Theme ;;
@@ -668,7 +670,51 @@ layers configuration."
   (moe-theme-set-color 'magenta)
   ;; Highlights the entire expression in parentheses
   (show-paren-mode t)
-  (setq show-paren-style 'expression))
+  (setq show-paren-style 'expression)
+
+  ;;  Python
+  ;; Create an inferior python process just once. An inferior python process is
+  ;; needed for eldoc and anaconda-mode.
+  (defun run-python-once ()
+    (remove-hook 'python-mode-hook 'run-python-once)
+    (run-python))
+  (add-hook 'python-mode-hook 'run-python-once)
+  ;; http://stackoverflow.com/questions/22817120/how-can-i-save-evil-mode-vim-style-macros-to-my-init-el
+  (fset 'mymacro
+        [?i ?f ?o ?o ?b ?a ?r escape])
+  ;; Change dict assignment to literal. Positiion cursor on first character of line that is an assignment.
+  (evil-set-register ?d
+                     [?w ?d ?f ?\[ ?f ?\] ?d ?f ?= ?i ?: escape ?A ?, escape ?j ?0])
+
+
+
+  ;; Stop asking about whether local variables are safe.
+  (setq enable-local-variables :all)
+
+  ;; Commented out so that
+  ;; Setting this so that Tramp uses bash
+  ;; (setq explicit-shell-file-name "/bin/bash")
+  ;; (push
+  ;;  (cons
+  ;;   "docker"
+  ;;   '((tramp-login-program "docker")
+  ;;     (tramp-login-args (("exec" "-it") ("%h") ("/bin/bash")))
+  ;;     (tramp-remote-shell "/bin/sh")
+  ;;     (tramp-remote-shell-args ("-i") ("-c"))))
+  ;;  tramp-methods)
+
+  ;; (defadvice tramp-completion-handle-file-name-all-completions
+  ;;     (around dotemacs-completion-docker activate)
+  ;;   "(tramp-completion-handle-file-name-all-completions \"\" \"/docker:\" returns
+  ;;   a list of active Docker container names, followed by colons."
+  ;;   (if (equal (ad-get-arg 1) "/docker:")
+  ;;       (let* ((dockernames-raw (shell-command-to-string "docker ps | awk '$NF != \"NAMES\" { print $NF \":\" }'"))
+  ;;              (dockernames (cl-remove-if-not
+  ;;                            #'(lambda (dockerline) (string-match ":$" dockerline))
+  ;;                            (split-string dockernames-raw "\n"))))
+  ;;         (setq ad-return-value dockernames))
+  ;;     ad-do-it))
+  )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -685,10 +731,9 @@ layers configuration."
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(fringe-mode 6 nil (fringe))
- '(js2-basic-offset 2)
+ '(js2-basic-offset 2 t)
  '(js2-bounce-indent-p nil)
  '(linum-format " %7d ")
- '(org-agenda-start-with-clockreport-mode t)
  '(org-clock-auto-clock-resolution t)
  '(org-clock-continuously nil)
  '(org-clock-history-length 23)
@@ -701,6 +746,7 @@ layers configuration."
  '(org-clock-persist-query-resume nil)
  '(org-clock-report-include-clocking-task t)
  '(org-clock-sound t)
+ '(python-shell-interpreter "ipython")
  '(ring-bell-function (quote ignore) t)
  '(safe-local-variable-values
    (quote
@@ -715,6 +761,5 @@ layers configuration."
  '(ace-jump-face-foreground ((((class color) (min-colors 89)) (:foreground "#ff8700" :bold t))))
  '(company-tooltip-common ((((class color) (min-colors 89)) (:background "#6c6c6c" :foreground "#afd7ff"))))
  '(company-tooltip-common-selection ((((class color) (min-colors 89)) (:background "#005f87" :foreground "#afd7ff" :bold t))))
- '(font-lock-comment-delimiter-face ((((class color) (min-colors 89)) (:foreground "#6c6c6c" :slant italic))))
- '(font-lock-comment-face ((t (:foreground "#ddd" :slant italic))))
- '(web-mode-comment-face ((((class color) (min-colors 89)) (:foreground "#4e4e4e")))))
+ '(font-lock-comment-delimiter-face ((t (:foreground "#ddd" :slant italic))))
+ '(font-lock-comment-face ((t (:foreground "#ddd" :slant italic)))))
