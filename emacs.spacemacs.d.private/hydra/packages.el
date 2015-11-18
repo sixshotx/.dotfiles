@@ -90,35 +90,115 @@ _~_: modified      ^ ^                ^ ^                ^^                     
 
   (define-key Buffer-menu-mode-map (kbd "<escape>") 'hydra-buffer-menu/body)
 
+  ;; (defhydra hydra-org (:color blue)
+  ;;   "org"
+  ;;   ("c" "capture" org-capture ))
+
+  ;; (evil-leader/set-key-for-mode 'org-mode
+  ;;   "<escape>" 'hydra-org/body)
   (defhydra hydra-global-org (:color blue
                                      :hint nil)
     "
 Timer^^        ^Clock^         ^Capture^
 --------------------------------------------------
-s_t_art        _w_ clock in    _c_apture
- _s_top        _o_ clock out   _l_ast capture
-_r_eset        _j_ clock goto
-_p_rint
+ _a_genda      _w_ clock in    _c_ capture
+               _o_ clock out   _l_ast capture
+               _j_ clock goto
+               _z_ clock resolve
 "
-    ("t" org-timer-start)
-    ("s" org-timer-stop)
-    ;; Need to be at timer
-    ("r" org-timer-set-timer)
-    ;; Print timer value to buffer
-    ("p" org-timer)
+    ("a" org-agenda)
+    ;; Using 'i' causes an error here for some reason.
     ("w" (org-clock-in '(4)))
     ("o" org-clock-out)
+    ("z" org-resolve-clocks)
     ;; Visit the clocked task from any buffer
     ("j" org-clock-goto)
     ("c" org-capture)
     ("l" org-capture-goto-last-stored))
 
-  (evil-leader/set-key "oo" 'hydra-global-org/body)
+  ;; Red - Stay in hydra after running command
+  (defhydra hydra-org-timestamp (:color red)
+    "org timestamp"
+    ("l" org-shiftright "shift right")
+    ("h" org-shiftleft "shift left")
+    ("k" org-shiftup "shift up")
+    ("j" org-shiftdown "shift down")
+    ("q" nil "quit" :color blue))
 
+  (evil-leader/set-key "oo" 'hydra-global-org/body)
+  ;; Jump between git hunks and goto/revert them.
   (defhydra hydra-git ()
     "git"
     ("j" diff-hl-next-hunk "next")
     ("k" diff-hl-previous-hunk "prev")
     ("g" diff-hl-diff-goto-hunk "goto")
     ("r" diff-hl-revert-hunk "revert"))
-  (evil-leader/set-key "og" 'hydra-git/body))
+  (evil-leader/set-key "og" 'hydra-git/body)
+
+  ;; TODO: set delete-by-moving-to-trash to t
+  (defhydra hydra-dired (:color pink :hint nil)
+    "
+Deletion^^             ^Marks^  ^Opening^          ^Navigation^ ^Operations^
+    flag _d_eletion    _m_ark _o_ther window    _h_ up dir
+_u_nflag deletion      _J_ next marked file
+    flag _r_egexp      _K_ previous marked file
+    _x_ delete flagged _R_ filename regexp
+                       _g_ contents regexp
+"
+    ;; Deletion
+    ("d" dired-flag-file-deletion)
+    ("u" dired-unmark)
+    ("r" dired-flag-files-regexp)
+    ("x" dired-do-flagged-delete)
+    ;; Marks
+    ("m" dired-mark)
+    ("J" dired-next-marked-file)
+    ("K" dired-prev-marked-file)
+    ("R" dired-mark-files-regexp)
+    ("g" dired-mark-files-containing-regexp)
+    ;; Opening
+    ("o" dired-display-file)
+    ;; Navigation
+    ("h" dired-up-directory)
+    ("q" nil "quit" :color blue))
+
+  (with-eval-after-load 'dired
+    (define-key dired-mode-map (kbd "<escape>") 'hydra-dired/body))
+
+  (defhydra hydra-org-heading (:color blue)
+    "org heading"
+    ("i" org-insert-heading-after-current "heading insert")
+    ("I" org-insert-heading "heading insert before")
+    ("d" org-cut-subtree "delete subtree")
+    ("o" org-insert-todo-heading-respect-content "todo insert below"))
+
+  (defhydra hydra-org-clock (:color blue)
+    "org clock"
+    ("i" org-clock-in)
+    ("o" org-clock-out))
+
+  (defhydra hydra-org (:color blue)
+    "
+Editing^^          ^Visibility^           ^Navigation^
+  _w_ refile         indirect _b_uffer      _u_p
+  _c_apture
+  _d_eadline
+  _e_xport
+  e_f_fort
+_:_ tag
+"
+    ;; ("'" org-edit-special)
+    ("w" org-refile)
+    ("c" org-capture)
+    ("d" org-deadline)
+    ("e" org-export-dispatch)
+    ("f" org-set-effort)
+    (":" org-set-tags)
+    ("b" org-tree-to-indirect-buffer)
+    ;; Nested hydras
+    ("h" hydra-org-heading/body "heading" :exit t)
+    ("c" hydra-org-clock/body "clock" :exit t)
+    ("t" hydra-org-timestamp "timestamp" :exit t)
+    ("u" outline-up-heading))
+
+  (evil-leader/set-key "," 'hydra-org/body))
