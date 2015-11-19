@@ -185,7 +185,8 @@ Editing^^          ^Visibility^           ^Navigation^
   _d_eadline
   _e_xport
   e_f_fort
-_:_ tag
+  _:_ tag
+  _p_omodoro
 "
     ;; ("'" org-edit-special)
     ("w" org-refile)
@@ -195,10 +196,11 @@ _:_ tag
     ("f" org-set-effort)
     (":" org-set-tags)
     ("b" org-tree-to-indirect-buffer)
+    ("p" org-pomodoro)
     ;; Nested hydras
     ("h" hydra-org-heading/body "heading" :exit t)
     ("c" hydra-org-clock/body "clock" :exit t)
-    ("t" hydra-org-timestamp "timestamp" :exit t)
+    ("t" hydra-org-timestamp/body "timestamp" :exit t)
     ("u" outline-up-heading))
 
   (evil-leader/set-key "," 'hydra-org/body))
