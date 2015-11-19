@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: withitr
+# key: withitr
+# binding: direct-keybinding
+# --
+from ipdb import launch_ipdb_on_exception
+
+with launch_ipdb_on_exception():
+    $0

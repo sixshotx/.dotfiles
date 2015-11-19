@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: es6-siaf
+# key: siaf
+# binding: direct-keybinding
+# --
+(() => {
+$0
+})();
