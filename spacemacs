@@ -6,7 +6,10 @@
   "Configuration Layers declaration."
   ;; Set auth tokens before any layers are loaded so that layers can rely
   ;; on these guys already being set.
-  (load-file "~/Dropbox/auth_tokens.el")
+  (cond ((eq system-type 'darwin) (load-file "~/Dropbox/auth_tokens.el"))
+        ((eq system-type 'windows-nt)
+         (load-file (concat (substitute-in-file-name "$HOMEPATH") "\\Dropbox\\auth_tokens.el"))))
+
 
   ;; Can't use the 's library since it's not loaded at this point
   (setq
