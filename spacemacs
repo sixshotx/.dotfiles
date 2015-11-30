@@ -570,21 +570,21 @@ layers configuration."
 
   ;; Ivy
   ;; Turn on ivy
-  ;; (ivy-mode 1)
-  ;; (setq ivy-use-virtual-buffers t)
-  ;; ;; Use ivy for projectile
-  ;; (setq projectile-completion-system 'ivy)
-  ;; ;; Use ivy for magit
-  ;; (setq magit-completing-read-function 'ivy-completing-read)
-  ;; (global-set-key "\C-s" 'swiper)
-  ;; (global-set-key "\C-r" 'swiper)
-  ;; (global-set-key (kbd "C-c C-r") 'ivy-resume)
-  ;; ;; Bind this away from helm-m-x
-  ;; (global-set-key "\M-x" 'execute-extended-command)
-  ;; (global-set-key [remap ido-find-file] 'find-file)
-  ;; (global-set-key "\M-p" 'pop-to-mark-command)
-  ;; ;; Remap SPC b b from helm-mini to ivy buffer
-  ;; (evil-leader/set-key "b b" 'ivy-switch-buffer)
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  ;; Use ivy for projectile
+  (setq projectile-completion-system 'ivy)
+  ;; Use ivy for magit
+  (setq magit-completing-read-function 'ivy-completing-read)
+  (global-set-key "\C-s" 'swiper)
+  (global-set-key "\C-r" 'swiper)
+  (global-set-key (kbd "C-c C-r") 'ivy-resume)
+  ;; Bind this away from helm-m-x
+  (global-set-key "\M-x" 'execute-extended-command)
+  (global-set-key [remap ido-find-file] 'find-file)
+  (global-set-key "\M-p" 'pop-to-mark-command)
+  ;; Remap SPC b b from helm-mini to ivy buffer
+  (evil-leader/set-key "b b" 'ivy-switch-buffer)
 
   ;; Don't use IDO; that way
   (setq org-completion-use-ido nil)
