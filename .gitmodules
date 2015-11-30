@@ -4,3 +4,6 @@
 [submodule "emacs.spacemacs.d"]
 	path = emacs.spacemacs.d
 	url = https://github.com/jasoncyu/spacemacs/
+[submodule "tmux/plugins/tpm"]
+	path = tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm.git

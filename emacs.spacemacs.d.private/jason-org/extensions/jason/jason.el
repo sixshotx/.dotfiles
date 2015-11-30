@@ -97,7 +97,7 @@
               ("@errand" :foreground "SteelBlue1" :weight bold)
               ("scheduled" :foreground "yellow1" :weight bold)
               ("today" :foreground "OrangeRed2" :weight bold)
-              ("overdue" :foreground "hi-red-b" :weight bold)
+              ("overdue" :foreground "Red" :weight bold)
               ("week" :foreground "salmon1" :weight bold))))
 (setq org-tag-alist (quote ((:startgroup)
                             ("@home" . ?H)

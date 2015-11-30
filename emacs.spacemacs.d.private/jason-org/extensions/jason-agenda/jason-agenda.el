@@ -143,7 +143,7 @@
                 (org-agenda-skip-function 'jason-skip-function)
                 (org-agenda-overriding-columns-format "%50ITEM(Task) %10EFFORT_T(Effort today){:} %10CLOCKSUM(Clocked today){:} %10Effort(Effort){:} %10CLOCKSUM_T{:}")
                 (org-agenda-files '("~/Dropbox/org/life.org" "~/Dropbox/org/twice.org"))
-                (org-agenda-clockreport-parameter-plist
+                (org-agesnda-clockreport-parameter-plist
                  '(:maxlevel 6 :properties ("MAX_EFFORT" "Effort" "CLOCKSUM" "CLOCKSUM_T")))
                 (org-agenda-sorting-strategy '(todo-state-up))
                 )
@@ -158,14 +158,21 @@
                       ((org-agenda-overriding-header "Waiting")))
                 (todo "CODE REVIEW"
                       ((org-agenda-overriding-header "Code Review")))
-                (tags-todo "week"
-                           ((org-agenda-overriding-header "Tasks to do this week")
+                (tags-todo "+today-overdue"
+                           ((org-agenda-overriding-header "Daily tasks")
                             (org-agenda-skip-function '(org-agenda-skip-subtree-if 'todo '("DONE" "CODE REVIEW")))))
-                (todo "NEXT"
-                      ((org-agenda-overriding-header "All Next Tasks")))
-                (tags-todo "today"
-                           ((org-agenda-overriding-header "Today tasks")
+                (tags-todo "+week-overdue"
+                           ((org-agenda-overriding-header "Weekly tasks")
                             (org-agenda-skip-function '(org-agenda-skip-subtree-if 'todo '("DONE" "CODE REVIEW")))))
+                (tags-todo "+today+overdue"
+                           ((org-agenda-overriding-header "Daily tasks (overdue)")
+                            (org-agenda-skip-function '(org-agenda-skip-subtree-if 'todo '("DONE" "CODE REVIEW")))))
+                (tags-todo "+week+overdue"
+                           ((org-agenda-overriding-header "Weekly tasks (overdue)")
+                            (org-agenda-skip-function '(org-agenda-skip-subtree-if 'todo '("DONE" "CODE REVIEW")))))
+
+                ;; (todo "NEXT"
+                ;;       ((org-agenda-overriding-header "All Next Tasks")))
                 nil)))))
 
 
