@@ -735,8 +735,9 @@ layers configuration."
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(fringe-mode 6 nil (fringe))
- '(js2-basic-offset 2 t)
+ '(js2-basic-offset 2)
  '(js2-bounce-indent-p nil)
+ '(js2-mode-show-parse-errors nil)
  '(linum-format " %7d ")
  '(org-clock-auto-clock-resolution t)
  '(org-clock-continuously nil)
@@ -765,5 +766,5 @@ layers configuration."
  '(ace-jump-face-foreground ((((class color) (min-colors 89)) (:foreground "#ff8700" :bold t))))
  '(company-tooltip-common ((((class color) (min-colors 89)) (:background "#6c6c6c" :foreground "#afd7ff"))))
  '(company-tooltip-common-selection ((((class color) (min-colors 89)) (:background "#005f87" :foreground "#afd7ff" :bold t))))
- '(font-lock-comment-delimiter-face ((t (:foreground "#ddd" :slant italic))))
- '(font-lock-comment-face ((t (:foreground "#ddd" :slant italic)))))
+ '(font-lock-comment-delimiter-face ((((class color) (min-colors 89)) (:foreground "#6c6c6c" :slant italic))))
+ '(font-lock-comment-face ((((class color) (min-colors 89)) (:foreground "#6c6c6c" :slant italic)))))
