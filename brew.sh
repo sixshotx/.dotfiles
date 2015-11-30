@@ -24,7 +24,9 @@ brew cask install slack
 brew cask install slate
 brew cask install sublime-text3
 brew cask install sogouinput
+# VLC
 brew cask install vlc
+
 
 # Install GNU core utilities (those that come with OS X are outdated)
 brew install coreutils

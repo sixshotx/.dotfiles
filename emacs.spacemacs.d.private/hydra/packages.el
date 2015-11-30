@@ -96,6 +96,7 @@ _~_: modified      ^ ^                ^ ^                ^^                     
 
   ;; (evil-leader/set-key-for-mode 'org-mode
   ;;   "<escape>" 'hydra-org/body)
+  ;; Org mode stuff that we want to be accessible from every buffer.
   (defhydra hydra-global-org (:color blue
                                      :hint nil)
     "
