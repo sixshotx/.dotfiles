@@ -395,8 +395,6 @@ layers configuration."
 ;;;;;;;;;;
   ;; Evil ;;
 ;;;;;;;;;;
-
-
   ;; put H and L to line start an, end
   (define-key evil-normal-state-map "H" "^")
   (define-key evil-normal-state-map "L" "$")
@@ -480,6 +478,8 @@ layers configuration."
   (setq org-pomodoro-long-break-length 15)
   ;; Better lisp
   (setq evil-move-cursor-back nil)
+  ;; Stop getting dbus errors when doing an org-pomodoro.
+  (setq notify-method 'notify-via-growl)
   ;; Open these buffers as soon as they're available
 
 ;;;;;;;;;
@@ -665,7 +665,6 @@ layers configuration."
   (global-set-key "\C-\M-h" 'backward-up-list)
   ;; Web-mode
   (setq web-mode-comment-face '((t (:foreground "#ddd"))))
-
 
 ;;;;;;;;;;;
   ;; Theme ;;
