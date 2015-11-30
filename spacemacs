@@ -550,7 +550,11 @@ layers configuration."
   ;;     ad-do-it))
   ;; Javascript default settings
   ;; Set default indentation to 2 spaces
+
+  ;; Stop showing js2 errors, we should just always use eslint instead.
   (setq js2-basic-offset 2)
+  (setq js2-mode-show-parse-errors nil)
+  (setq js2-mode-show-strict-warnings nil)
   (setq web-mode-markup-indent-offset 2)
   (defun buffer-mode (buffer-or-string)
     "Returns the major mode associated with a buffer."
