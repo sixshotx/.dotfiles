@@ -9,6 +9,8 @@
 (setq org-agenda-start-with-log-mode t)
 ;; Start org
 (setq org-agenda-start-with-clockreport-mode t)
+;; Log state changes into a logbook
+(setq org-log-into-drawer t)
 
 (setq fill-column 85)
 (add-hook 'org-mode-hook
