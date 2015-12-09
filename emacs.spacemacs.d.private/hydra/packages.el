@@ -167,7 +167,19 @@ _u_nflag deletion      _J_ next marked file
     (define-key dired-mode-map (kbd "<escape>") 'hydra-dired/body))
 
   (defhydra hydra-org-heading (:color blue)
-    "org heading"
+    "
+Movement^^               ^More^
+_j_ move subree down      _y_ cut subtree
+_k_ move subtree up       _p_ paste subtree
+_h_ move subtree left
+_l_ move subtree right
+"
+    ("j" org-move-subtree-down)
+    ("k" org-move-subtree-up)
+    ("h" org-promote-subtree)
+    ("l" org-demote-subtree)
+    ("y" org-cut-subtree)
+    ("p" org-paste-subtree)
     ("i" org-insert-heading-after-current "heading insert")
     ("I" org-insert-heading "heading insert before")
     ("d" org-cut-subtree "delete subtree")
