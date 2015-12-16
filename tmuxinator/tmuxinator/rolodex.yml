@@ -34,10 +34,11 @@ windows:
         - ls
         - grunt:
           - cd ext
-          - grunt && grunt browserify
+          - grunt browserify && grunt
         - sql:
           - killall mysqld
           - mysqld&
         - api:
           - cd ws
+          - source venv/bin/activate
           - python api.py
