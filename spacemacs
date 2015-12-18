@@ -52,7 +52,7 @@
      ;; beeminder
      emacs-lisp
      clojure
-     eyebrowse
+     ;; eyebrowse
      gtags
      ;; multiple-cursors
      html
@@ -75,8 +75,9 @@
      ;;        shell-default-position bottom
      ;;        shell-default-height 30)
      semantic
+     spacemacs-layouts
      shell
-     spell-checking
+     ;; spell-checking
      osx
      markdown
      restclient
@@ -555,6 +556,7 @@ layers configuration."
   (setq js2-basic-offset 2)
   (setq js2-mode-show-parse-errors nil)
   (setq js2-mode-show-strict-warnings nil)
+
   (setq web-mode-markup-indent-offset 2)
   (defun buffer-mode (buffer-or-string)
     "Returns the major mode associated with a buffer."
