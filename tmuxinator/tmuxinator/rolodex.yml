@@ -34,7 +34,7 @@ windows:
         - ls
         - grunt:
           - cd ext
-          - grunt browserify && grunt
+          - grunt build:dev && grunt
         - sql:
           - killall mysqld
           - mysqld&
