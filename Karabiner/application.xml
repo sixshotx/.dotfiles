@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<root>
+  <item>
+    <name>Application-Specific Keybindings</name>
+
+    <!-- Application launchers -->
+    <item>
+      <name>Application Launchers</name>
+      <appendix>Hyper + T to open iTerm</appendix>
+      <appendix>Hyper + G to open Emacs</appendix>
+      <appendix>Hyper + E to open Chrome</appendix>
+      <appendix>Hyper + U to open Slack</appendix>
+      <identifier>custom.application_launchers</identifier>
+
+      <!-- Define special keycodes for launching apps -->
+      <vkopenurldef>
+        <name>KeyCode::VK_OPEN_URL_APP_iTerm</name>
+        <url type="file">
+          /opt/homebrew-cask/Caskroom/iterm2/2.1.4/iTerm.app
+        </url>
+      </vkopenurldef>
+      <vkopenurldef>
+        <name>KeyCode::VK_OPEN_URL_APP_Chrome</name>
+        <url type="file">
+          /opt/homebrew-cask/Caskroom/google-chrome/latest/Google Chrome.app
+        </url>
+      </vkopenurldef>
+      <vkopenurldef>
+        <name>KeyCode::VK_OPEN_URL_APP_Slack</name>
+        <url type="file">
+          /opt/homebrew-cask/Caskroom/slack/1.1.4/Slack.app
+        </url>
+      </vkopenurldef>
+      <vkopenurldef>
+        <name>KeyCode::VK_OPEN_URL_APP_Emacs</name>
+        <url type="file">
+          /usr/local/Cellar/emacs/24.5/Emacs.app
+        </url>
+      </vkopenurldef>
+
+      <!-- Then define the actual applicaton launcher shortcuts. -->
+      <autogen>
+        __KeyToKey__
+        KeyCode::T,
+        {{ MODIFIER_FLAG_HYPER }} | ModifierFlag::NONE,
+
+        KeyCode::VK_OPEN_URL_APP_iTerm
+      </autogen>
+      <autogen>
+        __KeyToKey__
+        KeyCode::G,
+        {{ MODIFIER_FLAG_HYPER }} | ModifierFlag::NONE,
+
+        KeyCode::VK_OPEN_URL_APP_Emacs
+      </autogen>
+      <autogen>
+        __KeyToKey__
+        KeyCode::E,
+        {{ MODIFIER_FLAG_HYPER }} | ModifierFlag::NONE,
+
+        KeyCode::VK_OPEN_URL_APP_Chrome
+      </autogen>
+      <autogen>
+        __KeyToKey__
+        KeyCode::U,
+        {{ MODIFIER_FLAG_HYPER }} | ModifierFlag::NONE,
+
+        KeyCode::VK_OPEN_URL_APP_Slack
+      </autogen>
+    </item>
+
+    <item>
+      <name>Finder: F2 to Rename, Return to Open</name>
+      <appendix>Return to "Open" command</appendix>
+      <appendix>F2 to "Rename" command</appendix>
+      <appendix>+ pressing Return while renaming (via F2) saves the new name instead of opening</appendix>
+      <identifier>custom.app_finder_keys</identifier>
+
+      <only>FINDER</only>
+      <uielementrole_not>AXTextArea, AXTextField</uielementrole_not>
+
+      <autogen>
+        __KeyToKey__
+        KeyCode::F2,
+
+        KeyCode::RETURN
+      </autogen>
+
+      <!-- Also make sure "Rename" work with the Brightness Up key. -->
+      <autogen>
+        __ConsumerToKey__
+        ConsumerKeyCode::BRIGHTNESS_UP,
+
+        KeyCode::RETURN
+      </autogen>
+      <autogen>
+        __KeyToKey__
+        KeyCode::RETURN, ModifierFlag::NONE,
+
+        KeyCode::O, ModifierFlag::COMMAND_L, Option::NOREPEAT
+      </autogen>
+
+      <!-- For the Microsoft Sculpt keyboard, we also need to allow the "Mute"
+           button to trigger renaming. -->
+      <autogen>
+        __ConsumerToKey__
+        ConsumerKeyCode::VOLUME_MUTE,
+
+        KeyCode::RETURN
+      </autogen>
+    </item>
+  </item>
+</root>
