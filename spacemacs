@@ -641,10 +641,10 @@ layers configuration."
 ;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; Custom org-pomodoro ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;
-  (load-file "~/.dotfiles/emacs.spacemacs.d.private/jason-org/extensions/org-pomodoro/org-pomodoro.el")
-  (setq org-pomodoro-start-sound "~/.dotfiles/emacs.spacemacs.d.private/jason-org/extensions/org-pomodoro/resources/marine_gogogo.wav")
-  (setq org-pomodoro-long-break-sound "~/.dotfiles/emacs.spacemacs.d.private/jason-org/extensions/org-pomodoro/resources/reap_the_whirlwind.wav")
-  (setq org-pomodoro-short-break-sound "~/.dotfiles/emacs.spacemacs.d.private/jason-org/extensions/org-pomodoro/resources/reap_the_whirlwind.wav")
+  (load-file "~/.dotfiles/emacs.spacemacs.d.private/jason-org/local/org-pomodoro/org-pomodoro.el")
+  (setq org-pomodoro-start-sound "~/.dotfiles/emacs.spacemacs.d.private/jason-org/local/org-pomodoro/resources/marine_gogogo.wav")
+  (setq org-pomodoro-long-break-sound "~/.dotfiles/emacs.spacemacs.d.private/jason-org/local/org-pomodoro/resources/reap_the_whirlwind.wav")
+  (setq org-pomodoro-short-break-sound "~/.dotfiles/emacs.spacemacs.d.private/jason-org/local/org-pomodoro/resources/reap_the_whirlwind.wav")
 
   (require 'beeminder)
   (setq beeminder-username "zinbiel")

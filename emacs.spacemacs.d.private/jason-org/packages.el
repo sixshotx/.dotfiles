@@ -14,8 +14,16 @@
   '(
     ;; package jason-orgs go here
     appt
-    org-autolist
+    (jason :location local)
+    (jason-agenda :location local)
     moe-theme
+    org-autolist
+    (org-bh :location local)
+    (org-checklist :location local)
+    (org-depend :location local)
+    (org-pomodoro :location local)
+    ;; Installed by org-plus-contrib
+    (org-subtask-reset :location built-in)
     )
   "List of all packages to install and/or initialize. Built-in packages
 which require an initialization must be listed explicitly in the list.")
@@ -42,3 +50,45 @@ which require an initialization must be listed explicitly in the list.")
 (defun jason-org/init-moe-theme ()
   ""
   (use-package moe-theme))
+
+(defun jason-org/init-org-bh ()
+  "Initialize my extension"
+  ;; Don't defer any of these b/c we want org mode to be available at all time
+  (use-package org-bh)
+  )
+
+(defun jason-org/init-jason ()
+  "Initialize my extension"
+  ;; Don't defer any of these b/c we want org mode to be available at all time
+  (eval-after-load 'org-bh
+    (use-package jason))
+  )
+
+(defun jason-org/init-org-depend ()
+  "Initialize my extension"
+  (use-package org-depend)
+  )
+
+(defun jason-org/init-org-checklist ()
+  "Initialize my extension"
+  (use-package org-checklist)
+  )
+
+(defun jason-org/init-org-subtask-reset ()
+  "Initialize my extension"
+  (use-package org-subtask-reset)
+  )
+
+(defun jason-org/init-jason-agenda ()
+  "Initialize my extension"
+  (eval-after-load 'org-agenda
+    (use-package jason-agenda))
+  )
+
+(defun jason-org/init-org-pomodoro ()
+  "Initialize my extension"
+  (message "loading org-pomodoro")
+  (use-package org-pomodoro
+    :config
+    (message "loading org-pomodoro")
+    ))
