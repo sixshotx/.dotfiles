@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+#name : rolodex log out
+#key : rolodex log out
+#contributor : Jason Yu
+# --
+import * as ChromeStorage from './ChromeStorage';
+ChromeStorage.remove('user');
+console.log('Logged out');

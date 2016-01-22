@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+#name : import_bluebird
+#key : import_bluebird
+#contributor : Jason Yu
+# --
+import * as Promise from 'bluebird';
