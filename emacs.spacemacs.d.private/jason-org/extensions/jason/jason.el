@@ -165,7 +165,7 @@
 
 ;; Org agenda
 (global-set-key (kbd "<f12>") 'org-agenda)
-(setq org-agenda-files '("~/Dropbox/org" "~/Dropbox/Apps/Plain.txt/"))
+(setq org-agenda-files '("~/Dropbox/org"))
 ;; Enable habit tracking (and a bunch of other modules)
 (setq org-modules (quote (org-habit org-checklist org-depend)))
 
