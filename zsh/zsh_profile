@@ -59,3 +59,24 @@ ipfw-throttle() {
 }
 
 alias ipfw-restore="sudo ipfw delete 1; sudo ipfw pipe 1 delete"
+
+# Docker
+# Starts the Docker Linux host and makes docker commands use it.
+alias dockerme="docker-machine start default && eval \"$(docker-machine env default)\""
+# Inspect docker IP of a container
+docker-ip() {
+    docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$@"
+}
+# Workaround to make this work with tmux.
+alias terminal-notifier='reattach-to-user-namespace terminal-notifier'
+tn() {
+    terminal-notifier "$@"
+}
+# Shorthand for docker-machine
+dm() {
+    docker-machine "$@"
+}
+# Shorthand for docker-compose
+dc() {
+    docker-compose "$@"
+}
