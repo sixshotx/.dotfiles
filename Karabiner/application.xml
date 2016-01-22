@@ -6,6 +6,7 @@
     <!-- Application launchers -->
     <item>
       <name>Application Launchers</name>
+      <appendix>Hyper + Q to open Polymail</appendix>
       <appendix>Hyper + T to open iTerm</appendix>
       <appendix>Hyper + G to open Emacs</appendix>
       <appendix>Hyper + E to open Chrome</appendix>
@@ -13,6 +14,12 @@
       <identifier>custom.application_launchers</identifier>
 
       <!-- Define special keycodes for launching apps -->
+      <vkopenurldef>
+        <name>KeyCode::VK_OPEN_URL_APP_Polymail</name>
+        <url type="file">
+          /Applications/Polymail.app
+        </url>
+      </vkopenurldef>
       <vkopenurldef>
         <name>KeyCode::VK_OPEN_URL_APP_iTerm</name>
         <url type="file">
@@ -39,6 +46,13 @@
       </vkopenurldef>
 
       <!-- Then define the actual applicaton launcher shortcuts. -->
+      <autogen>
+        __KeyToKey__
+        KeyCode::Q,
+        {{ MODIFIER_FLAG_HYPER }} | ModifierFlag::NONE,
+
+        KeyCode::VK_OPEN_URL_APP_Polymail
+      </autogen>
       <autogen>
         __KeyToKey__
         KeyCode::T,

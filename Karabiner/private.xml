@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <root>
   <item>
-    <name>Custom</name>
-
+    <name>Custom private</name>
+    <include path="defs.xml" />
+    <include path="application.xml" />
     <include path="vim.xml" />
     <include path="emacs.xml" />
   </item>
