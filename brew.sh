@@ -82,8 +82,9 @@ brew install tmux
 brew install git
 # hub - Awesome git wrapper
 brew install hub
-
 brew install node
+# Needed to make terminal-notifier work w/ tmux.
+brew install reattach-to-user-namespace
 
 # Remove outdated versions from the cellar
 brew cleanup

@@ -719,6 +719,13 @@ layers configuration."
   ;;                            (split-string dockernames-raw "\n"))))
   ;;         (setq ad-return-value dockernames))
   ;;     ad-do-it))
+
+  (defun count-buffers (&optional display-anyway)
+  "Display or return the number of buffers."
+  (interactive)
+  (let ((buf-count (length (buffer-list))))
+    (if (or (interactive-p) display-anyway)
+    (message "%d buffers in this Emacs" buf-count)) buf-count))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
