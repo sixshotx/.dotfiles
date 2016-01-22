@@ -58,6 +58,7 @@
      html
      hydra
      lispy
+     octave
      org
      ;; To use the python layer, you have to install these dependencies manually:
      ;; pip install jedi==0.8.1 json-rpc==1.8.1 service_factory==0.1.2
@@ -83,7 +84,8 @@
      restclient
      syntax-checking
      themes-megapack
-     version-control
+     (version-control :variables
+                      version-control-diff-tool 'diff-hl)
      writing)
    dotspacemacs-additional-packages '(alert f s swiper beeminder jsx-mode)
    ;; A list of packages and/or extensions that will not be install and loaded.
