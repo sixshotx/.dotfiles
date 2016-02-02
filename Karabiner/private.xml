@@ -4,6 +4,7 @@
     <name>Custom private</name>
     <include path="defs.xml" />
     <include path="application.xml" />
+    <include path="util.xml" />
     <include path="vim.xml" />
     <include path="emacs.xml" />
   </item>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<root>
+    <item>
+        <name>Disable Minimize</name>
+        <identifier>private.disable_minimize</identifier>
+        <autogen>
+            __KeyToKey__
+            KeyCode::M, ModifierFlag::COMMAND_L,
+            KeyCode::M, ModifierFlag::COMMAND_L | ModifierFlag::FN
+        </autogen>
+        <autogen>
+            __KeyToKey__
+            KeyCode::M, ModifierFlag::COMMAND_L | ModifierFlag::FN,
+            KeyCode::M, ModifierFlag::COMMAND_L
+        </autogen>
+    </item>
+</root>
