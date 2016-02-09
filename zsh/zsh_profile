@@ -70,7 +70,11 @@ docker-ip() {
 # Workaround to make this work with tmux.
 alias terminal-notifier='reattach-to-user-namespace terminal-notifier'
 tn() {
-    terminal-notifier "$@"
+    echo "$@"| terminal-notifier
+}
+# Notify that we're done
+tnd() {
+    echo "done" | terminal-notifier
 }
 # Shorthand for docker-machine
 dm() {
