@@ -35,10 +35,8 @@ windows:
         - grunt:
           - cd ext
           - grunt build:dev && grunt
-        - sql:
-          - killall mysqld
-          - mysqld&
-        - api:
-          - cd ws
-          - source venv/bin/activate
-          - python api.py
+        - docker:
+          - cd ws/docker_ws_dev
+          - docker-machine start default
+          - eval "$(docker-machine env default)"
+          - docker-compose up

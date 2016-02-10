@@ -85,7 +85,9 @@
      syntax-checking
      themes-megapack
      (version-control :variables
+                      version-control-global-margin t
                       version-control-diff-tool 'diff-hl)
+     yaml
      writing)
    dotspacemacs-additional-packages '(alert f s swiper beeminder jsx-mode)
    ;; A list of packages and/or extensions that will not be install and loaded.
@@ -558,6 +560,7 @@ layers configuration."
   (setq js2-basic-offset 2)
   (setq js2-mode-show-parse-errors nil)
   (setq js2-mode-show-strict-warnings nil)
+  (setq css-indent-offset 2)
 
   (setq web-mode-markup-indent-offset 2)
   (defun buffer-mode (buffer-or-string)
@@ -723,11 +726,16 @@ layers configuration."
   ;;     ad-do-it))
 
   (defun count-buffers (&optional display-anyway)
-  "Display or return the number of buffers."
-  (interactive)
-  (let ((buf-count (length (buffer-list))))
-    (if (or (interactive-p) display-anyway)
-    (message "%d buffers in this Emacs" buf-count)) buf-count))
+    "Display or return the number of buffers."
+    (interactive)
+    (let ((buf-count (length (buffer-list))))
+      (if (or (interactive-p) display-anyway)
+          (message "%d buffers in this Emacs" buf-count)) buf-count))
+
+  ;; Enable company globally so that auto-completion works in modes
+  ;; where it's not explicitly supported, like less-mode.
+  ;; (global-company-mode)
+  ;; (global-auto-complete-mode)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -775,6 +783,4 @@ layers configuration."
  '(default ((((class color) (min-colors 4096)) (:foreground "#c6c6c6" :background "#303030")) (((class color) (min-colors 256)) (:foreground "#c6c6c6" :background "#303030")) (((class color) (min-colors 89)) (:foreground "#c6c6c6" :background "#303030"))))
  '(ace-jump-face-foreground ((((class color) (min-colors 89)) (:foreground "#ff8700" :bold t))))
  '(company-tooltip-common ((((class color) (min-colors 89)) (:background "#6c6c6c" :foreground "#afd7ff"))))
- '(company-tooltip-common-selection ((((class color) (min-colors 89)) (:background "#005f87" :foreground "#afd7ff" :bold t))))
- '(font-lock-comment-delimiter-face ((((class color) (min-colors 89)) (:foreground "#6c6c6c" :slant italic))))
- '(font-lock-comment-face ((((class color) (min-colors 89)) (:foreground "#6c6c6c" :slant italic)))))
+ '(company-tooltip-common-selection ((((class color) (min-colors 89)) (:background "#005f87" :foreground "#afd7ff" :bold t)))))
