@@ -125,7 +125,8 @@ before layers configuration."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(moe-dark
+   dotspacemacs-themes '(spacemacs-dark
+                         moe-dark
                          spacemacs-dark
                          zenburn
                          moe-light
@@ -677,10 +678,12 @@ layers configuration."
   ;; Theme ;;
 ;;;;;;;;;;;
   ;; This makes the mode-line legible
-  (moe-theme-set-color 'magenta)
+  ;; (moe-theme-set-color 'magenta)
   ;; Highlights the entire expression in parentheses
-  (show-paren-mode t)
-  (setq show-paren-style 'expression)
+  ;; (show-paren-mode t)
+
+  ;; Doesn't work well with spacemacs-dark
+  ;; (setq show-paren-style 'expression)
 
   ;;  Python
   ;; Create an inferior python process just once. An inferior python process is
