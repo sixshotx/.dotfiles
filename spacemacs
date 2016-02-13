@@ -290,9 +290,9 @@ in `dotspacemacs/user-config'."
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
-;;;;;;;;;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;;;;;;;;;
   ;; Editing defaults ;;
-;;;;;;;;;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;;;;;;;;;
   (setq require-final-newline t)
 
   ;; Allow vim-style %-matching everywhere
@@ -305,16 +305,12 @@ layers configuration. You are free to put any user code."
   (add-hook 'prog-mode-hook
             '(lambda ()
                (progn
-                 ;; Line numbers
-                 (linum-mode 1)
-                 ;; yas-snippet availability
-                 (yas-minor-mode 1)
                  ;; Always have cursor's line be in the center of the screen
                  (centered-cursor-mode 1))))
 
-;;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;;
   ;; Yasnippet ;;
-;;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;;
   ;; Selecting a block of text and then expanding a snippet around it doesn't
   ;; work in evil visual mode.
   (setq jason-yas-delete-region nil)
@@ -333,9 +329,9 @@ layers configuration. You are free to put any user code."
                 (when jason-yas-delete-region
                   (delete-region (mark) (point))
                   (setq jason-yas-delete-region nil))))
-;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;
   ;; Terminal ;;
-;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;
   ;; Term settings
   ;; Allow expanding python snippets in term-mode. The idea was that we could
   ;; use yasnippets in a terminal, but there are too many weirdnesses around
@@ -388,13 +384,12 @@ layers configuration. You are free to put any user code."
 
   (evil-leader/set-key
     ;; x for expand
-    "ox" 'jason-yas/yas-term-expand
-    )
+    "ox" 'jason-yas/yas-term-expand)
 
 
-;;;;;;;;;;
+  ;;;;;;;;;;
   ;; Text ;;
-;;;;;;;;;;
+  ;;;;;;;;;;
   (evil-leader/set-key
     ;; t for tag
     "of" 'find-tag
@@ -427,9 +422,9 @@ layers configuration. You are free to put any user code."
   ;; Whitespace
   (add-hook 'before-save-hook 'whitespace-cleanup)
 
-;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;
   ;; Modeline ;;
-;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;
   ;; Toggle modeline clock on by default
   (setq spacemacs-mode-line-org-clock-current-taskp t)
   ;; Disable showing minor modes
@@ -445,15 +440,15 @@ layers configuration. You are free to put any user code."
     "oh<" 'sp-dedent-adjust-sexp)
 
 
-;;;;;;;;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;;;;;;;;
   ;; Version control ;;
-;;;;;;;;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;;;;;;;;
 
   (setq vc-follow-symlinks t)
 
-;;;;;;;;;;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;;;;;;;;;;
   ;; Language-specific ;;
-;;;;;;;;;;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;;;;;;;;;;
 
   ;; Indent amount hooks
   ;; Maybe make a config file for different languages that evil mode
@@ -470,10 +465,10 @@ layers configuration. You are free to put any user code."
             (function (lambda ()
                         (setq js-indent-level 2)
                         (setq evil-shift-width 2))))
-;;;;;;;;;;
+  ;;;;;;;;;;
   ;; Evil ;;
-;;;;;;;;;;
-  ;; put H and L to line start an, end
+  ;;;;;;;;;;
+  ;; Put H and L to go to line start and end, respectively.
   (define-key evil-normal-state-map "H" "^")
   (define-key evil-normal-state-map "L" "$")
   ;; For quick recordings just type qq to start recording, then q to stop. You
@@ -482,40 +477,29 @@ layers configuration. You are free to put any user code."
   ;; standard meaning of 'Q', but all that does is enter "Ex" mode which I can live
   ;; without.
   (define-key evil-normal-state-map "Q" "@q")
-  ;;To copy text to the end-of-line, you can press y$ or you can use the
-  ;;following and press Y instead. This mapping sets up Y to be consistent with
-  ;;the C and D operators, which act from the cursor to the end of the line. The
-  ;;default behavior of Y is to yank the whole line.
+  ;; To copy text to the end-of-line, you can press y$ or you can use the
+  ;; following and press Y instead. This mapping sets up Y to be consistent with
+  ;; the C and D operators, which act from the cursor to the end of the line. The
+  ;; default behavior of Y is to yank the whole line.
   (define-key evil-normal-state-map "Y" "yy")
   ;; TODO map an insert mode keybinding to go to
   (define-key evil-insert-state-map (kbd "<C-return>")
     (lambda ()
       (end-of-line)
-      (newline-and-indent)
-      )
-    )
+      (newline-and-indent)))
 
-  ;; Screenshot
+  ;;;;;;;;;;;;;;;;
+  ;; Screenshot ;;
+  ;;;;;;;;;;;;;;;;
+  ;; Take a screenshot and save it to dropbox.
   (defun take-screenshot ()
     (interactive)
     (let ((screenshot-path (expand-file-name (concat "~/Dropbox/Screenshots/" (md5 (current-time-string)) ".png") )))
       (call-process "screencapture" nil nil nil "-i" screenshot-path)
-      (kill-new screenshot-path)
-      ))
+      (kill-new screenshot-path)))
 
   ;; Possibly fixes https://github.com/syl20bnr/spacemacs/issues/1300
   (savehist-mode -1)
-
-  ;;coffeescript testing
-  (sp-local-pair 'coffee-mode "{" nil :post-handlers '((my-create-newline-and-enter-sexp "C-j")))
-
-  (defun my-create-newline-and-enter-sexp (&rest _ignored)
-    (message "called")
-    (newline)
-    (newline)
-    (forward-line -1)
-    (coffee-indent-line)
-    )
 
   ;; Customize helm
   ;; Decide on this later
@@ -526,6 +510,7 @@ layers configuration. You are free to put any user code."
   ;; SPC r r for helm-register: view the contents of registers
   ;; SPC r y for helm-kill-ring: use helm to choose the thing to paste.
   ;; helm-top is amazing too
+
   ;; No idea where this is getting set, but I don't want it.
   (setq helm-always-two-windows nil)
 
@@ -560,14 +545,14 @@ layers configuration. You are free to put any user code."
   (setq notify-method 'notify-via-growl)
   ;; Open these buffers as soon as they're available
 
-;;;;;;;;;
+  ;;;;;;;;;
   ;; Git ;;
-;;;;;;;;;
+  ;;;;;;;;;
   (setq diff-hl-side 'right)
 
-;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;
   ;; Projectile
-;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;
   (evil-leader/set-key
     "pw" 'helm-projectile-find-other-file)
   (define-key evil-normal-state-map (kbd "SPC p /") 'spacemacs/helm-projectile-smart-do-search)
@@ -581,20 +566,18 @@ layers configuration. You are free to put any user code."
   ;;     (add-to-list 'projectile-other-file-alist '("htmlmk" "jqt" "scss" "js"))
   ;;     (add-to-list 'projectile-other-file-alist '("html" "jqt" "scss" "js"))))
 
-;;;;;;;;;;
+  ;;;;;;;;;;
   ;; HTML ;;
-;;;;;;;;;;
-  ;; (evilify html-mode html-mode-map
-  ;;          (kbd "j") 'sp-next-sexp)
-  (add-to-list 'auto-mode-alist '("\\.htmlmk\\'" . html-mode))
-  (add-to-list 'auto-mode-alist '("\\.jqt\\'" . html-mode))
+  ;;;;;;;;;;
   ;; (evil-define-key 'normal html-mode-map
   ;;   (kbd "j") 'sp-next-sexp
   ;;   (kbd "k") 'sp-previous-sexp
   ;;   (kbd "l") 'sp-down-sexp
   ;;   (kbd "h") 'sp-up-sexp)
 
-  ;; Ediff
+  ;;;;;;;;;;;
+  ;; Ediff ;;
+  ;;;;;;;;;;;
   ;; http://oremacs.com/2015/01/17/setting-up-ediff/
 
   ;; Uses custom-set variable value if it exists, otherwise just setq's.
