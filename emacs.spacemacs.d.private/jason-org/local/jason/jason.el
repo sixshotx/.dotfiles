@@ -18,7 +18,9 @@
             (message "org mode hook")
             ;; Remove visual fill column mode for the agenda b/c it
             ;; breaks the clock report table
-            (visual-line-mode 1)))
+            (visual-line-mode 1)
+            ;; Disable linum-mode for org-mode. Adding line numbers to large buffers is super slow.
+            (linum-mode 0)))
 
 (add-hook 'org-finalize-agenda-hook
           (lambda ()
