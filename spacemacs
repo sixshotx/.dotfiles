@@ -296,7 +296,7 @@ layers configuration. You are free to put any user code."
   (setq require-final-newline t)
 
   ;; Allow vim-style %-matching everywhere
-  (global-evil-matchit-mode 1)
+  ;; (global-evil-matchit-mode 1)
 
   ;; Navigate by visual line rather than absolute line.
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)

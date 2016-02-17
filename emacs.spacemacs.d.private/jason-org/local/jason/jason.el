@@ -18,14 +18,12 @@
             (message "org mode hook")
             ;; Remove visual fill column mode for the agenda b/c it
             ;; breaks the clock report table
-            (visual-line-mode 1)
-            (visual-fill-column-mode 1)))
+            (visual-line-mode 1)))
 
 (add-hook 'org-finalize-agenda-hook
           (lambda ()
             (message "org agenda hook")
-            (visual-line-mode 0)
-            (visual-fill-column-mode 0)))
+            (visual-line-mode 0)))
 
 ;; Use sticky agenda's so they persist. Useful to have an agenda view per buffer and just navigate among them
 
