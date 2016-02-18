@@ -7,7 +7,10 @@
 You should not put any user code in this function besides modifying the variable
 values."
   ;; Need to do this setup here because layer code uses it.
-  (load-file "~/Dropbox/auth_tokens.el")
+  (setq auth-tokens-path "~/Dropbox/auth_tokens.el")
+  (if (file-exists-p auth-tokens-path)
+    (load-file auth-tokens-path)
+    nil)
 
   (setq
    pushbullet
@@ -633,7 +636,7 @@ layers configuration. You are free to put any user code."
 
   ;; Ivy
   ;; Turn on ivy
-  (ivy-mode 1)
+  ;; (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
   ;; Use ivy for projectile
   (setq projectile-completion-system 'ivy)
