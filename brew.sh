@@ -28,8 +28,9 @@ brew cask install sogouinput
 brew cask install vlc
 
 
-# Install GNU core utilities (those that come with OS X are outdated)
-brew install coreutils
+# Install GNU core utilities (those that come with OS X are outdated and sometimes differ
+# in parameters from the standard Linux ones)
+brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt
 echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
 brew install findutils

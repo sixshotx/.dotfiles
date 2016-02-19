@@ -62,11 +62,6 @@ alias ipfw-restore="sudo ipfw delete 1; sudo ipfw pipe 1 delete"
 
 # Docker
 # Starts the Docker Linux host and makes docker commands use it.
-alias dockerme="docker-machine start default && eval \"$(docker-machine env default)\""
-# Inspect docker IP of a container
-docker-ip() {
-    docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$@"
-}
 # Workaround to make this work with tmux.
 alias terminal-notifier='reattach-to-user-namespace terminal-notifier'
 tn() {
@@ -83,4 +78,13 @@ dm() {
 # Shorthand for docker-compose
 dc() {
     docker-compose "$@"
+}
+
+#############
+# Utilities #
+#############
+# Output the biggest 10 files in human readable form.
+big-files() {
+    # Uses gsort installed from `brew install coreutils`
+    du -hsx * | gsort -rh | head -10
 }
