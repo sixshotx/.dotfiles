@@ -15,7 +15,10 @@ brew cask install alfred
 brew cask install amethyst
 brew cask install android-file-transfer
 brew cask install dropbox
-brew cask install google-chrome
+# Going to install chrome normally instead, sometimes there are odd
+# errors w/ this version. For example, the karma test runner
+# doesn't automatically detect the Chrome binary in this case.
+# brew cask install google-chrome
 brew cask install iterm2
 brew cask install karabiner
 brew cask install keyboard-maestro
