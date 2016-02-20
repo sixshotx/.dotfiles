@@ -12,6 +12,7 @@
       <appendix>Hyper + E to open Chrome</appendix>
       <appendix>Hyper + U to open Slack</appendix>
       <appendix>Hyper + D to open Sequel Pro</appendix>
+      <appendix>Hyper + P to open Preview</appendix>
       <identifier>custom.application_launchers</identifier>
 
       <!-- Define special keycodes for launching apps -->
@@ -49,6 +50,12 @@
         <name>KeyCode::VK_OPEN_URL_APP_Sequel_Pro</name>
         <url type="file">
           /opt/homebrew-cask/Caskroom/sequel-pro/1.1/Sequel Pro.app
+        </url>
+      </vkopenurldef>
+      <vkopenurldef>
+        <name>KeyCode::VK_OPEN_URL_APP_Preview</name>
+        <url type="file">
+          /Applications/Preview.app
         </url>
       </vkopenurldef>
 
@@ -94,6 +101,13 @@
         {{ MODIFIER_FLAG_HYPER }} | ModifierFlag::NONE,
 
         KeyCode::VK_OPEN_URL_APP_Sequel_Pro
+      </autogen>
+      <autogen>
+        __KeyToKey__
+        KeyCode::P,
+        {{ MODIFIER_FLAG_HYPER }} | ModifierFlag::NONE,
+
+        KeyCode::VK_OPEN_URL_APP_Preview
       </autogen>
     </item>
 
