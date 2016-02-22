@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Disabled</key>
+	<false/>
+	<key>Label</key>
+	<string>Org Mode Git Commit</string>
+	<key>Program</key>
+	<string>/Users/jason/Dropbox/org/auto_commit.sh</string>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>/tmp/test.stderr</string>
+	<key>StandardInPath</key>
+	<string>/tmp/test.stdin</string>
+	<key>StandardOutPath</key>
+	<string>/tmp/test.stdout</string>
+	<key>StartInterval</key>
+	<integer>3600</integer>
+</dict>
+</plist>

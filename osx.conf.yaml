@@ -30,3 +30,6 @@
     ~/.zenburn.conf: tmux/zenburn.conf
     # Karabiner
     ~/Library/Application Support/Karabiner: Karabiner
+    # LaunchAgents
+    # Automatically commit ~/Dropbox/jason/org files
+    ~/Library/LaunchAgents/org.mode.jason.plist: LaunchAgents/org.mode.jason.plist
