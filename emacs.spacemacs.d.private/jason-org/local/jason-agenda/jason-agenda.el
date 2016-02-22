@@ -155,7 +155,10 @@
                )
               ;; Space agenda
               (" " "Agenda"
-               ((agenda "" nil)
+               ((tags-todo "+today-overdue"
+                           ((org-agenda-overriding-header "Daily tasks")
+                            (org-agenda-skip-function '(org-agenda-skip-subtree-if 'todo '("DONE" "CODE REVIEW")))))
+                (agenda "" nil)
                 (tags-todo "refile"
                            ((org-agenda-overriding-header "Tasks to Refile")
                             (org-agenda-skip-function '(org-agenda-skip-subtree-if 'todo 'DONE))))
@@ -163,9 +166,6 @@
                       ((org-agenda-overriding-header "Waiting")))
                 (todo "CODE REVIEW"
                       ((org-agenda-overriding-header "Code Review")))
-                (tags-todo "+today-overdue"
-                           ((org-agenda-overriding-header "Daily tasks")
-                            (org-agenda-skip-function '(org-agenda-skip-subtree-if 'todo '("DONE" "CODE REVIEW")))))
                 (tags-todo "+today+overdue"
                            ((org-agenda-overriding-header "Daily tasks (overdue)")
                             (org-agenda-skip-function '(org-agenda-skip-subtree-if 'todo '("DONE" "CODE REVIEW")))))
