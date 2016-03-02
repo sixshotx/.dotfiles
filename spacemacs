@@ -797,6 +797,17 @@ layers configuration. You are free to put any user code."
   ;; where it's not explicitly supported, like less-mode.
   ;; (global-company-mode)
   ;; (global-auto-complete-mode)
+
+  (defun large-file-hook ()
+    "If a file is over a given size, make the buffer read only."
+    (when (> (buffer-size) (* 1024 1024))
+      ;; Don't allow file editing
+      (setq buffer-read-only t)
+      (buffer-disable-undo)
+      ;; Fundamental mode doesn't font lock
+      (fundamental-mode)
+      (linum-mode -1)))
+  (add-hook 'find-file-hook 'large-file-hook)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
