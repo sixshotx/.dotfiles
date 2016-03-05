@@ -9,6 +9,8 @@ alias gsl="git stash list"
 alias gwip='git add -A; git ls-files --deleted -z | xargs -0 git rm; git commit -n -m "--wip--"'
 alias gunwip='git log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1'
 alias gmm='branch=$(current_branch); gco master && ggpull && gco $branch && gm master'
+
+# Change branch using fzf.
 function gcb() {
     new_branch=$(gb | fzf)
     no_spaces=$(echo $new_branch | tr -d ' ')
