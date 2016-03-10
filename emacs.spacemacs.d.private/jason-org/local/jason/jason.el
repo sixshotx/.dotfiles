@@ -1,11 +1,3 @@
-(setq org-agenda-clockreport-parameter-plist (quote (:link t :maxlevel 6)))
-(setq org-agenda-log-mode-items (quote (clock)))
-(setq org-agenda-skip-scheduled-if-done t)
-(setq org-agenda-span (quote day))
-;; Start org agenda with logging things
-(setq org-agenda-start-with-log-mode t)
-;; Start org
-(setq org-agenda-start-with-clockreport-mode t)
 ;; Log state changes into a logbook
 (setq org-log-into-drawer t)
 
@@ -27,7 +19,7 @@
 
 ;; Use sticky agenda's so they persist. Useful to have an agenda view per buffer and just navigate among them
 
-                                        ; Navigation
+;; Navigation
 (defun org-goto-last-heading ()
   (interactive)
   ;; 1. Move to next tree
@@ -43,8 +35,10 @@
           '(lambda ()
              (define-key org-mode-map [remap prelude-smart-open-line-above] 'org-insert-todo-heading-respect-content)
              (define-key org-mode-map [remap prelude-google] 'org-goto-last-heading)))
+
+;; Start out indented since it's hard to understand org files
+;; when they're not indented.
 (setq org-startup-indented t)
-(setq org-agenda-follow-mode t)
 
 ;; Org mode
 ;; Necessary org global commands
@@ -170,7 +164,6 @@
 
 ;; Org agenda
 (global-set-key (kbd "<f12>") 'org-agenda)
-(setq org-agenda-files '("~/Dropbox/org"))
 ;; Enable habit tracking (and a bunch of other modules)
 (setq org-modules (quote (org-habit org-checklist org-depend)))
 
