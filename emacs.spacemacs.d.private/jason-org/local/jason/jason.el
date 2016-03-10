@@ -1,6 +1,3 @@
-;; TODO: Not sure if I need these
-;; (add-hook 'org-mode-hook (lambda () (visual-line-mode 1)))
-;; (add-hook 'org-mode-hook (lambda () (whitespace-mode 0)))
 (setq org-agenda-clockreport-parameter-plist (quote (:link t :maxlevel 6)))
 (setq org-agenda-log-mode-items (quote (clock)))
 (setq org-agenda-skip-scheduled-if-done t)
@@ -12,7 +9,6 @@
 ;; Log state changes into a logbook
 (setq org-log-into-drawer t)
 
-(setq fill-column 85)
 (add-hook 'org-mode-hook
           (lambda ()
             (message "org mode hook")
@@ -198,7 +194,6 @@
         nil
       subtree-end)))
 
-                                        ;(setq org-clock-sound "/Users/jason/Downloads/Sound/Terran/Goliath/TGoRdy00.wav")
 (setq org-clock-sound t)
 
 (setq org-use-speed-commands t)
