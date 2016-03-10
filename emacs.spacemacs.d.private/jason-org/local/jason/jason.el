@@ -1,23 +1,9 @@
-;; Log state changes into a logbook
-(setq org-log-into-drawer t)
-
-(add-hook 'org-mode-hook
-          (lambda ()
-            (message "org mode hook")
-            ;; Split long lines across multiple visual lines since text describing
-            ;; tasks can and should be long.
-            (visual-line-mode 1)
-            ;; Disable linum-mode for org-mode. Adding line numbers to large buffers is super slow.
-            (linum-mode 0)))
-
 (add-hook 'org-finalize-agenda-hook
           (lambda ()
             (message "org agenda hook")
             ;; Don't split long lines across multiple visual lines in agenda
             ;; because it breaks the clock report table.
             (visual-line-mode 1)))
-
-;; Use sticky agenda's so they persist. Useful to have an agenda view per buffer and just navigate among them
 
 ;; Navigation
 (defun org-goto-last-heading ()
@@ -30,11 +16,6 @@
   (let ((org-special-ctrl-a/e t))
     (org-end-of-line)))
 
-;; Replace prelude's smart open above w/ org mode's insert heading
-(add-hook 'org-mode-hook
-          '(lambda ()
-             (define-key org-mode-map [remap prelude-smart-open-line-above] 'org-insert-todo-heading-respect-content)
-             (define-key org-mode-map [remap prelude-google] 'org-goto-last-heading)))
 
 ;; Start out indented since it's hard to understand org files
 ;; when they're not indented.
@@ -131,10 +112,6 @@
 ;; Org habits
 ;; Position the habit graph on the agenda to the right of the default
 (setq org-habit-graph-column 50)
-
-;;;;;;;;;;;;;;;;
-;; Org Clocks ;;
-;;;;;;;;;;;;;;;;
 
 ;; Org agenda
 (global-set-key (kbd "<f12>") 'org-agenda)
