@@ -28,12 +28,15 @@
                                         ; Navigation
 (defun org-goto-last-heading ()
   (interactive)
-  (org-forward-heading-same-level 1)     ; 1. Move to next tree
-  (outline-previous-visible-heading 1)   ; 2. Move to last heading in previous tree
-  (let ((org-special-ctrl-a/e t))        ; 3. Ignore tags when
-    (org-end-of-line)))                  ;    moving to the end of the line
+  ;; 1. Move to next tree
+  (org-forward-heading-same-level 1)
+  ;;  2. Move to last heading in previous tree
+  (outline-previous-visible-heading 1)
+  ;; 3. Ignore tags when moving to the end of the line.
+  (let ((org-special-ctrl-a/e t))
+    (org-end-of-line)))
 
-                                        ; Replace prelude's smart open above w/ org mode's insert heading
+;; Replace prelude's smart open above w/ org mode's insert heading
 (add-hook 'org-mode-hook
           '(lambda ()
              (define-key org-mode-map [remap prelude-smart-open-line-above] 'org-insert-todo-heading-respect-content)
@@ -42,7 +45,7 @@
 (setq org-agenda-follow-mode t)
 
 ;; Org mode
-                                        ; Necessary org global commands
+;; Necessary org global commands
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
@@ -50,7 +53,10 @@
 (global-set-key (kbd "<f8>") 'org-cycle-agenda-files)
 (global-set-key (kbd "<f9> n") 'bh/toggle-next-task-display)
 
-                                        ; Org mode todo settings
+
+;;;;;;;;;;;;;;;;;;;;;;;
+;; Org Todo Settings ;;
+;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Keywords after "|" are terminal
 ;; STATE(@/!).
@@ -58,7 +64,6 @@
 ;; ! means only adding a time.
 ;; X/Y means "do X when entering a state" and Y means "do Y" iff the target
 ;; state does not define X
-;;;
 (setq org-todo-keywords
       ;; TODO means stuff to do that we haven't started.
       ;; NEXT means that we've started doing it and might need to finish it.
@@ -128,10 +133,12 @@
               )))
 
 ;; Org habits
-                                        ; position the habit graph on the agenda to the right of the default
+;; Position the habit graph on the agenda to the right of the default
 (setq org-habit-graph-column 50)
 
-;; Org clocking
+;;;;;;;;;;;;;;;;
+;; Org Clocks ;;
+;;;;;;;;;;;;;;;;
 ;; Resume clocking task when emacs is restarted
 (org-clock-persistence-insinuate)
 ;; Show lot of clocking history so it's easy to pick items to resume clocking
