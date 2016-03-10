@@ -12,8 +12,8 @@
 (add-hook 'org-mode-hook
           (lambda ()
             (message "org mode hook")
-            ;; Remove visual fill column mode for the agenda b/c it
-            ;; breaks the clock report table
+            ;; Split long lines across multiple visual lines since text describing
+            ;; tasks can and should be long.
             (visual-line-mode 1)
             ;; Disable linum-mode for org-mode. Adding line numbers to large buffers is super slow.
             (linum-mode 0)))
@@ -21,7 +21,9 @@
 (add-hook 'org-finalize-agenda-hook
           (lambda ()
             (message "org agenda hook")
-            (visual-line-mode 0)))
+            ;; Don't split long lines across multiple visual lines in agenda
+            ;; because it breaks the clock report table.
+            (visual-line-mode 1)))
 
 ;; Use sticky agenda's so they persist. Useful to have an agenda view per buffer and just navigate among them
 
