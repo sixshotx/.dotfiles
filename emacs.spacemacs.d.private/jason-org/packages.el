@@ -16,6 +16,8 @@
     appt
     (jason :location local)
     (clock-settings :location local)
+    (jason-settings :location local)
+    (org-todo-settings :location local)
     (jason-agenda :location local)
     moe-theme
     org-autolist
@@ -77,6 +79,15 @@ which require an initialization must be listed explicitly in the list.")
 (defun jason-org/init-jason-settings ()
   (with-eval-after-load 'org
       (use-package jason-settings
+        :defer t
+        :init
+        ;; This block executes before the package has been loaded
+        :config
+        ;; This block executes after the package has been loaded
+        )))
+(defun jason-org/init-org-todo-settings ()
+  (with-eval-after-load
+      (use-package org-todo-settings
         :defer t
         :init
         ;; This block executes before the package has been loaded
