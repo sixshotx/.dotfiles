@@ -17,3 +17,5 @@
 ;; Start out indented since it's hard to understand org files
 ;; when they're not indented.
 (setq org-startup-indented t)
+
+(provide 'jason-settings)

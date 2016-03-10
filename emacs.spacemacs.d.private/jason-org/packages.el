@@ -69,31 +69,15 @@ which require an initialization must be listed explicitly in the list.")
 
 (defun jason-org/init-clock-settings ()
   (with-eval-after-load 'org-bh
-        (use-package clock-settings
-          :defer t
-          :init
-          ;; This block executes before the package has been loaded
-          :config
-          ;; This block executes after the package has been loaded
-          )))
+        (use-package clock-settings)))
+
 (defun jason-org/init-jason-settings ()
-  (with-eval-after-load 'org
-      (use-package jason-settings
-        :defer t
-        :init
-        ;; This block executes before the package has been loaded
-        :config
-        ;; This block executes after the package has been loaded
-        )))
+  (use-package jason-settings))
+
 (defun jason-org/init-org-todo-settings ()
+  ;; Can't do :defer: for some reason, it doesn't work.
   (with-eval-after-load
-      (use-package org-todo-settings
-        :defer t
-        :init
-        ;; This block executes before the package has been loaded
-        :config
-        ;; This block executes after the package has been loaded
-        )))
+      (use-package org-todo-settings)))
 
 (defun jason-org/init-org-depend ()
   "Initialize my extension"

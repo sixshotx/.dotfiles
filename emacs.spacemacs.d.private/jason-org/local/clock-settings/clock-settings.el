@@ -26,3 +26,5 @@
 (setq org-clock-report-include-clocking-task t)
 
 (add-hook 'org-clock-out-hook 'bh/clock-out-maybe 'append)
+
+(provide 'clock-settings)

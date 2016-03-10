@@ -44,3 +44,5 @@
 ;; Don't allow marking a headline done until its child
 ;; checkboxes are done.
 (setq org-enforce-todo-checkbox-dependencies t)
+
+(provide 'org-todo-settings)
