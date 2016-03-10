@@ -16,21 +16,6 @@
   (let ((org-special-ctrl-a/e t))
     (org-end-of-line)))
 
-
-;; Start out indented since it's hard to understand org files
-;; when they're not indented.
-(setq org-startup-indented t)
-
-;; Org mode
-;; Necessary org global commands
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cb" 'org-iswitchb)
-(global-set-key (kbd "<f8>") 'org-cycle-agenda-files)
-(global-set-key (kbd "<f9> n") 'bh/toggle-next-task-display)
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org Todo Settings ;;
 ;;;;;;;;;;;;;;;;;;;;;;;
