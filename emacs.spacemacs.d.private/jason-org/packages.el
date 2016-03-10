@@ -15,6 +15,7 @@
     ;; package jason-orgs go here
     appt
     (jason :location local)
+    (clock-settings :location local)
     (jason-agenda :location local)
     moe-theme
     org-autolist
@@ -63,6 +64,16 @@ which require an initialization must be listed explicitly in the list.")
   (eval-after-load 'org-bh
     (use-package jason))
   )
+
+(defun jason-org/init-clock-settings ()
+  (with-eval-after-load 'org-bh
+        (use-package clock-settings
+          :defer t
+          :init
+          ;; This block executes before the package has been loaded
+          :config
+          ;; This block executes after the package has been loaded
+          )))
 
 (defun jason-org/init-org-depend ()
   "Initialize my extension"
