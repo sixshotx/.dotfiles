@@ -119,8 +119,8 @@
 (setq org-agenda-ndays 1)
 ;; Show the daily log of things you've clocked by default in the agenda
 (setq org-agenda-show-log t)
-;; Start out agenda bound to org mode
-(setq org-agenda-start-with-follow-mode t)
+;; Don't have agenda follow org-mode because it slows down agenda operations.
+(setq org-agenda-start-with-follow-mode nil)
 
 ;; Custom agenda command definitions
 (setq org-agenda-custom-commands
