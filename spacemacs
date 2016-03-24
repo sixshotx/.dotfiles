@@ -43,8 +43,12 @@ values."
                       ;; auto-completion-enable-help-tooltip t
                       auto-completion-enable-sort-by-usage t)
      colors
+     chrome
      dash
+     dockerfile
+     elm
      emacs-lisp
+     gtags
      (git :variables
           git-gutter-use-fringe t
           git-enable-github-support t)
@@ -293,9 +297,9 @@ in `dotspacemacs/user-config'."
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
-  ;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;
   ;; Editing defaults ;;
-  ;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;
   (setq require-final-newline t)
 
   ;; Allow vim-style %-matching everywhere
@@ -311,9 +315,9 @@ layers configuration. You are free to put any user code."
                  ;; Always have cursor's line be in the center of the screen
                  (centered-cursor-mode 1))))
 
-  ;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
   ;; Yasnippet ;;
-  ;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
   ;; Selecting a block of text and then expanding a snippet around it doesn't
   ;; work in evil visual mode.
   (setq jason-yas-delete-region nil)
@@ -332,9 +336,9 @@ layers configuration. You are free to put any user code."
                 (when jason-yas-delete-region
                   (delete-region (mark) (point))
                   (setq jason-yas-delete-region nil))))
-  ;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;
   ;; Terminal ;;
-  ;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;
   ;; Term settings
   ;; Allow expanding python snippets in term-mode. The idea was that we could
   ;; use yasnippets in a terminal, but there are too many weirdnesses around
@@ -390,9 +394,9 @@ layers configuration. You are free to put any user code."
     "ox" 'jason-yas/yas-term-expand)
 
 
-  ;;;;;;;;;;
+;;;;;;;;;;
   ;; Text ;;
-  ;;;;;;;;;;
+;;;;;;;;;;
   (evil-leader/set-key
     ;; t for tag
     "of" 'find-tag
@@ -425,9 +429,9 @@ layers configuration. You are free to put any user code."
   ;; Whitespace
   (add-hook 'before-save-hook 'whitespace-cleanup)
 
-  ;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;
   ;; Modeline ;;
-  ;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;
   ;; Toggle modeline clock on by default
   (setq spacemacs-mode-line-org-clock-current-taskp t)
   ;; Disable showing minor modes
@@ -443,15 +447,15 @@ layers configuration. You are free to put any user code."
     "oh<" 'sp-dedent-adjust-sexp)
 
 
-  ;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;
   ;; Version control ;;
-  ;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;
 
   (setq vc-follow-symlinks t)
 
-  ;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;
   ;; Language-specific ;;
-  ;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;
 
   ;; Indent amount hooks
   ;; Maybe make a config file for different languages that evil mode
@@ -468,9 +472,9 @@ layers configuration. You are free to put any user code."
             (function (lambda ()
                         (setq js-indent-level 2)
                         (setq evil-shift-width 2))))
-  ;;;;;;;;;;
+;;;;;;;;;;
   ;; Evil ;;
-  ;;;;;;;;;;
+;;;;;;;;;;
   ;; Put H and L to go to line start and end, respectively.
   (define-key evil-normal-state-map "H" "^")
   (define-key evil-normal-state-map "L" "$")
@@ -491,9 +495,9 @@ layers configuration. You are free to put any user code."
       (end-of-line)
       (newline-and-indent)))
 
-  ;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;
   ;; Screenshot ;;
-  ;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;
   ;; Take a screenshot and save it to dropbox.
   (defun take-screenshot ()
     (interactive)
@@ -548,14 +552,14 @@ layers configuration. You are free to put any user code."
   (setq notify-method 'notify-via-growl)
   ;; Open these buffers as soon as they're available
 
-  ;;;;;;;;;
+;;;;;;;;;
   ;; Git ;;
-  ;;;;;;;;;
+;;;;;;;;;
   (setq diff-hl-side 'right)
 
-  ;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;
   ;; Projectile
-  ;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;
   (evil-leader/set-key
     "pw" 'helm-projectile-find-other-file)
   (define-key evil-normal-state-map (kbd "SPC p /") 'spacemacs/helm-projectile-smart-do-search)
@@ -569,18 +573,18 @@ layers configuration. You are free to put any user code."
   ;;     (add-to-list 'projectile-other-file-alist '("htmlmk" "jqt" "scss" "js"))
   ;;     (add-to-list 'projectile-other-file-alist '("html" "jqt" "scss" "js"))))
 
-  ;;;;;;;;;;
+;;;;;;;;;;
   ;; HTML ;;
-  ;;;;;;;;;;
+;;;;;;;;;;
   ;; (evil-define-key 'normal html-mode-map
   ;;   (kbd "j") 'sp-next-sexp
   ;;   (kbd "k") 'sp-previous-sexp
   ;;   (kbd "l") 'sp-down-sexp
   ;;   (kbd "h") 'sp-up-sexp)
 
-  ;;;;;;;;;;;
+;;;;;;;;;;;
   ;; Ediff ;;
-  ;;;;;;;;;;;
+;;;;;;;;;;;
   ;; http://oremacs.com/2015/01/17/setting-up-ediff/
 
   ;; Uses custom-set variable value if it exists, otherwise just setq's.
@@ -808,6 +812,14 @@ layers configuration. You are free to put any user code."
       (fundamental-mode)
       (linum-mode -1)))
   (add-hook 'find-file-hook 'large-file-hook)
+
+  ;; Aggressively indent code.
+  (aggressive-indent-global-mode)
+
+  ;; Chrome layer listj
+  (setq edit-server-url-major-mode-alist
+        '(("github\\.com" . org-mode)
+          ("everstring\\.atlassian\\.net . org-mode")))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -817,11 +829,11 @@ layers configuration. You are free to put any user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ahs-case-fold-search nil)
- '(ahs-default-range (quote ahs-range-whole-buffer))
- '(ahs-idle-interval 0.25)
+ '(ahs-case-fold-search nil t)
+ '(ahs-default-range (quote ahs-range-whole-buffer) t)
+ '(ahs-idle-interval 0.25 t)
  '(ahs-idle-timer 0 t)
- '(ahs-inhibit-face-list nil)
+ '(ahs-inhibit-face-list nil t)
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(fringe-mode 6 nil (fringe))
@@ -841,8 +853,11 @@ layers configuration. You are free to put any user code."
  '(org-clock-persist-query-resume nil)
  '(org-clock-report-include-clocking-task t)
  '(org-clock-sound t)
+ '(package-selected-packages
+   (quote
+    (flycheck-elm elm-mode gmail-message-mode ham-mode html-to-markdown edit-server zonokai-theme zenburn-theme zen-and-art-theme yaml-mode xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme tronesque-theme toxi-theme toc-org tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit sws-mode sunny-day-theme sublime-themes subatomic256-theme subatomic-theme stickyfunc-enhance stekene-theme srefactor spacemacs-theme spaceline spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smooth-scrolling smeargle slim-mode shell-pop seti-theme scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reverse-theme reveal-in-osx-finder restclient restart-emacs rbenv rake rainbow-mode rainbow-identifiers rainbow-delimiters railscasts-theme quelpa pyvenv pytest pyenv-mode py-autopep8 purple-haze-theme professional-theme popwin planet-theme pip-requirements phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pcre2el pbcopy pastels-on-dark-theme paradox page-break-lines osx-trash orgit organic-green-theme org-repo-todo org-present org-plus-contrib org-bullets org-autolist open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme niflheim-theme neotree naquadah-theme mustang-theme multi-term move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc majapahit-theme magit-gitflow macrostep lush-theme lorem-ipsum livid-mode live-py-mode lispy linum-relative link-hint light-soap-theme leuven-theme less-css-mode launchctl jsx-mode json-mode js2-refactor js-doc jbeans-theme jazz-theme jade-mode ir-black-theme inkpot-theme info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-gutter-fringe git-gutter-fringe+ gh-md ggtags gandalf-theme flycheck-pos-tip flx-ido flatui-theme flatland-theme firebelly-theme fill-column-indicator farmhouse-theme fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu espresso-theme eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dracula-theme dockerfile-mode django-theme diff-hl define-word dash-at-point darktooth-theme darkmine-theme darkburn-theme dakrone-theme cython-mode cyberpunk-theme company-web company-tern company-statistics company-quickhelp colorsarenice-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized coffee-mode clues-theme clean-aindent-mode chruby cherry-blossom-theme busybee-theme bundler buffer-move bubbleberry-theme browse-at-remote bracketed-paste birds-of-paradise-plus-theme beeminder badwolf-theme auto-yasnippet auto-highlight-symbol auto-compile apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alert alect-themes aggressive-indent afternoon-theme adaptive-wrap ace-link ace-jump-helm-line ac-ispell)))
  '(python-shell-interpreter "ipython")
- '(ring-bell-function (quote ignore) t)
+ '(ring-bell-function (quote ignore))
  '(safe-local-variable-values
    (quote
     ((web-mode-markup-indent-offset . 4)
