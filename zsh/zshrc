@@ -183,5 +183,17 @@ ftpane () {
     fi
 }
 
+# Python
+# pip install and save to requirements.txt
+pips() {
+    package_name=$1
+    requirements_file=$2
+    if [[ -z $requirements_file ]]
+    then
+        requirements_file='./requirements.txt'
+    fi
+    pip install $package_name && pip freeze | grep -i $package_name >> $requirements_file
+}
+
 # # RVM - ruby version manager
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

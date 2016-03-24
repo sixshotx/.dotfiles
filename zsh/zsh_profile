@@ -80,6 +80,14 @@ dc() {
     docker-compose "$@"
 }
 
+# Remove everything.
+drm() {
+    # Delete all containers
+    docker rm -f $(docker ps -a -q)
+    # Delete all images
+    docker rmi -f $(docker images -q)
+}
+
 if (( $+commands[docker-machine] )) ; then
     echo "Starting docker-machine..."
     docker-machine start default
