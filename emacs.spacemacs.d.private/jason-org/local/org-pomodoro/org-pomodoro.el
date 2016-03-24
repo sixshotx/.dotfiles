@@ -117,9 +117,10 @@ Use `org-pomodoro-finished-sound' to determine what sound that should be."
   :group 'org-pomodoro
   :type 'boolean)
 
-(defcustom org-pomodoro-finished-sound (when load-file-name
-                                         (concat (file-name-directory load-file-name)
-                                                 "resources/reap_the_whirlwind.wav"))
+(defcustom org-pomodoro-finished-sound
+  (when load-file-name
+    (concat (file-name-directory load-file-name)
+            "resources/reap_the_whirlwind.wav"))
   "The path to a sound file that´s to be played when a pomodoro was finished."
   :group 'org-pomodoro
   :type 'file)
