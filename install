@@ -6,6 +6,12 @@ if [ `uname` == "Darwin" ]; then
     CONFIG="osx.conf.yaml"
 else
     CONFIG="linux.conf.yaml"
+
+    # Install xmonad and dmenu.
+    sudo apt-get install xmonad suckless-tools xscreensaver
+
+    # Install handy status bar
+    sudo apt-get install xmobar
     # Ehh, do this later.
     # # Latest git
     # # https://www.howtoforge.com/install-git-on-ubuntu-13.1

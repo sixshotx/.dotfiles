@@ -21,3 +21,7 @@
     ~/.zenburn.conf: tmuxinator/zenburn.conf
     # Vimperator
     ~/.vimperratorrc: vimperratorrc
+    # Linux-specific settings
+    ~/.xmonad: xmonad
+    ~/.xmobarrc: xmobarrc
+    ~/.stalonetrayrc: stalonetrayrc
