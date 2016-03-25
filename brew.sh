@@ -69,6 +69,7 @@ pip install pushbullet.py
 
 # Install everything else
 brew install ag
+brew cask install hammerspoon
 
 #########
 # Emacs #
