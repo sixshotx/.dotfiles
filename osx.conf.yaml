@@ -33,3 +33,5 @@
     # LaunchAgents
     # Automatically commit ~/Dropbox/jason/org files
     ~/Library/LaunchAgents/org.mode.jason.plist: LaunchAgents/org.mode.jason.plist
+    # Hammerspoon
+    ~/.hammerspoon: hammerspoon
