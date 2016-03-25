@@ -9,7 +9,7 @@ values."
   ;; Need to do this setup here because layer code uses it.
   (setq auth-tokens-path "~/Dropbox/auth_tokens.el")
   (if (file-exists-p auth-tokens-path)
-    (load-file auth-tokens-path)
+      (load-file auth-tokens-path)
     nil)
 
   (setq
@@ -56,9 +56,11 @@ values."
      ;; auto-completion
      ;; better-defaults
      emacs-lisp
+     haskell
      html
      hydra
      lispy
+     lua
      octave
      org
      ;; To use the python layer, you have to install these dependencies manually:
