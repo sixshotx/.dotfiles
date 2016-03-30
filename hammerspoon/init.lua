@@ -14,12 +14,27 @@ hs.hotkey.bind(super, "c", function() tiling.cycleLayout() end)
 hs.hotkey.bind(super, "j", function() tiling.cycle(1) end)
 hs.hotkey.bind(super, "k", function() tiling.cycle(-1) end)
 hs.hotkey.bind(super, "space", function() tiling.promote() end)
--- hotkey.bind(super, "f", function() tiling.goToLayout("fullscreen") end)
+
+-- Push the window into the exact center of the screen
+local function center(window)
+  frame = window:screen():frame()
+  frame.x = (frame.w / 2) - (frame.w / 4)
+  frame.y = (frame.h / 2) - (frame.h / 4)
+  frame.w = frame.w / 2
+  frame.h = frame.h / 2
+  window:setFrame(frame)
+end
+
+hs.hotkey.bind(super, "f", function() tiling.toggleFloat(center) end)
+
+hs.hotkey.bind(super, "h", function() tiling.goToLayout("big-main-vertical") end)
 
 -- If you want to set the layouts that are enabled
 tiling.set(
   'layouts', {
-    'fullscreen', 'main-vertical'
+    'big-main-vertical'
+    -- , 'fullscreen'
+    -- , 'main-vertical'
 })
 
 

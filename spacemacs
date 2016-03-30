@@ -815,9 +815,10 @@ layers configuration. You are free to put any user code."
       (linum-mode -1)))
   (add-hook 'find-file-hook 'large-file-hook)
 
-  ;; Aggressively indent code.
-  (aggressive-indent-global-mode)
-
+  ;;;;;;;;;;;;;;;
+  ;; Git/Magit ;;
+  ;;;;;;;;;;;;;;;
+  (setq magit-blame-heading-format "%-20a %C %s %H")
   ;; Chrome layer listj
   (setq edit-server-url-major-mode-alist
         '(("github\\.com" . org-mode)
