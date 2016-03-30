@@ -40,8 +40,10 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      (auto-completion :variables
-                      ;; auto-completion-enable-help-tooltip t
-                      auto-completion-enable-sort-by-usage t)
+                      ;; Docstring tooltip
+                      auto-completion-enable-help-tooltip t
+                      auto-completion-enable-sort-by-usage t
+                      auto-completion-enable-snippets-in-popup t)
      colors
      chrome
      dash
@@ -71,7 +73,6 @@ values."
      jason-eyebrowse
      jason-org
      jason-python
-     jason-web
      ruby
      react
      semantic
@@ -801,7 +802,7 @@ layers configuration. You are free to put any user code."
 
   ;; Enable company globally so that auto-completion works in modes
   ;; where it's not explicitly supported, like less-mode.
-  ;; (global-company-mode)
+  (global-company-mode)
   ;; (global-auto-complete-mode)
 
   (defun large-file-hook ()
