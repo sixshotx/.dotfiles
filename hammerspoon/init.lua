@@ -1,8 +1,8 @@
 -- Docs: http://bit.ly/1VJY6ku
-local super = {"ctrl", "cmd", "alt"}
+local hyper = {"ctrl", "cmd", "alt"}
 local tiling = require "hs.tiling"
 hs.hotkey.bind(
-  super, "3", function()
+  hyper, "3", function()
     -- Hs notification
     -- hs.alert.show("Hello World")
 
@@ -10,10 +10,10 @@ hs.hotkey.bind(
     hs.notify.new({title="Hammerspoon", informativeText="Hello World"}):send()
 end)
 
-hs.hotkey.bind(super, "c", function() tiling.cycleLayout() end)
-hs.hotkey.bind(super, "j", function() tiling.cycle(1) end)
-hs.hotkey.bind(super, "k", function() tiling.cycle(-1) end)
-hs.hotkey.bind(super, "space", function() tiling.promote() end)
+hs.hotkey.bind(hyper, "c", function() tiling.cycleLayout() end)
+hs.hotkey.bind(hyper, "j", function() tiling.cycle(1) end)
+hs.hotkey.bind(hyper, "k", function() tiling.cycle(-1) end)
+hs.hotkey.bind(hyper, "space", function() tiling.promote() end)
 
 -- Push the window into the exact center of the screen
 local function center(window)
@@ -25,9 +25,9 @@ local function center(window)
   window:setFrame(frame)
 end
 
-hs.hotkey.bind(super, "f", function() tiling.toggleFloat(center) end)
+hs.hotkey.bind(hyper, "f", function() tiling.toggleFloat(center) end)
 
-hs.hotkey.bind(super, "h", function() tiling.goToLayout("big-main-vertical") end)
+hs.hotkey.bind(hyper, "h", function() tiling.goToLayout("big-main-vertical") end)
 
 -- If you want to set the layouts that are enabled
 tiling.set(
@@ -39,7 +39,7 @@ tiling.set(
 
 
 hs.hotkey.bind(
-  super, "l",
+  hyper, "l",
   function()
     local allWindows = hs.window.allWindows()
     hs.window.focusWindowEast()
@@ -47,7 +47,7 @@ end)
 
 -- Reload config
 hs.hotkey.bind(
-  super, "r",
+  hyper, "r",
   function()
     hs.reload()
     hs.alert.show("Config reloaded")
