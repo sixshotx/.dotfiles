@@ -174,10 +174,10 @@ _k_ move subtree up       _p_ paste subtree
 _h_ move subtree left
 _l_ move subtree right
 "
-    ("j" org-move-subtree-down)
-    ("k" org-move-subtree-up)
-    ("h" org-promote-subtree)
-    ("l" org-demote-subtree)
+    ("j" org-move-subtree-down :color red)
+    ("k" org-move-subtree-up :color red)
+    ("h" org-promote-subtree :color red)
+    ("l" org-demote-subtree :color red)
     ("y" org-cut-subtree)
     ("p" org-paste-subtree)
     ("i" org-insert-heading-after-current "heading insert")
