@@ -68,9 +68,9 @@ values."
      markdown
      python
      javascript
-     jason-eyebrowse
+     ;; jason-eyebrowse
      jason-org
-     jason-python
+     ;; jason-python
      ruby
      react
      semantic
@@ -565,14 +565,12 @@ layers configuration. You are free to put any user code."
     "pw" 'helm-projectile-find-other-file)
   (define-key evil-normal-state-map (kbd "SPC p /") 'spacemacs/helm-projectile-smart-do-search)
   ;; Allow switching between js, scss, and html files more easily.
+
   ;; TODO - this doesn't work right now
-  ;; (eval-after-load 'projectile
+  ;; (eval-after-load 'helm-projectile
   ;;   (progn
-  ;;     (add-to-list 'projectile-other-file-alist '("js" "scss" "jqt" "html" "htmlmk"))
-  ;;     (add-to-list 'projectile-other-file-alist '("scss" "js" "jqt" "html" "htmlmk"))
-  ;;     (add-to-list 'projectile-other-file-alist '("jqt" "scss" "js" "html" "htmlmk"))
-  ;;     (add-to-list 'projectile-other-file-alist '("htmlmk" "jqt" "scss" "js"))
-  ;;     (add-to-list 'projectile-other-file-alist '("html" "jqt" "scss" "js"))))
+  ;;       (add-to-list 'projectile-other-file-alist '("js" "scss"))
+  ;;       (add-to-list 'projectile-other-file-alist '("scss" "js"))))
 
 ;;;;;;;;;;
   ;; HTML ;;
@@ -804,7 +802,7 @@ layers configuration. You are free to put any user code."
 
   ;; Enable company globally so that auto-completion works in modes
   ;; where it's not explicitly supported, like less-mode.
-  (global-company-mode)
+  ;; (global-company-mode)
   ;; (global-auto-complete-mode)
 
   (defun large-file-hook ()
@@ -825,8 +823,7 @@ layers configuration. You are free to put any user code."
   ;; Chrome layer listj
   (setq edit-server-url-major-mode-alist
         '(("github\\.com" . org-mode)
-          ("everstring\\.atlassian\\.net . org-mode")))
-  )
+          ("everstring\\.atlassian\\.net . org-mode"))))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
