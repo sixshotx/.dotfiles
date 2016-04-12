@@ -61,6 +61,7 @@ export PATH="$PATH:/usr/local/bin:/Users/jason/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
+export PATH="/usr/local/Cellar/emacs-mac/emacs-24.5-z-mac-5.13/bin:$PATH"
 
 # emacs shortcut
 ec() {
