@@ -39,11 +39,9 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     (auto-completion :variables
-                      ;; Docstring tooltip
-                      auto-completion-enable-help-tooltip t
-                      auto-completion-enable-sort-by-usage t
-                      auto-completion-enable-snippets-in-popup t)
+     auto-completion
+     (clojure :variables
+              clojure-enable-fancify-symbols t)
      colors
      chrome
      dash
@@ -627,6 +625,10 @@ layers configuration. You are free to put any user code."
   (setq js2-mode-show-parse-errors nil)
   (setq js2-mode-show-strict-warnings nil)
   (setq css-indent-offset 2)
+  (defun turn-on-aggressive-indent ()
+    (progn
+      (aggressive-indent-mode)))
+  (add-hook 'scss-mode-hook 'turn-on-aggressive-indent)
 
   (setq web-mode-markup-indent-offset 2)
   (defun buffer-mode (buffer-or-string)
