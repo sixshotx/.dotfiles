@@ -203,5 +203,6 @@ be restored properly."
   ad-do-it
   (delete-other-windows))
 (setq org-agenda-restore-windows-after-quit t)
-(setq org-agenda-sticky nil)
+;; The agenda is expensive to compute, so going to make it sticky by default.
+(setq org-agenda-sticky t)
 (provide 'jason-agenda)
