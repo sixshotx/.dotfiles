@@ -178,6 +178,7 @@ _l_ move subtree right
     ("k" org-move-subtree-up :color red)
     ("h" org-promote-subtree :color red)
     ("l" org-demote-subtree :color red)
+    ("$" org-goto-last-heading)
     ("y" org-cut-subtree)
     ("p" org-paste-subtree)
     ("i" org-insert-heading-after-current "heading insert")

@@ -7,6 +7,7 @@
 
 ;; Navigation
 (defun org-goto-last-heading ()
+  "Go to last heading in the current subtree"
   (interactive)
   ;; 1. Move to next tree
   (org-forward-heading-same-level 1)

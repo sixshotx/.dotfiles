@@ -22,10 +22,10 @@ var keybindings = (function() {
         },
 
         // Push windows around.
-        //"j:shift;cmd;ctrl;alt": slate.op("push", {"direction": "down"}),
-        // "k:shift;cmd;ctrl;alt": slate.op("push", {"direction": "up"}),
-        // "h:shift;cmd;ctrl;alt": slate.op("push", {"direction": "left"}),
-        // "l:shift;cmd;ctrl;alt": slate.op("push", {"direction": "right"}),
+        "j:shift;cmd;ctrl;alt": slate.op("push", {"direction": "down"}),
+        "k:shift;cmd;ctrl;alt": slate.op("push", {"direction": "up"}),
+        "h:shift;cmd;ctrl;alt": slate.op("push", {"direction": "left"}),
+        "l:shift;cmd;ctrl;alt": slate.op("push", {"direction": "right"}),
 
         // Throw windows between screens.
         "[:shift;cmd;ctrl;alt": slate.op("throw", {"screen": "left"}),
@@ -35,7 +35,7 @@ var keybindings = (function() {
         "padEnter:cmd;ctrl;alt": slate.op("layout", {"name": "dualMonitors"}),
 
         // Take notes w/ nvALT
-        "0:cmd;ctrl;alt": slate.op("layout", {"name": "takingNotes"}),
+        // "0:cmd;ctrl;alt": slate.op("layout", {"name": "takingNotes"}),
 
         // Undo the last movement operation
         "/:cmd;ctrl;alt": slate.op("undo"),
@@ -50,7 +50,7 @@ var keybindings = (function() {
     /* ------------------ */
     /* LAYOUT KEYBINDINGS */
     /* ------------------ */
-	// Half on the left and half on the right
+  // Half on the left and half on the right
     slate.bind("9:cmd;ctrl;alt", helpers.cycleBuilder(function(screenCoords) {
         var width = screenCoords.width * 1 / 2,
             height = screenCoords.height,
