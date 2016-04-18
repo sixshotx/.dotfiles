@@ -53,7 +53,8 @@ values."
           git-gutter-use-fringe t
           git-enable-github-support t)
      spacemacs-helm
-     ;; auto-completion
+     (auto-completion :variables
+                      auto-completion-complete-with-key-sequence-delay 0.1)
      ;; better-defaults
      emacs-lisp
      haskell
@@ -626,7 +627,8 @@ layers configuration. You are free to put any user code."
   (defun turn-on-aggressive-indent ()
     (progn
       (aggressive-indent-mode)))
-  (add-hook 'scss-mode-hook 'turn-on-aggressive-indent)
+  ;; Can't use aggressive indent mode for scss because the indentation is not perfect.
+  ;; (add-hook 'scss-mode-hook 'turn-on-aggressive-indent)
 
   (setq web-mode-markup-indent-offset 2)
   (defun buffer-mode (buffer-or-string)
