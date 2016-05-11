@@ -303,6 +303,25 @@
    ))
 (setq appt-disp-window-function (function my-appt-display))
 
+(defun jy/next-friday ()
+  "Return the ISO timestamp of the next Friday from today"
+  (let* ((day-of-week-today (nth 6 (decode-time (current-time))))
+         (day-of-week-friday 5)
+         (days-till-friday (- day-of-week-friday day-of-week-today))
+
+         ;; Time as an elisp time object
+         (time-till-friday (days-to-time days-till-friday))
+         (time-friday (time-add (current-time) time-till-friday))
+         (time-friday-timestamp (format-time-string "%Y-%m-%d" time-friday)))
+    (progn
+      time-friday-timestamp)))
+
+(defun jy/org-set-deadline-to-end-of-week (arg)
+  "Set this headline's deadline to the end of this week"
+  (interactive "P")
+  (progn
+    (org-deadline nil (jy/next-friday))))
+
 ;; Get rid of whitespace mode. Annoying in org files
 ;; Clocking settings
 (provide 'jason)

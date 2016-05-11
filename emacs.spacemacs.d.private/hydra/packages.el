@@ -196,7 +196,7 @@ _l_ move subtree right
 Editing^^          ^Visibility^           ^Navigation^
   _w_ refile         indirect _b_uffer      _u_p
   _c_apture
-  _d_eadline
+  _d_eadline (eow)
   _e_xport
   e_f_fort
   _:_ tag
@@ -205,7 +205,7 @@ Editing^^          ^Visibility^           ^Navigation^
     ;; ("'" org-edit-special)
     ("w" org-refile)
     ("c" org-capture)
-    ("d" org-deadline)
+    ("d" jy/org-set-deadline-to-end-of-week)
     ("e" org-export-dispatch)
     ("f" org-set-effort)
     (":" org-set-tags)
