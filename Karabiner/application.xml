@@ -32,7 +32,7 @@
       <vkopenurldef>
         <name>KeyCode::VK_OPEN_URL_APP_Chrome</name>
         <url type="file">
-          /Applications/Google Chrome.app
+          /Applications/Google Chrome Canary.app
         </url>
       </vkopenurldef>
       <vkopenurldef>
