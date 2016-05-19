@@ -35,3 +35,4 @@
     ~/Library/LaunchAgents/org.mode.jason.plist: LaunchAgents/org.mode.jason.plist
     # Hammerspoon
     ~/.hammerspoon: hammerspoon
+    ~/.agignore: agignore

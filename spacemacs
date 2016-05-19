@@ -831,6 +831,12 @@ layers configuration. You are free to put any user code."
 
   (require 'editorconfig)
   (editorconfig-mode 1)
+
+  ;; Ag doesn't search dotfiles and dot-directories by default. Adding the
+  ;; --hidden option will search these files. It will still ignore paths
+  ;; matched in the .agignore file, so I've added .git/ to that ag won't
+  ;; search .git/
+  (setq helm-ag-command-option "--hidden")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
