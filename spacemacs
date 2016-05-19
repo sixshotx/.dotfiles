@@ -304,10 +304,8 @@ layers configuration. You are free to put any user code."
 ;;;;;;;;;;;;;;;;;;;;;;
   ;; Editing defaults ;;
 ;;;;;;;;;;;;;;;;;;;;;;
+  ;; In Unix, a file is defined as having a newline: http://bit.ly/22huFrs
   (setq require-final-newline t)
-
-  ;; Allow vim-style %-matching everywhere
-  ;; (global-evil-matchit-mode 1)
 
   ;; Navigate by visual line rather than absolute line.
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
@@ -482,26 +480,29 @@ layers configuration. You are free to put any user code."
   ;; Put H and L to go to line start and end, respectively.
   (define-key evil-normal-state-map "H" "^")
   (define-key evil-normal-state-map "L" "$")
+
   ;; For quick recordings just type qq to start recording, then q to stop. You
   ;; don't have to worry about the name this way (you just named the recording
   ;; 'q'). Now, to play back the recording you just type Q. This will redefine the
   ;; standard meaning of 'Q', but all that does is enter "Ex" mode which I can live
   ;; without.
   (define-key evil-normal-state-map "Q" "@q")
+
   ;; To copy text to the end-of-line, you can press y$ or you can use the
   ;; following and press Y instead. This mapping sets up Y to be consistent with
   ;; the C and D operators, which act from the cursor to the end of the line. The
   ;; default behavior of Y is to yank the whole line.
-  (define-key evil-normal-state-map "Y" "yy")
-  ;; TODO map an insert mode keybinding to go to
+  (define-key evil-normal-state-map "Y" "y$")
+
+  ;; TODO Map an insert mode keybinding to go to
   (define-key evil-insert-state-map (kbd "<C-return>")
     (lambda ()
       (end-of-line)
       (newline-and-indent)))
 
-;;;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;;;
   ;; Screenshot ;;
-;;;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;;;
   ;; Take a screenshot and save it to dropbox.
   (defun take-screenshot ()
     (interactive)
@@ -556,14 +557,14 @@ layers configuration. You are free to put any user code."
   (setq notify-method 'notify-via-growl)
   ;; Open these buffers as soon as they're available
 
-;;;;;;;;;
+  ;;;;;;;;;
   ;; Git ;;
-;;;;;;;;;
+  ;;;;;;;;;
   (setq diff-hl-side 'right)
 
-;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;
   ;; Projectile
-;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;
   (evil-leader/set-key
     "pw" 'helm-projectile-find-other-file)
   (define-key evil-normal-state-map (kbd "SPC p /") 'spacemacs/helm-projectile-smart-do-search)
@@ -575,18 +576,18 @@ layers configuration. You are free to put any user code."
   ;;       (add-to-list 'projectile-other-file-alist '("js" "scss"))
   ;;       (add-to-list 'projectile-other-file-alist '("scss" "js"))))
 
-;;;;;;;;;;
+  ;;;;;;;;;;
   ;; HTML ;;
-;;;;;;;;;;
+  ;;;;;;;;;;
   ;; (evil-define-key 'normal html-mode-map
   ;;   (kbd "j") 'sp-next-sexp
   ;;   (kbd "k") 'sp-previous-sexp
   ;;   (kbd "l") 'sp-down-sexp
   ;;   (kbd "h") 'sp-up-sexp)
 
-;;;;;;;;;;;
+  ;;;;;;;;;;;
   ;; Ediff ;;
-;;;;;;;;;;;
+  ;;;;;;;;;;;
   ;; http://oremacs.com/2015/01/17/setting-up-ediff/
 
   ;; Uses custom-set variable value if it exists, otherwise just setq's.
@@ -693,9 +694,9 @@ layers configuration. You are free to put any user code."
   (require 're-builder)
   (setq reb-re-syntax 'string)
 
-;;;;;;;;;
+  ;;;;;;;;;
   ;; Avy ;;
-;;;;;;;;;
+  ;;;;;;;;;
   (evil-leader/set-key
     ;; SPC SPC
     "SPC" 'avy-goto-char-2)
@@ -711,9 +712,9 @@ layers configuration. You are free to put any user code."
       (when filename
         (kill-new filename)
         (message "Copied buffer file name '%s' to the clipboard." filename))))
-;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; Custom org-pomodoro ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;;;;;;;;;;;;
   (load-file "~/.dotfiles/emacs.spacemacs.d.private/jason-org/local/org-pomodoro/org-pomodoro.el")
   (setq org-pomodoro-start-sound "~/.dotfiles/emacs.spacemacs.d.private/jason-org/local/org-pomodoro/resources/marine_gogogo.wav")
   (setq org-pomodoro-long-break-sound "~/.dotfiles/emacs.spacemacs.d.private/jason-org/local/org-pomodoro/resources/reap_the_whirlwind.wav")
@@ -743,9 +744,9 @@ layers configuration. You are free to put any user code."
   ;; Web-mode
   (setq web-mode-comment-face '((t (:foreground "#ddd"))))
 
-;;;;;;;;;;;
+  ;;;;;;;;;;;
   ;; Theme ;;
-;;;;;;;;;;;
+  ;;;;;;;;;;;
   ;; This makes the mode-line legible
   ;; (moe-theme-set-color 'magenta)
   ;; Highlights the entire expression in parentheses
@@ -820,9 +821,9 @@ layers configuration. You are free to put any user code."
       (linum-mode -1)))
   (add-hook 'find-file-hook 'large-file-hook)
 
-;;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;;
   ;; Git/Magit ;;
-;;;;;;;;;;;;;;;
+  ;;;;;;;;;;;;;;;
   (setq magit-blame-heading-format "%-20a %C %s %H")
   ;; Chrome layer listj
   (setq edit-server-url-major-mode-alist
