@@ -72,7 +72,8 @@ alias gme="git lg master..HEAD"
 alias gtoday='git lg --branches --author="jasoncyu" --after="6am"'
 
 # Prettier git diff
-alias gd='git diff -U10 --color-words'
+# -C -- detects copies and renames.
+alias gd='git diff -C -U10 --color-words'
 
 # pull-request
 # Relies on hub
