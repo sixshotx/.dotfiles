@@ -93,7 +93,7 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(alert f s swiper beeminder jsx-mode
-                                            editorconfig)
+                                            editorconfig crux)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(helm-gitignore)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -500,9 +500,9 @@ layers configuration. You are free to put any user code."
       (end-of-line)
       (newline-and-indent)))
 
-  ;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;
   ;; Screenshot ;;
-  ;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;
   ;; Take a screenshot and save it to dropbox.
   (defun take-screenshot ()
     (interactive)
@@ -557,14 +557,14 @@ layers configuration. You are free to put any user code."
   (setq notify-method 'notify-via-growl)
   ;; Open these buffers as soon as they're available
 
-  ;;;;;;;;;
+;;;;;;;;;
   ;; Git ;;
-  ;;;;;;;;;
+;;;;;;;;;
   (setq diff-hl-side 'right)
 
-  ;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;
   ;; Projectile
-  ;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;
   (evil-leader/set-key
     "pw" 'helm-projectile-find-other-file)
   (define-key evil-normal-state-map (kbd "SPC p /") 'spacemacs/helm-projectile-smart-do-search)
@@ -576,18 +576,18 @@ layers configuration. You are free to put any user code."
   ;;       (add-to-list 'projectile-other-file-alist '("js" "scss"))
   ;;       (add-to-list 'projectile-other-file-alist '("scss" "js"))))
 
-  ;;;;;;;;;;
+;;;;;;;;;;
   ;; HTML ;;
-  ;;;;;;;;;;
+;;;;;;;;;;
   ;; (evil-define-key 'normal html-mode-map
   ;;   (kbd "j") 'sp-next-sexp
   ;;   (kbd "k") 'sp-previous-sexp
   ;;   (kbd "l") 'sp-down-sexp
   ;;   (kbd "h") 'sp-up-sexp)
 
-  ;;;;;;;;;;;
+;;;;;;;;;;;
   ;; Ediff ;;
-  ;;;;;;;;;;;
+;;;;;;;;;;;
   ;; http://oremacs.com/2015/01/17/setting-up-ediff/
 
   ;; Uses custom-set variable value if it exists, otherwise just setq's.
@@ -694,9 +694,9 @@ layers configuration. You are free to put any user code."
   (require 're-builder)
   (setq reb-re-syntax 'string)
 
-  ;;;;;;;;;
+;;;;;;;;;
   ;; Avy ;;
-  ;;;;;;;;;
+;;;;;;;;;
   (evil-leader/set-key
     ;; SPC SPC
     "SPC" 'avy-goto-char-2)
@@ -712,9 +712,9 @@ layers configuration. You are free to put any user code."
       (when filename
         (kill-new filename)
         (message "Copied buffer file name '%s' to the clipboard." filename))))
-  ;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; Custom org-pomodoro ;;
-  ;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
   (load-file "~/.dotfiles/emacs.spacemacs.d.private/jason-org/local/org-pomodoro/org-pomodoro.el")
   (setq org-pomodoro-start-sound "~/.dotfiles/emacs.spacemacs.d.private/jason-org/local/org-pomodoro/resources/marine_gogogo.wav")
   (setq org-pomodoro-long-break-sound "~/.dotfiles/emacs.spacemacs.d.private/jason-org/local/org-pomodoro/resources/reap_the_whirlwind.wav")
@@ -744,9 +744,9 @@ layers configuration. You are free to put any user code."
   ;; Web-mode
   (setq web-mode-comment-face '((t (:foreground "#ddd"))))
 
-  ;;;;;;;;;;;
+;;;;;;;;;;;
   ;; Theme ;;
-  ;;;;;;;;;;;
+;;;;;;;;;;;
   ;; This makes the mode-line legible
   ;; (moe-theme-set-color 'magenta)
   ;; Highlights the entire expression in parentheses
@@ -770,7 +770,6 @@ layers configuration. You are free to put any user code."
                      [?w ?d ?f ?\[ ?f ?\] ?d ?f ?= ?i ?: escape ?A ?, escape ?j ?0])
 
 
-
   ;; Stop asking about whether local variables are safe.
   (setq enable-local-variables :all)
 
@@ -785,6 +784,7 @@ layers configuration. You are free to put any user code."
   ;;     (tramp-remote-shell "/bin/sh")
   ;;     (tramp-remote-shell-args ("-i") ("-c"))))
   ;;  tramp-methods)
+
 
   ;; (defadvice tramp-completion-handle-file-name-all-completions
   ;;     (around dotemacs-completion-docker activate)
@@ -821,9 +821,9 @@ layers configuration. You are free to put any user code."
       (linum-mode -1)))
   (add-hook 'find-file-hook 'large-file-hook)
 
-  ;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
   ;; Git/Magit ;;
-  ;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
   (setq magit-blame-heading-format "%-20a %C %s %H")
   ;; Chrome layer listj
   (setq edit-server-url-major-mode-alist

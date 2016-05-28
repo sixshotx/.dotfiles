@@ -10,6 +10,7 @@ alias gwip='git add -A; git ls-files --deleted -z | xargs -0 git rm; git commit 
 alias gunwip='git log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1'
 alias gmm='branch=$(current_branch); gco master && ggpull && gco $branch && gm master'
 
+# git-checkout-branch
 # Change branch using fzf.
 function gcb() {
     new_branch=$(gb | fzf)
@@ -129,3 +130,11 @@ alias gcmp="hub compare"
 
 # even faster pushing
 alias gp=ggpush
+
+# git-different-commits
+# Show me commits on r2 that aren't on HEAD
+# gdc() {
+#     branch=$(gb | fzf)
+#     no_spaces=$(echo $new_branch | tr -d ' ')
+#     git lg ..$branch
+# }

@@ -32,7 +32,7 @@
 ;; Org capture
 ;; http://orgmode.org/manual/Capture-templates.html
 (setq org-capture-templates
-      (quote (("t" "todo" entry (file "~/Dropbox/org/refile.org")
+      (quote (("t" "todo" entry (file+olp "~/Dropbox/org/life.org" "Life" "Refile")
                "* TODO %?\n%U\n")
               ("h" "Habit" entry (file "~/Dropbox/org/life.org")
                "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d/3d>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n")
