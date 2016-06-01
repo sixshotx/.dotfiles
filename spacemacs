@@ -42,6 +42,7 @@ values."
      auto-completion
      (clojure :variables
               clojure-enable-fancify-symbols t)
+     chinese
      colors
      chrome
      dash
@@ -627,6 +628,11 @@ layers configuration. You are free to put any user code."
   (setq js2-mode-show-parse-errors nil)
   (setq js2-mode-show-strict-warnings nil)
   (setq css-indent-offset 2)
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-attr-indent-offset 2)
+  (setq standard-indent 2)
   (defun turn-on-aggressive-indent ()
     (progn
       (aggressive-indent-mode)))

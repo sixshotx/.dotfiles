@@ -9,7 +9,7 @@
 ;; Separate drawers for clocking and logs
 (setq org-drawers (quote ("PROPERTIES" "LOGBOOK")))
 ;; Change tasks to NEXT when clocking in
-(setq org-clock-in-switch-to-state 'bh/clock-in-to-next)
+;; (setq org-clock-in-switch-to-state 'bh/clock-in-to-next)
 ;; Save clock data and state changes and notes in the LOGBOOK drawer
 (setq org-clock-into-drawer t)
 ;; Sometimes I change tasks I'm clocking quickly - this removes clocked tasks with 0:00 duration
