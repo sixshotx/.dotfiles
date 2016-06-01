@@ -1,10 +1,12 @@
+;; Source: http://doc.norang.ca/org-mode.html
+
 ;; The following setting is different from the document so that you
 ;; can override the document path by setting your path in the variable
 ;; org-mode-user-lisp-path
 ;;
 (if (boundp 'org-mode-user-lisp-path)
     (add-to-list 'load-path org-mode-user-lisp-path)
-  (add-to-list 'load-path (expand-file-name "~/git/org-mode/lisp")))
+  (add-to-list 'load-path (expand-file-name "~/Dropbox/org-mode/lisp")))
 
 (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
 (require 'org)
@@ -114,29 +116,29 @@
               ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
               ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
 
-(setq org-directory "~/git/org")
-(setq org-default-notes-file "~/git/org/refile.org")
+(setq org-directory "~/Dropbox/org")
+(setq org-default-notes-file "~/Dropbox/org/refile.org")
 
 ;; I use C-c c to start capture mode
 (global-set-key (kbd "C-c c") 'org-capture)
 
 ;; Capture templates for: TODO tasks, Notes, appointments, phone calls, meetings, and org-protocol
 (setq org-capture-templates
-      (quote (("t" "todo" entry (file "~/git/org/refile.org")
+      (quote (("t" "todo" entry (file "~/Dropbox/org/refile.org")
                "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
-              ("r" "respond" entry (file "~/git/org/refile.org")
+              ("r" "respond" entry (file "~/Dropbox/org/refile.org")
                "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n" :clock-in t :clock-resume t :immediate-finish t)
-              ("n" "note" entry (file "~/git/org/refile.org")
+              ("n" "note" entry (file "~/Dropbox/org/refile.org")
                "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
-              ("j" "Journal" entry (file+datetree "~/git/org/diary.org")
+              ("j" "Journal" entry (file+datetree "~/Dropbox/org/diary.org")
                "* %?\n%U\n" :clock-in t :clock-resume t)
-              ("w" "org-protocol" entry (file "~/git/org/refile.org")
+              ("w" "org-protocol" entry (file "~/Dropbox/org/refile.org")
                "* TODO Review %c\n%U\n" :immediate-finish t)
-              ("m" "Meeting" entry (file "~/git/org/refile.org")
+              ("m" "Meeting" entry (file "~/Dropbox/org/refile.org")
                "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
-              ("p" "Phone call" entry (file "~/git/org/refile.org")
+              ("p" "Phone call" entry (file "~/Dropbox/org/refile.org")
                "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
-              ("h" "Habit" entry (file "~/git/org/refile.org")
+              ("h" "Habit" entry (file "~/Dropbox/org/refile.org")
                "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
 
 ;; Remove empty LOGBOOK drawers on clock out
@@ -795,7 +797,7 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
 (require 'ox-latex)
 (require 'ox-ascii)
 
-(setq org-ditaa-jar-path "~/git/org-mode/contrib/scripts/ditaa.jar")
+(setq org-ditaa-jar-path "~/Dropbox/org-mode/contrib/scripts/ditaa.jar")
 (setq org-plantuml-jar-path "~/java/plantuml.jar")
 
 (add-hook 'org-babel-after-execute-hook 'bh/display-inline-images 'append)
@@ -941,7 +943,7 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
               ; Miscellaneous pages for other websites
               ; org are the org-files that generate the content
               ("org-org"
-               :base-directory "~/git/org/"
+               :base-directory "~/Dropbox/org/"
                :publishing-directory "/ssh:www-data@www:~/org"
                :recursive t
                :section-numbers nil
@@ -959,7 +961,7 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
               ; org-mode-doc is the top-level project that gets published
               ; This uses the same target directory as the 'doc' project
               ("org-mode-doc-org"
-               :base-directory "~/git/org-mode-doc/"
+               :base-directory "~/Dropbox/org-mode-doc/"
                :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs"
                :recursive t
                :section-numbers nil
@@ -973,7 +975,7 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
                :author-info nil
                :creator-info nil)
               ("org-mode-doc-extra"
-               :base-directory "~/git/org-mode-doc/"
+               :base-directory "~/Dropbox/org-mode-doc/"
                :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs"
                :base-extension "css\\|pdf\\|png\\|jpg\\|gif\\|org"
                :publishing-function org-publish-attachment
@@ -1402,7 +1404,7 @@ so change the default 'F' binding in the agenda to allow both"
 (setq org-agenda-skip-timestamp-if-done t)
 
 (setq org-agenda-include-diary nil)
-(setq org-agenda-diary-file "~/git/org/diary.org")
+(setq org-agenda-diary-file "~/Dropbox/org/diary.org")
 
 (setq org-agenda-insert-diary-extract-time t)
 
@@ -1535,7 +1537,7 @@ Late deadlines first, then scheduled, then non-late deadlines"
 ;;
 (if (boundp 'org-mode-user-contrib-lisp-path)
     (add-to-list 'load-path org-mode-user-contrib-lisp-path)
-  (add-to-list 'load-path (expand-file-name "~/git/org-mode/contrib/lisp")))
+  (add-to-list 'load-path (expand-file-name "~/Dropbox/org-mode/contrib/lisp")))
 
 (require 'org-checklist)
 
@@ -1727,7 +1729,7 @@ Late deadlines first, then scheduled, then non-late deadlines"
 
 (setq org-remove-highlights-with-change t)
 
-(add-to-list 'Info-default-directory-list "~/git/org-mode/doc")
+(add-to-list 'Info-default-directory-list "~/Dropbox/org-mode/doc")
 
 (setq org-read-date-prefer-future 'time)
 
