@@ -14,12 +14,15 @@
   '(
     ;; package jason-orgs go here
     appt
-    (jason :location local)
-    (clock-settings :location local)
-    (jason-settings :location local)
-    (org-todo-settings :location local)
-    (jason-agenda :location local)
+    ;; Needed for norang
+    bbdb
+    ;; (jason :location local)
+    ;; (clock-settings :location local)
+    ;; (jason-settings :location local)
+    ;; (org-todo-settings :location local)
+    ;; (jason-agenda :location local)
     moe-theme
+    ;; (norang :location local)
     org-autolist
     (org-bh :location local)
     (org-checklist :location local)
@@ -53,6 +56,10 @@ which require an initialization must be listed explicitly in the list.")
 (defun jason-org/init-moe-theme ()
   ""
   (use-package moe-theme))
+
+(defun jason-org/init-bbdb ()
+  ""
+  (use-package bbdb))
 
 (defun jason-org/init-org-bh ()
   "Initialize my extension"
@@ -94,6 +101,9 @@ which require an initialization must be listed explicitly in the list.")
   (use-package org-subtask-reset)
   )
 
+(defun jason-org/init-norang ()
+  ""
+  (use-package norang))
 (defun jason-org/init-jason-agenda ()
   "Initialize my extension"
   (eval-after-load 'org-agenda
