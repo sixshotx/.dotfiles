@@ -461,9 +461,6 @@ A prefix arg forces clock in of the default task."
 (setq org-global-properties (quote (("Effort_ALL" . "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 0:00")
                                     ("STYLE_ALL" . "habit"))))
 
-;; Agenda log mode items to display (closed and state changes by default)
-(setq org-agenda-log-mode-items (quote (closed state)))
-
 ; Tags with fast selection keys
 (setq org-tag-alist (quote ((:startgroup)
                             ("@errand" . ?e)
@@ -1067,7 +1064,7 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
   (org-agenda-to-appt))
 
 ; Rebuild the reminders everytime the agenda is displayed
-(add-hook 'org-finalize-agenda-hook 'bh/org-agenda-to-appt 'append)
+;; (add-hook 'org-finalize-agenda-hook 'bh/org-agenda-to-appt 'append)
 
 ; This is at the end of my .emacs - so appointments are set up when Emacs starts
 (bh/org-agenda-to-appt)
@@ -1901,4 +1898,19 @@ Late deadlines first, then scheduled, then non-late deadlines"
 
 (run-at-time "00:59" 3600 'org-save-all-org-buffers)
 
+(add-hook 'org-finalize-agenda-hook
+          (lambda ()
+            (message "org agenda hook")
+            ;; Don't split long lines across multiple visual lines in agenda
+            ;; because it breaks the clock report table.
+            (visual-line-mode 1)
+            ;; Turn off line numbers b/c they're not that valuable in a non-code document
+            ;; and they slow down rendering significantly.
+            (spacemacs/toggle-line-numbers-off)))
+
+(add-hook 'org-mode-hook
+          (lambda ()
+            ;; Turn off line numbers b/c they're not that valuable in a non-code document
+            ;; and they slow down rendering significantly.
+            (spacemacs/toggle-line-numbers-off)))
 (provide 'norang)
