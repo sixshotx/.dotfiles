@@ -219,9 +219,9 @@ Editing^^          ^Visibility^           ^Navigation^
   (evil-leader/set-key "," 'hydra-org/body)
 
   ;; Hit "v" in the agenda view.
-  (with-eval-after-load 'org-agenda
-    (define-key org-agenda-mode-map
-      "v" 'hydra-org-agenda-view/body))
+  ;; (with-eval-after-load 'org-agenda
+  ;;   (define-key org-agenda-mode-map
+  ;;     "v" 'hydra-org-agenda-view/body))
 
   (defun org-agenda-cts ()
     (let ((args (get-text-property

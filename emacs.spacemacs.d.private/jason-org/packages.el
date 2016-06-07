@@ -22,7 +22,7 @@
     ;; (org-todo-settings :location local)
     ;; (jason-agenda :location local)
     moe-theme
-    ;; (norang :location local)
+    (norang :location local)
     org-autolist
     (org-bh :location local)
     (org-checklist :location local)

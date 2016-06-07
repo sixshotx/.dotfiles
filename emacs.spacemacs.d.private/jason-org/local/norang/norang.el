@@ -185,6 +185,28 @@
 ;; Uncompact the block agenda view
 (setq org-agenda-compact-blocks nil)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; All agenda settings ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (setq org-agenda-clockreport-parameter-plist (quote (:link t :maxlevel 6)))
+;; (setq org-agenda-log-mode-items (quote (clock)))
+(setq org-agenda-skip-scheduled-if-done t)
+(setq org-agenda-span (quote day))
+
+;; The org agenda logs things by default (Toggle with "L"). It shows all items
+;; that have a clock entry.
+(setq org-agenda-start-with-log-mode t)
+(setq org-agenda-log-mode-items '(clock))
+
+;; Start org
+(setq org-agenda-start-with-clockreport-mode t)
+;; Show 1 day by default on the agenda.
+(setq org-agenda-ndays 1)
+;; Show the daily log of things you've clocked by default in the agenda
+(setq org-agenda-show-log t)
+;; Don't have agenda follow org-mode because it slows down agenda operations.
+(setq org-agenda-start-with-follow-mode nil)
+
 ;; Custom agenda command definitions
 (setq org-agenda-custom-commands
       (quote (("N" "Notes" tags "NOTE"
