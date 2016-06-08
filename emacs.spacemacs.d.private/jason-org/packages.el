@@ -24,7 +24,7 @@
     moe-theme
     (norang :location local)
     org-autolist
-    (org-bh :location local)
+    ;; (org-bh :location local)
     (org-checklist :location local)
     (org-depend :location local)
     (org-pomodoro :location local)
