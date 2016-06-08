@@ -1,3 +1,4 @@
+(message "top of norang.el")
 ;; The following setting is different from the document so that you
 ;; can override the document path by setting your path in the variable
 ;; org-mode-user-lisp-path

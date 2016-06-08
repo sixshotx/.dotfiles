@@ -16,15 +16,9 @@
     appt
     ;; Needed for norang
     bbdb
-    ;; (jason :location local)
-    ;; (clock-settings :location local)
-    ;; (jason-settings :location local)
-    ;; (org-todo-settings :location local)
-    ;; (jason-agenda :location local)
     moe-theme
     (norang :location local)
     org-autolist
-    ;; (org-bh :location local)
     (org-checklist :location local)
     (org-depend :location local)
     (org-pomodoro :location local)
@@ -61,31 +55,6 @@ which require an initialization must be listed explicitly in the list.")
   ""
   (use-package bbdb))
 
-(defun jason-org/init-org-bh ()
-  "Initialize my extension"
-  ;; Don't defer any of these b/c we want org mode to be available at all time
-  (use-package org-bh)
-  )
-
-(defun jason-org/init-jason ()
-  "Initialize my extension"
-  ;; Don't defer any of these b/c we want org mode to be available at all time
-  (eval-after-load 'org-bh
-    (use-package jason))
-  )
-
-(defun jason-org/init-clock-settings ()
-  (with-eval-after-load 'org-bh
-        (use-package clock-settings)))
-
-(defun jason-org/init-jason-settings ()
-  (use-package jason-settings))
-
-(defun jason-org/init-org-todo-settings ()
-  ;; Can't do :defer: for some reason, it doesn't work.
-  (with-eval-after-load
-      (use-package org-todo-settings)))
-
 (defun jason-org/init-org-depend ()
   "Initialize my extension"
   (use-package org-depend)
@@ -103,12 +72,10 @@ which require an initialization must be listed explicitly in the list.")
 
 (defun jason-org/init-norang ()
   ""
-  (use-package norang))
-(defun jason-org/init-jason-agenda ()
-  "Initialize my extension"
-  (eval-after-load 'org-agenda
-    (use-package jason-agenda))
-  )
+  (message "trying to load norang")
+  (use-package norang
+    :config
+    (message "done loading norang")))
 
 (defun jason-org/init-org-pomodoro ()
   "Initialize my extension"

@@ -53,7 +53,6 @@ values."
      (git :variables
           git-gutter-use-fringe t
           git-enable-github-support t)
-     spacemacs-helm
      (auto-completion :variables
                       auto-completion-complete-with-key-sequence-delay 0.1)
      ;; better-defaults
