@@ -68,6 +68,7 @@ values."
      ;; To use the python layer, you have to install these dependencies manually:
      ;; pip install jedi==0.8.1 json-rpc==1.8.1 service_factory==0.1.2
      markdown
+     norang
      python
      javascript
      ;; jason-eyebrowse
@@ -92,7 +93,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(alert f s swiper beeminder jsx-mode
+   dotspacemacs-additional-packages '(alert bbdb f s swiper beeminder jsx-mode
                                             editorconfig crux)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(helm-gitignore)
@@ -126,7 +127,7 @@ values."
    ;; variable is `emacs' then the `holy-mode' is enabled at startup. `hybrid'
    ;; uses emacs key bindings for vim's insert mode, but otherwise leaves evil
    ;; unchanged. (default 'vim)
-   dotspacemacs-editing-style 'hybrid
+   dotspacemacs-editing-style 'vim
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -720,6 +721,7 @@ layers configuration. You are free to put any user code."
 ;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; Custom org-pomodoro ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; (load-file "~/.dotfiles/emacs.spacemacs.d.private/jason-org/local/norang/norang.el")
   (load-file "~/.dotfiles/emacs.spacemacs.d.private/jason-org/local/org-pomodoro/org-pomodoro.el")
   (setq org-pomodoro-start-sound "~/.dotfiles/emacs.spacemacs.d.private/jason-org/local/org-pomodoro/resources/marine_gogogo.wav")
   (setq org-pomodoro-long-break-sound "~/.dotfiles/emacs.spacemacs.d.private/jason-org/local/org-pomodoro/resources/reap_the_whirlwind.wav")
