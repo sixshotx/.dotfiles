@@ -36,7 +36,7 @@
   cmd = subl -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\"
 [core]
   trustctime = false
-  editor = emacsclient -q
+	editor = vim
   preloadindex = true
 [alias]
     ss = stash save WIP.
