@@ -1,4 +1,19 @@
 (message "top of norang.el")
+
+;; org-finalize-agenda-hook and org-mode-hook need to be at the top to work succesfully.
+(add-hook 'org-finalize-agenda-hook
+          (lambda ()
+            (message "org agenda hook")
+            ;; Don't split long lines across multiple visual lines in agenda
+            ;; because it breaks the clock report table.
+            (visual-line-mode 1)))
+(add-hook 'org-mode-hook
+          (lambda ()
+            (message "org mode hook")
+            ;; Turn off line numbers b/c they're not that valuable in a non-code document
+            ;; and they slow down rendering significantly.
+            (spacemacs/toggle-line-numbers-off)
+            (visual-line-mode 1)))
 ;; The following setting is different from the document so that you
 ;; can override the document path by setting your path in the variable
 ;; org-mode-user-lisp-path
@@ -276,10 +291,10 @@
                 ;;             (org-tags-match-list-sublevels nil)
                 ;;             (org-agenda-todo-ignore-scheduled bh/hide-scheduled-and-waiting-next-tasks)
                 ;;             (org-agenda-todo-ignore-deadlines bh/hide-scheduled-and-waiting-next-tasks)))
-                ;; (tags "-REFILE/"
-                ;;       ((org-agenda-overriding-header "Tasks to Archive")
-                ;;        (org-agenda-skip-function 'bh/skip-non-archivable-tasks)
-                ;;        (org-tags-match-list-sublevels nil)))
+                (tags "-REFILE/"
+                      ((org-agenda-overriding-header "Tasks to Archive")
+                       (org-agenda-skip-function 'bh/skip-non-archivable-tasks)
+                       (org-tags-match-list-sublevels nil)))
                 )
                nil))))
 
@@ -1899,20 +1914,5 @@ Late deadlines first, then scheduled, then non-late deadlines"
 
 (run-at-time "00:59" 3600 'org-save-all-org-buffers)
 
-(add-hook 'org-finalize-agenda-hook
-          (lambda ()
-            (message "org agenda hook")
-            ;; Don't split long lines across multiple visual lines in agenda
-            ;; because it breaks the clock report table.
-            (visual-line-mode 1)
-            ;; Turn off line numbers b/c they're not that valuable in a non-code document
-            ;; and they slow down rendering significantly.
-            (spacemacs/toggle-line-numbers-off)))
-
-(add-hook 'org-mode-hook
-          (lambda ()
-            ;; Turn off line numbers b/c they're not that valuable in a non-code document
-            ;; and they slow down rendering significantly.
-            (spacemacs/toggle-line-numbers-off)))
 
 (provide 'norang-pkg)
