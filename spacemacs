@@ -64,7 +64,11 @@ values."
      lispy
      lua
      octave
-     org
+     (org :variables
+          org-enable-reveal-js-support t
+          org-reveal-root (concat "file://"
+                                  (file-truename (file-name-as-directory (expand-file-name "~/.emacs.d/reveal.js"))))
+          )
      ;; To use the python layer, you have to install these dependencies manually:
      ;; pip install jedi==0.8.1 json-rpc==1.8.1 service_factory==0.1.2
      markdown
