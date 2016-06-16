@@ -96,3 +96,5 @@ brew cleanup
 
 # Totalspaces config
 # http://discuss.binaryage.com/t/please-add-an-option-to-select-the-active-monitor-based-on-the-active-window-not-the-mouse-position/1950
+
+npm i -g diff-so-fancy

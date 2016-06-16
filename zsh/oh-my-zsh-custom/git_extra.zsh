@@ -75,7 +75,7 @@ alias gtoday='git lg --branches --author="jasoncyu" --after="6am"'
 # Prettier git diff
 # -w -- Ignore whitespace. Makes for easier to understand diffs.
 # -C -- detects copies and renames.
-alias gd='git diff -w -C -U10 --color-words'
+alias gd='git diff -w -C'
 
 # pull-request
 # Relies on hub

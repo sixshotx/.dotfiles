@@ -7,7 +7,7 @@
   default = simple
 [merge]
   tool = sublimerge
-  conflictstyle = merge
+	conflictstyle = diff3
 [alias]
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [alias]
@@ -31,6 +31,7 @@
 
 [diff]
   tool = sublimerge
+	compactionHeuristic = true
 
 [difftool "sublimerge"]
   cmd = subl -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\"
@@ -38,6 +39,7 @@
   trustctime = false
 	editor = vim
   preloadindex = true
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [alias]
     ss = stash save WIP.
     sa = stash apply
