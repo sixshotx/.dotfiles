@@ -11,7 +11,7 @@
       <appendix>Hyper + G to open Emacs</appendix>
       <appendix>Hyper + E to open Chrome</appendix>
       <appendix>Hyper + U to open Slack</appendix>
-      <appendix>Hyper + F to open Sequel Pro</appendix>
+      <appendix>Hyper + F to open VSCode</appendix>
       <appendix>Hyper + P to open Preview</appendix>
       <appendix>Hyper + D to open Discord</appendix>
       <identifier>custom.application_launchers</identifier>
@@ -48,9 +48,9 @@
         </url>
       </vkopenurldef>
       <vkopenurldef>
-        <name>KeyCode::VK_OPEN_URL_APP_Sequel_Pro</name>
+        <name>KeyCode::VK_OPEN_URL_APP_VSCode</name>
         <url type="file">
-          /opt/homebrew-cask/Caskroom/sequel-pro/1.1/Sequel Pro.app
+          /Applications/Visual Studio Code.app
         </url>
       </vkopenurldef>
       <vkopenurldef>
@@ -107,7 +107,7 @@
         KeyCode::F,
         {{ MODIFIER_FLAG_HYPER }} | ModifierFlag::NONE,
 
-        KeyCode::VK_OPEN_URL_APP_Sequel_Pro
+        KeyCode::VK_OPEN_URL_APP_VSCode
       </autogen>
       <autogen>
         __KeyToKey__
