@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: redux-action
+# key: raction
+# --
+export $1Action = (${2:args}) => {
+  $0
+  return {
+    type: $3,
+  }
+}

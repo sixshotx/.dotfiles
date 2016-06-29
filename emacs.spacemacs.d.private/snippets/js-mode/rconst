@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: redux-const
+# key: rconst
+# --
+export const $1 = '$2/$1'

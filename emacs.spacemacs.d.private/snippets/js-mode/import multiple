@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: import multiple
+# key: impm
+# --
+import {
+  $1,
+} from '$2'
