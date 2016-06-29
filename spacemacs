@@ -39,7 +39,10 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-complete-with-key-sequence-delay 0.1
+                      auto-completion-enable-snippets-in-popup t
+                      )
      (clojure :variables
               clojure-enable-fancify-symbols t)
      chinese
@@ -53,8 +56,6 @@ values."
      (git :variables
           git-gutter-use-fringe t
           git-enable-github-support t)
-     (auto-completion :variables
-                      auto-completion-complete-with-key-sequence-delay 0.1)
      ;; better-defaults
      emacs-lisp
      emoji
@@ -100,7 +101,9 @@ values."
    dotspacemacs-additional-packages '(alert bbdb f s swiper beeminder jsx-mode
                                             editorconfig crux)
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '(helm-gitignore)
+   dotspacemacs-excluded-packages '(helm-gitignore
+                                    ;; Exclude company to enable auto-complete globally.
+                                    company)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -131,7 +134,7 @@ values."
    ;; variable is `emacs' then the `holy-mode' is enabled at startup. `hybrid'
    ;; uses emacs key bindings for vim's insert mode, but otherwise leaves evil
    ;; unchanged. (default 'vim)
-   dotspacemacs-editing-style 'vim
+   dotspacemacs-editing-style 'hybrid
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -320,7 +323,8 @@ layers configuration. You are free to put any user code."
             '(lambda ()
                (progn
                  ;; Always have cursor's line be in the center of the screen
-                 (centered-cursor-mode 1))))
+                 (centered-cursor-mode 1)
+                 (auto-complete-mode 1))))
 
 ;;;;;;;;;;;;;;;
   ;; Yasnippet ;;
@@ -819,7 +823,7 @@ layers configuration. You are free to put any user code."
   ;; Enable company globally so that auto-completion works in modes
   ;; where it's not explicitly supported, like less-mode.
   ;; (global-company-mode)
-  ;; (global-auto-complete-mode)
+  (global-auto-complete-mode)
 
   (defun large-file-hook ()
     "If a file is over a given size, make the buffer read only."
