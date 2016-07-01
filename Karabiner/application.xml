@@ -9,7 +9,7 @@
       <appendix>Hyper + Q to open Polymail</appendix>
       <appendix>Hyper + T to open iTerm</appendix>
       <appendix>Hyper + G to open Emacs</appendix>
-      <appendix>Hyper + E to open Chrome</appendix>
+      <appendix>Hyper + E to open Chrome Canary</appendix>
       <appendix>Hyper + U to open Slack</appendix>
       <appendix>Hyper + F to open VSCode</appendix>
       <appendix>Hyper + P to open Preview</appendix>
@@ -32,7 +32,7 @@
       <vkopenurldef>
         <name>KeyCode::VK_OPEN_URL_APP_Chrome</name>
         <url type="file">
-          /Applications/Google Chrome.app
+          /Applications/Google Chrome Canary.app
         </url>
       </vkopenurldef>
       <vkopenurldef>
