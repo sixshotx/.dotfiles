@@ -101,9 +101,7 @@ values."
    dotspacemacs-additional-packages '(alert bbdb f s swiper beeminder jsx-mode
                                             editorconfig crux)
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '(helm-gitignore
-                                    ;; Exclude company to enable auto-complete globally.
-                                    company)
+   dotspacemacs-excluded-packages '(helm-gitignore)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -323,8 +321,7 @@ layers configuration. You are free to put any user code."
             '(lambda ()
                (progn
                  ;; Always have cursor's line be in the center of the screen
-                 (centered-cursor-mode 1)
-                 (auto-complete-mode 1))))
+                 (centered-cursor-mode 1))))
 
 ;;;;;;;;;;;;;;;
   ;; Yasnippet ;;
@@ -819,11 +816,6 @@ layers configuration. You are free to put any user code."
     (let ((buf-count (length (buffer-list))))
       (if (or (interactive-p) display-anyway)
           (message "%d buffers in this Emacs" buf-count)) buf-count))
-
-  ;; Enable company globally so that auto-completion works in modes
-  ;; where it's not explicitly supported, like less-mode.
-  ;; (global-company-mode)
-  (global-auto-complete-mode)
 
   (defun large-file-hook ()
     "If a file is over a given size, make the buffer read only."
