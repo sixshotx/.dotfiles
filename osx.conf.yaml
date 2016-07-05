@@ -5,6 +5,7 @@
     - [mkdir -p ~/.tmux/plugins, Creating tmux directory...]
 - link:
     ~/.amethyst: amethyst
+    ~/.atom: atom
     ~/.gitconfig: gitconfig
     ~/.vimrc: vimrc
     ~/.oh-my-zsh: oh-my-zsh
