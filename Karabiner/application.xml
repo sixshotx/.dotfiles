@@ -14,6 +14,7 @@
       <appendix>Hyper + F to open VSCode</appendix>
       <appendix>Hyper + P to open Preview</appendix>
       <appendix>Hyper + D to open Discord</appendix>
+      <appendix>Hyper + A to open Atom</appendix>
       <identifier>custom.application_launchers</identifier>
 
       <!-- Define special keycodes for launching apps -->
@@ -63,6 +64,12 @@
         <name>KeyCode::VK_OPEN_URL_APP_Discord</name>
         <url type="file">
           /Applications/Discord.app
+        </url>
+      </vkopenurldef>
+      <vkopenurldef>
+        <name>KeyCode::VK_OPEN_URL_APP_Atom</name>
+        <url type="file">
+          /Applications/Atom.app
         </url>
       </vkopenurldef>
 
@@ -122,6 +129,13 @@
         {{ MODIFIER_FLAG_HYPER }} | ModifierFlag::NONE,
 
         KeyCode::VK_OPEN_URL_APP_Discord
+      </autogen>
+      <autogen>
+        __KeyToKey__
+        KeyCode::A,
+        {{ MODIFIER_FLAG_HYPER }} | ModifierFlag::NONE,
+
+        KeyCode::VK_OPEN_URL_APP_Atom
       </autogen>
     </item>
 

@@ -13,6 +13,7 @@
             ;; Turn off line numbers b/c they're not that valuable in a non-code document
             ;; and they slow down rendering significantly.
             (spacemacs/toggle-line-numbers-off)
+            (org-indent-mode 1)
             (visual-line-mode 1)))
 ;; The following setting is different from the document so that you
 ;; can override the document path by setting your path in the variable

@@ -84,6 +84,7 @@ values."
      semantic
      spacemacs-layouts
      shell
+     typescript
      osx
      markdown
      restclient
