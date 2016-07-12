@@ -108,5 +108,6 @@ brew install cmus
 # mpsyt
 # https://github.com/mps-youtube/mps-youtube
 sudo pip3 install mps-youtube --upgrade
-brew cask install vlc
-# In mps, do a `set player vlc`.
+# Playing music with the `mpv` player works well.
+brew install mpv
+# In mps, do a `set player mpv`.
