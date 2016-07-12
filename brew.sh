@@ -98,3 +98,15 @@ brew cleanup
 # http://discuss.binaryage.com/t/please-add-an-option-to-select-the-active-monitor-based-on-the-active-window-not-the-mouse-position/1950
 
 npm i -g diff-so-fancy
+
+#########
+# Music #
+#########
+# Cmus is a terminal music player
+brew install cmus
+
+# mpsyt
+# https://github.com/mps-youtube/mps-youtube
+sudo pip3 install mps-youtube --upgrade
+brew cask install vlc
+# In mps, do a `set player vlc`.

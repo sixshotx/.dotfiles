@@ -1,7 +1,6 @@
-# -*- mode: snippet; require-final-newline: nil -*-
-# name: pretty print
-# key: pp
-# binding: direct-keybinding
+# -*- mode: snippet -*-
+# name: pretty print dict
+# key: ppd
 # --
-print "$1: %($1)s" % locals()
-$0
+import pprint
+pprint.pprint(${1:dict}, indent=2, width=120)
