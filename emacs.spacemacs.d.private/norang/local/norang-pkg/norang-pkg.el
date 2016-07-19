@@ -1737,7 +1737,8 @@ Late deadlines first, then scheduled, then non-late deadlines"
       (org-cycle)
       (bh/insert-inactive-timestamp))))
 
-(add-hook 'org-insert-heading-hook 'bh/insert-heading-inactive-timestamp 'append)
+;; This adds a timestamp whenever you insert a heading. Kind of gets in the way.
+;; (add-hook 'org-insert-heading-hook 'bh/insert-heading-inactive-timestamp 'append)
 
 (setq org-export-with-timestamps nil)
 

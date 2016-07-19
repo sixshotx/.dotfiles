@@ -43,13 +43,14 @@ values."
                       auto-completion-complete-with-key-sequence-delay 0.1
                       auto-completion-enable-snippets-in-popup t
                       )
+     better-defaults
      (clojure :variables
               clojure-enable-fancify-symbols t)
-     chinese
+     ;; chinese
      colors
      chrome
      dash
-     dockerfile
+     ;; dockerfile
      elm
      emacs-lisp
      gtags
@@ -62,6 +63,7 @@ values."
      haskell
      html
      hydra
+     ivy
      lispy
      lua
      octave
@@ -99,8 +101,10 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(alert bbdb f s swiper beeminder jsx-mode
-                                            editorconfig crux)
+   dotspacemacs-additional-packages
+   '(alert bbdb f s swiper beeminder jsx-mode
+           editorconfig crux
+           string-inflection)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(helm-gitignore)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -191,9 +195,9 @@ values."
    ;; and TAB or <C-m> and RET.
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
-   dotspacemacs-distinguish-gui-tab nil
+   dotspacemacs-distinguish-gui-tab t
    ;; If non nil `Y' is remapped to `y$' in Evil states. (default nil)
-   dotspacemacs-remap-Y-to-y$ nil
+   dotspacemacs-remap-Y-to-y$ t
    ;; If non nil, inverse the meaning of `g' in `:substitute' Evil ex-command.
    ;; (default nil)
    dotspacemacs-ex-substitute-global nil
@@ -499,7 +503,7 @@ layers configuration. You are free to put any user code."
   ;; following and press Y instead. This mapping sets up Y to be consistent with
   ;; the C and D operators, which act from the cursor to the end of the line. The
   ;; default behavior of Y is to yank the whole line.
-  (define-key evil-normal-state-map "Y" "y$")
+  ;; (define-key evil-normal-state-map "Y" "y$")
 
   ;; TODO Map an insert mode keybinding to go to
   (define-key evil-insert-state-map (kbd "<C-return>")

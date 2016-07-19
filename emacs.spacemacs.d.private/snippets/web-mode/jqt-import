@@ -1,6 +1,5 @@
 # -*- mode: snippet -*-
-#name : jqt-import
-#key : jqt-import
-#contributor : Jason Yu
+# name: react-bind
+# key: rbind
 # --
-{{tmpl({}) "#jqt-${1:templateName}"}}
+this.${1:function} = this.$1.bind(this)

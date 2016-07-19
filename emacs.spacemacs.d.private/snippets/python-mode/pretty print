@@ -3,4 +3,7 @@
 # key: ppd
 # --
 import pprint
+print '********'
+print '$1: '
 pprint.pprint(${1:dict}, indent=2, width=120)
+print '******'
