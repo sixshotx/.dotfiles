@@ -57,7 +57,7 @@ values."
      (git :variables
           git-gutter-use-fringe t
           git-enable-github-support t)
-     ;; better-defaults
+     better-defaults
      emacs-lisp
      emoji
      haskell
@@ -104,7 +104,7 @@ values."
    dotspacemacs-additional-packages
    '(alert bbdb f s swiper beeminder jsx-mode
            editorconfig crux
-           string-inflection)
+           string-inflection org-alert)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(helm-gitignore)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -850,6 +850,36 @@ layers configuration. You are free to put any user code."
   ;; matched in the .agignore file, so I've added .git/ to that ag won't
   ;; search .git/
   (setq helm-ag-command-option "--hidden")
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; Terminal notifier
+  ;; requires 'sudo gem install terminal-notifier'
+  ;; stolen from erc-notifier
+  ;; taken from http://bit.ly/2a9LgtR
+
+  (defvar terminal-notifier-command (executable-find "terminal-notifier") "The path to terminal-notifier.")
+
+  ;; (terminal-notifier-notify "Emacs notification" "Something amusing happened")
+
+  (defun terminal-notifier-notify (title message)
+    "Show a message with `terminal-notifier-command`."
+    (start-process "terminal-notifier"
+                   "*terminal-notifier*"
+                   terminal-notifier-command
+                   "-title" title
+                   "-message" message
+                   "-activate" "org.gnu.Emacs"))
+
+  (defun timed-notification(time msg)
+    (interactive "sNotification when (e.g: 2 minutes, 60 seconds, 3 days): \nsMessage: ")
+    (run-at-time time nil (lambda (msg) (terminal-notifier-notify "Emacs" msg)) msg))
+  ;; Sets up so org-notify uses
+  (setq org-show-notification-handler
+        (lambda (msg) (timed-notification nil msg)))
+
+  ;; Emacs `alert` function uses terminal-notifier if it's on the PATH
+  (setq alert-default-style 'notifier)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
