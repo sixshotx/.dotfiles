@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ppdict
+# key: ppdict
+# --
+console.log(JSON.stringify(${1:dict}, null, 2))$0

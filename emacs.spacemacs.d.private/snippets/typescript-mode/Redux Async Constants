@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Redux Async Const
+# key: r_async_const
+# --
+export const ${1:ACTION}_REQUEST: string = '$1_REQUEST'
+export const $1_SUCCESS: string = '$1_SUCCESS'
+export const $1_ERROR: string = '$1_ERROR'

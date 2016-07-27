@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: Redux Async Action Creators
+# key: rasync
+# --
+export function ${1:actionName}Request(): ${2:actionType} {
+  return {
+    type: ${1:$(string-inflection-upcase-function yas-text)}_REQUEST
+  }
+}
+
+export function $1Success(): $2 {
+  return {
+    type: ${1:$(string-inflection-upcase-function yas-text)}_SUCCESS
+  }
+}
+
+export function $1Error(): $2 {
+  return {
+    type: ${1:$(string-inflection-upcase-function yas-text)}_ERROR
+  }
+}

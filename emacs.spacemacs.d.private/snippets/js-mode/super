@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: super method
+# key: super
+# --
+${1:Parent}.prototype.${2:method}.call(this)$0

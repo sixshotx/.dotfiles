@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: ractioncreator
+# key: ractioncreator
+# --
+export function ${1:actionCreator}(${2:args}): ${3:actionType} {
+  return {
+    type: ${4:ACTION_CONSTANT},
+    $5
+  }
+}$0
