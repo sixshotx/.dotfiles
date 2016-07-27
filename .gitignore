@@ -1,2 +1,3 @@
 *.idea/
 emacs.spacemacs.d/*
+atom/*
