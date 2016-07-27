@@ -104,12 +104,13 @@
   (switch-to-buffer "*scratch*"))
 
 (setq org-todo-keywords
-      (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+      (quote ((sequence "TODO(t)" "NEXT(n)" "CODE_REVIEW(o)" "|" "DONE(d)")
               (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELED(c@/!)" "PHONE" "MEETING"))))
 
 (setq org-todo-keyword-faces
       (quote (("TODO" :foreground "red" :weight bold)
               ("NEXT" :foreground "blue" :weight bold)
+              ("CODE_REVIEW" :foreground "pink" :weight bold)
               ("DONE" :foreground "forest green" :weight bold)
               ("WAITING" :foreground "orange" :weight bold)
               ("HOLD" :foreground "magenta" :weight bold)
@@ -1719,7 +1720,8 @@ Late deadlines first, then scheduled, then non-late deadlines"
 
 (setq require-final-newline t)
 
-(defvar bh/insert-inactive-timestamp t)
+;; Whether to insert inactive timestamps at the end of each heading
+(defvar bh/insert-inactive-timestamp nil)
 
 (defun bh/toggle-insert-inactive-timestamp ()
   (interactive)
