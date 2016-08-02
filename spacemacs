@@ -63,7 +63,7 @@ values."
      haskell
      html
      hydra
-     ivy
+     ;; ivy
      lispy
      lua
      octave

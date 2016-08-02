@@ -1560,6 +1560,8 @@ Late deadlines first, then scheduled, then non-late deadlines"
 (require 'org-checklist)
 
 (setq org-enforce-todo-dependencies t)
+(setq org-enforce-todo-checkbox-dependencies t)
+
 
 (setq org-hide-leading-stars nil)
 

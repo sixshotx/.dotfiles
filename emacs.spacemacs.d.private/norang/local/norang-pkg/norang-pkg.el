@@ -200,8 +200,8 @@
 
 (setq org-refile-target-verify-function 'bh/verify-refile-target)
 
-;; Do not dim blocked tasks
-(setq org-agenda-dim-blocked-tasks nil)
+;; Dim blocked tasks
+(setq org-agenda-dim-blocked-tasks t)
 
 ;; Uncompact the block agenda view
 (setq org-agenda-compact-blocks nil)
