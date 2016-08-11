@@ -1,7 +1,7 @@
-# ~/.Tmuxinator/rolodex.yml
+# ~/.tmuxinator/everstring.yml
 
-name: rolodex
-root: ~/everstring/es-rolodex
+name: everstring
+root: ~/everstring
 
 # Optional tmux socket
 # socket_name: foo
@@ -28,15 +28,23 @@ root: ~/everstring/es-rolodex
 # post: tmux -CC attach -t rolodex
 
 windows:
-  - all:
+  - app:
+      root: ~/everstring/northstar-app
       layout: main-vertical
       panes:
         - ls
-        - grunt:
-          - cd ext
-          - grunt build:dev && grunt
-        - docker:
-          - cd ws/docker_ws_dev
+        - client:
+          - cd client
+          - npm run gulp
+        - api:
           - docker-machine start default
           - eval "$(docker-machine env default)"
           - docker-compose up
+  - data:
+      root: ~/everstring/data
+      layout: main-vertical
+      panes:
+        - python:
+          - cd python/feature_service
+          - source env/bin/activate
+          - python app.py
