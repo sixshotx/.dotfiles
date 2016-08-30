@@ -7,3 +7,6 @@
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm.git
+[submodule "emacs.spacemacs.d.private/norang/local/org-time-budgets"]
+	path = emacs.spacemacs.d.private/norang/local/org-time-budgets
+	url = git@github.com:jasoncyu/org-time-budgets.git

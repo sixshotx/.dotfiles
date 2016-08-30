@@ -1922,4 +1922,9 @@ Late deadlines first, then scheduled, then non-late deadlines"
 (run-at-time "00:59" 3600 'org-save-all-org-buffers)
 
 
+;; org-time-budgets
+;; (setq org-agenda-files '("~/Dropbox/org/everstring.org"))
+(setq org-time-budgets '((:title "EverString" :tags "+everstring" :budget "30:00" :block workweek)
+                         (:title "Life" :tags "+life" :budget "21:00" :block week)))
+;; (org-time-budgets-table)
 (provide 'norang-pkg)

@@ -30,7 +30,8 @@
 ;;; Code:
 
 (defconst norang-packages
-  '((norang-pkg :location local))
+  '((norang-pkg :location local)
+    (org-time-budgets :location local))
   "The list of Lisp packages required by the norang layer.
 
 Each entry is either:
@@ -62,4 +63,7 @@ Each entry is either:
   (with-eval-after-load 'org
     (use-package norang-pkg)))
 
+(defun norang/init-org-time-budgets ()
+  (with-eval-after-load 'org
+    (use-package org-time-budgets)))
 ;;; packages.el ends here
