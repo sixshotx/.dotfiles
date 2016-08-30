@@ -37,8 +37,6 @@ windows:
           - cd client
           - npm run gulp
         - api:
-          - docker-machine start default
-          - eval "$(docker-machine env default)"
           - docker-compose up
   - data:
       root: ~/everstring/data
