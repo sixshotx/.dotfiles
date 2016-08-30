@@ -104,7 +104,7 @@ values."
    dotspacemacs-additional-packages
    '(alert bbdb f s swiper beeminder jsx-mode
            editorconfig crux
-           string-inflection org-alert)
+           string-inflection org-alert org-dashboard)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(helm-gitignore)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -733,9 +733,10 @@ layers configuration. You are free to put any user code."
 ;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; (load-file "~/.dotfiles/emacs.spacemacs.d.private/jason-org/local/norang/norang.el")
   (load-file "~/.dotfiles/emacs.spacemacs.d.private/jason-org/local/org-pomodoro/org-pomodoro.el")
-  (setq org-pomodoro-start-sound "~/.dotfiles/emacs.spacemacs.d.private/jason-org/local/org-pomodoro/resources/marine_gogogo.wav")
-  (setq org-pomodoro-long-break-sound "~/.dotfiles/emacs.spacemacs.d.private/jason-org/local/org-pomodoro/resources/reap_the_whirlwind.wav")
-  (setq org-pomodoro-short-break-sound "~/.dotfiles/emacs.spacemacs.d.private/jason-org/local/org-pomodoro/resources/reap_the_whirlwind.wav")
+  ;; (setq org-pomodoro-start-sound "~/.dotfiles/emacs.spacemacs.d.private/jason-org/local/org-pomodoro/resources/marine_gogogo.wav")
+  ;; (setq org-pomodoro-long-break-sound "~/.dotfiles/emacs.spacemacs.d.private/jason-org/local/org-pomodoro/resources/reap_the_whirlwind.wav")
+  ;; (setq org-pomodoro-short-break-sound "~/.dotfiles/emacs.spacemacs.d.private/jason-org/local/org-pomodoro/resources/reap_the_whirlwind.wav")
+  (setq org-pomodoro-play-sounds nil)
 
   (require 'beeminder)
   (setq beeminder-username "zinbiel")

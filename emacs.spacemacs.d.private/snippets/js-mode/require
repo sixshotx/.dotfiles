@@ -3,4 +3,4 @@
 # key: req
 # binding: direct-keybinding
 # --
-${2:$$(yas-choose-value '("var" "const"))} $3 = require('${1:moduleName}');
+var $2 = require('${1:moduleName}');$0
