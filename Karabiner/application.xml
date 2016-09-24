@@ -39,7 +39,7 @@
       <vkopenurldef>
         <name>KeyCode::VK_OPEN_URL_APP_Slack</name>
         <url type="file">
-          /opt/homebrew-cask/Caskroom/slack/1.1.4/Slack.app
+          /Applications/Slack.app
         </url>
       </vkopenurldef>
       <vkopenurldef>
